@@ -2,11 +2,10 @@
 <html lang="zxx">
 
 <head>
-	<title>Outdoor Exterior Category Bootstrap Responsive Web Template | Home :: W3layouts</title>
+	<title>SkiesPlanet | Reservas</title>
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
-	<meta name="keywords" content="Outdoor Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -30,10 +29,19 @@
 	<!-- //Custom-Files -->
 
 	<!-- Web-Fonts -->
-	<link href="//fonts.googleapis.com/css?family=Archivo+Black&amp;subset=latin-ext" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Amaranth:400,400i,700,700i" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Lato:100,200,300,500,800,900" rel="stylesheet">
 	<!-- //Web-Fonts -->
+	<style>
+		.logo{
+			font-weight: 600;
+			letter-spacing: 0.25em;
+		}
+
+		.idioma{
+			position: absolute;
+			right: 20px;
+		}
+	</style>
 
 </head>
 
@@ -41,45 +49,18 @@
 	<!-- header -->
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-			<a class="navbar-brand" href="index.html">
-				<img src="{{asset('assets/images/logo4.png')}}" class="logo img-fluid" alt="">Outdoor
+			<a class="navbar-brand logo" href="index.html">
+				SKIES PLANET
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-toggle" aria-controls="navbarNavAltMarkup"
 			    aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse navbar-toggle " id="navbarNavAltMarkup">
-				<ul class="navbar-nav mx-xl-auto">
-					<li>
-						<a class="nav-link text-uppercase active" href="index.html">Home</a>
-					</li>
-					<li>
-						<a class="nav-link text-uppercase" href="about.html">About Us</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link text-uppercase dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-						    aria-expanded="false">Pages
-							<i class="fas fa-caret-down"></i>
-						</a>
-						<div class="dropdown-menu second mt-2" style="display: none;">
-							<a class="dropdown-item scroll" href="#services">Services</a>
-							<a class="dropdown-item" href="faqs.html">Faqs</a>
-
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item scroll" href="#feedback">Testimonials</a>
-							<a class="dropdown-item" href="gallery.html">Gallery</a>
-							<a class="dropdown-item" href="single.html">Some More</a>
-						</div>
-					</li>
-					<li>
-						<a class="nav-link text-uppercase" href="contact.html">Contact Us</a>
-					</li>
-				</ul>
+			<div class="collapse navbar-collapse navbar-toggle idioma" id="navbarNavAltMarkup">
 				<div class="top-info text-lg-right text-center mt-lg-0 mt-3">
 					<ul class="list-unstyled">
-						<li class="text-white mr-xl-4 mr-2 ml-xl-0 ml-lg-5">+ 12345678099</li>
 						<li class="number-phone">
-							<a class="request text-uppercase font-weight-bold text-white" href="#">Have any Quastions?</a>
+							<a class="request text-uppercase font-weight-bold text-white" href="#">IDIOMA</a>
 						</li>
 					</ul>
 				</div>
@@ -91,209 +72,46 @@
 	<!-- banner slider-->
 	<div class="banner-silder">
 		<div id="JiSlider" class="jislider">
-			<ul>
-				<li>
-					<div class="w3layouts-banner-top">
-						<div class="bs-slider-overlay">
-							<div class="container">
-								<!-- Slide Text Layer -->
-								<div class="w3l-slide-text">
-									<p class="aos-init aos-animate" data-aos="fade-down">Excepteur sint occaecat cupidatat non proident</p>
-									<h3 data-animation="animated zoomInRight">Enjoy the benefits of outdoor construction</h3>
-									<a href="services.html" target="_blank" class="button-style" data-animation="animated fadeInDown" data-aos="fade-down">View
-										Our Services</a>
-								</div>
-							</div>
+			<div class="w3layouts-banner-top w3layouts-banner-top">
+				<div class="bs-slider-overlay">
+					<div class="container">
+						<!-- Slide Text Layer -->
+						<div class="w3l-slide-text">
+							<h1 data-animation="animated zoomInRight">Elige Tu Cielo</h1>
+							<h4 class="aos-init aos-animate" data-aos="fade-down">
+								Selecciona la ubicación y la fecha de tu cielo y comprueba su disponibilidad.
+							</h4>
+							<a href="#services" class="button-style-blue" data-animation="animated fadeInDown" data-aos="fade-down">
+								BUSCA TU CIELO
+							</a>
 						</div>
 					</div>
-				</li>
-				<li>
-					<div class="w3layouts-banner-top w3layouts-banner-top1">
-						<div class="bs-slider-overlay">
-							<div class="container">
-								<!-- Slide Text Layer -->
-								<div class="w3l-slide-text">
-									<p class="aos-init aos-animate" data-aos="fade-down">Excepteur sint occaecat cupidatat non proident</p>
-									<h3 data-animation="animated zoomInRight">Get the best in architecture and design</h3>
-									<a href="services.html" target="_blank" class="button-style" data-animation="animated fadeInDown" data-aos="fade-down">View
-										Our Services</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="w3layouts-banner-top w3layouts-banner-top2">
-						<div class="bs-slider-overlay">
-							<div class="container">
-								<!-- Slide Text Layer -->
-								<div class="w3l-slide-text">
-									<p class="aos-init aos-animate" data-aos="fade-down">Excepteur sint occaecat cupidatat non proident</p>
-									<h3 data-animation="animated zoomInRight">Enjoy the benefits of outdoor construction</h3>
-									<a href="services.html" target="_blank" class="button-style" data-animation="animated fadeInDown" data-aos="fade-down">View
-										Our Services</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="w3layouts-banner-top w3layouts-banner-top3">
-						<div class="bs-slider-overlay">
-							<div class="container">
-								<!-- Slide Text Layer -->
-								<div class="w3l-slide-text">
-									<p class="aos-init aos-animate" data-aos="fade-down">Excepteur sint occaecat cupidatat non proident</p>
-									<h3 data-animation="animated zoomInRight">Get the best in architecture and design</h3>
-									<a href="services.html" target="_blank" class="button-style" data-animation="animated fadeInDown" data-aos="fade-down">View
-										Our Services</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="w3layouts-banner-top w3layouts-banner-top4">
-						<div class="bs-slider-overlay">
-							<div class="container">
-								<!-- Slide Text Layer -->
-								<div class="w3l-slide-text">
-									<p class="aos-init aos-animate" data-aos="fade-down">Excepteur sint occaecat cupidatat non proident</p>
-									<h3 data-animation="animated zoomInRight">Enjoy the benefits of outdoor construction</h3>
-									<a href="services.html" target="_blank" class="button-style" data-animation="animated fadeInDown" data-aos="fade-down">View
-										Our Services</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</li>
-			</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- //banner slider -->
 
-	<!-- banner bottom -->
-	<div class="middle-agile-2 py-5">
-		<div class="py-xl-5 py-lg-3">
-			<div class="d-flex t-in">
-				<div class="col-lg-5 text-info-sec p-0">
-					<img src="{{asset('assets/images/b2.jpg')}}" alt=" " class="img-fluid" />
-				</div>
-				<div class="col-lg-7 text-info-sec bg-light">
-					<h5 class="what-title text-dark my-3">Heading Here</h5>
-					<p class="whats-text mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor
-						incididunt ut labore</p>
-					<p class="whats-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt
-						ut labore.Lorem ipsum dolor
-						sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore</p>
-					<a href="about.html" class="btn button-style-wthree mt-sm-5 mt-4">Read More</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //banner bottom -->
-
-	<!-- services -->
-	<div class="services text-center pb-5" id="services">
-		<div class="container pb-xl-5 pb-lg-3">
-			<h3 class="tittle text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">Our Services</h3>
-			<div class="row box2">
-				<div class="col-md-3 col-6 s-1">
-					<a href="services.html">
-						<div class="view view-fifth">
-							<i class="fas fa-paint-brush"></i>
-							<div class="mask">
-								<h4>Comfort Design</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 col-6 s-1">
-					<a href="services.html">
-						<div class="view view-fifth">
-							<i class="fas fa-home"></i>
-							<div class="mask">
-								<h4>Trend Design</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 col-6 s-1 mt-md-0 mt-4">
-					<a href="services.html">
-						<div class="view view-fifth">
-							<i class="fab fa-schlix"></i>
-							<div class="mask">
-								<h4>Latest Styles</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 col-6 s-1 mt-md-0 mt-4">
-					<a href="services.html">
-						<div class="view view-fifth">
-							<i class="fas fa-wrench"></i>
-							<div class="mask">
-								<h4>Unique Models</h4>
-							</div>
-						</div>
-					</a>
-				</div>
-			</div>
-			<a href="services.html" class="btn button-style-wthree mt-sm-5 mt-4 mb-4">View More</a>
-		</div>
-	</div>
-	<!-- //services -->
-
-	<!-- middle section -->
-	<div class="middle-w3l text-center py-5">
-		<div class="container py-xl-5 py-lg-3">
-			<h3 class="tittle text-center text-uppercase text-white font-weight-bold mb-sm-4 mb-3 mt-4">
-				It’s pleasant to be at home!</h3>
-			<p class="text-white mx-auto">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-				laudantium, totam rem aperiam Sed
-				ut perspiciatis unde omnis iste natus error sit.</p>
-			<a href="about.html" class="btn button-style-wthree mt-sm-5 mt-4 mb-4">Read More</a>
-		</div>
-	</div>
-	<!-- //middle section -->
-
-	<!-- middle section two -->
-	<div class="middle-agile-2 py-5">
-		<div class="py-xl-5 py-lg-3">
-			<div class="d-flex t-in">
-				<div class="col-lg-5 text-info-sec p-0">
-					<img src="{{asset('assets/images/b1.jpg')}}" alt=" " class="img-fluid" />
-				</div>
-				<div class="col-lg-7 text-info-sec bg-light">
-					<h5 class="what-title text-dark my-3">Heading Here</h5>
-					<p class="whats-text mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor
-						incididunt ut labore</p>
-					<p class="whats-text">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt
-						ut labore.Lorem ipsum dolor
-						sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt ut labore</p>
-					<a href="about.html" class="btn button-style-wthree mt-sm-5 mt-4">Read More</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //middle section two -->
-
 	<!-- feedback -->
-	<section class="news py-5" id="feedback">
+	<section class="news py-5" id="services">
 		<div class="container py-xl-5 py-lg-3">
-			<h3 class="tittle text-center text-uppercase text-white font-weight-bold mb-sm-5 mb-4">Recent FeedBack</h3>
+			<h3 class="tittle text-center text-uppercase text-brand font-weight-bold mb-sm-5 mb-4">
+				Tenemos tres opciones de cielos para ti
+			</h3>
 			<div class="owl-carousel owl-theme">
 				<div class="item">
 					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">Tempor incididunt ut labore hytnm
+						<h4 class="mb-2">
+							LOCAL
 						</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo.</p>
+						<p>
+							Certificado de titularidad del cielo, de una ciudad y a una hora y día específico.&nbsp;
+						</p>
 						<div class="feedback-grids mt-4">
-							<div class="feedback-img">
-								<img src="{{asset('assets/images/te1.jpg')}}" class="img-fluid rounded-circle" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Mary Jane</h5>
+							<div class="feedback-img-info-blue">
+								<h5>
+									$10US
+								</h5>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -301,15 +119,17 @@
 				</div>
 				<div class="item">
 					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">Tempor incididunt ut labore hytnm
+						<h4 class="mb-2">
+							NACIONAL
 						</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo.</p>
+						<p>
+							Certificado de titularidad del cielo de un país completo a una hora y día específico.
+						</p>
 						<div class="feedback-grids mt-4">
-							<div class="feedback-img">
-								<img src="{{asset('assets/images/te3.jpg')}}" class="img-fluid rounded-circle" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Olivia Ruth</h5>
+							<div class="feedback-img-info-blue">
+								<h5>
+									$50US
+								</h5>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
@@ -317,309 +137,142 @@
 				</div>
 				<div class="item">
 					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">Tempor incididunt ut labore hytnm
+						<h4 class="mb-2">
+							GLOBAL
 						</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo.</p>
+						<p>
+							Certificado de titularidad del cielo del mundo entero, a una hora y día específico.
+						</p>
 						<div class="feedback-grids mt-4">
-							<div class="feedback-img">
-								<img src="{{asset('assets/images/te2.jpg')}}" class="img-fluid rounded-circle" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Blake Joe</h5>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">Tempor incididunt ut labore hytnm
-						</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo.</p>
-						<div class="feedback-grids mt-4">
-							<div class="feedback-img">
-								<img src="{{asset('assets/images/te1.jpg')}}" class="img-fluid rounded-circle" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Mary Jane</h5>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">Tempor incididunt ut labore hytnm
-						</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo.</p>
-						<div class="feedback-grids mt-4">
-							<div class="feedback-img">
-								<img src="{{asset('assets/images/te3.jpg')}}" class="img-fluid rounded-circle" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Olivia Ruth</h5>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">Tempor incididunt ut labore hytnm
-						</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo.</p>
-						<div class="feedback-grids mt-4">
-							<div class="feedback-img">
-								<img src="{{asset('assets/images/te2.jpg')}}" class="img-fluid rounded-circle" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Blake Joe</h5>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">Tempor incididunt ut labore hytnm
-						</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo.</p>
-						<div class="feedback-grids mt-4">
-							<div class="feedback-img">
-								<img src="{{asset('assets/images/te1.jpg')}}" class="img-fluid rounded-circle" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Mary Jane</h5>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">Tempor incididunt ut labore hytnm
-						</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo.</p>
-						<div class="feedback-grids mt-4">
-							<div class="feedback-img">
-								<img src="{{asset('assets/images/te3.jpg')}}" class="img-fluid rounded-circle" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Olivia Ruth</h5>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">Tempor incididunt ut labore hytnm
-						</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo.</p>
-						<div class="feedback-grids mt-4">
-							<div class="feedback-img">
-								<img src="{{asset('assets/images/te2.jpg')}}" class="img-fluid rounded-circle" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Blake Joe</h5>
+							<div class="feedback-img-info-blue">
+								<h5>
+									$500US
+								</h5>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<a href="#booking" class="button-style-blue-center" data-animation="animated fadeInDown" data-aos="fade-down">
+				BUSCA TU CIELO
+			</a>
 		</div>
 	</section>
 	<!-- //feedback -->
 
-	<!-- subscribe -->
-	<div class="subscribe-info-w3l text-center py-5">
-		<div class="container py-xl-5 py-lg-3">
-			<h3 class="tittle text-center text-uppercase text-dark font-weight-bold mb-sm-4 mb-3">
-				Subscribe & Save</h3>
-			<p class="mb-md-5 mb-3">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-				laudantium, totam rem aperiam Sed
-				ut perspiciatis unde omnis iste natus error sit.</p>
-			<form action="#" method="post">
-				<input type="email" name="email" placeholder="Enter your Email..." required="">
-				<input type="submit" value="Submit">
-			</form>
-		</div>
-	</div>
-	<!-- //subscribe -->
-
-	<!-- flicker -->
-	<div class="flicker">
-		<ul id="flexiselDemo1">
-			<li>
-				<div class="flicker_grid-agile">
-					<img src="{{asset('assets/images/g1.jpg')}}" alt=" " class="img-fluid" />
-				</div>
-			</li>
-			<li>
-				<div class="flicker_grid-agile">
-					<img src="{{asset('assets/images/g2.jpg')}}" alt=" " class="img-fluid" />
-				</div>
-			</li>
-			<li>
-				<div class="flicker_grid-agile">
-					<img src="{{asset('assets/images/g3.jpg')}}" alt=" " class="img-fluid" />
-				</div>
-			</li>
-			<li>
-				<div class="flicker_grid-agile">
-					<img src="{{asset('assets/images/g8.jpg')}}" alt=" " class="img-fluid" />
-				</div>
-			</li>
-			<li>
-				<div class="flicker_grid-agile">
-					<img src="{{asset('assets/images/g5.jpg')}}" alt=" " class="img-fluid" />
-				</div>
-			</li>
-			<li>
-				<div class="flicker_grid-agile">
-					<img src="{{asset('assets/images/g6.jpg')}}" alt=" " class="img-fluid" />
-				</div>
-			</li>
-			<li>
-				<div class="flicker_grid-agile">
-					<img src="{{asset('assets/images/g7.jpg')}}" alt=" " class="img-fluid" />
-				</div>
-			</li>
-			<li>
-				<div class="flicker_grid-agile">
-					<img src="{{asset('assets/images/g4.jpg')}}" alt=" " class="img-fluid" />
-				</div>
-			</li>
-		</ul>
-	</div>
-	<!-- //flicker -->
-
-	<!-- footer -->
-	<footer>
-		<div class="w3ls-footer-grids py-sm-4 py-3">
-			<div class="container py-xl-5 py-sm-3">
-				<div class="row">
-					<div class="col-lg-3 col-sm-6 w3l-footer">
-						<ul class="list-unstyled">
-							<li>
-								<a href="index.html">Home</a>
-							</li>
-							<li class="mt-2">
-								<a href="about.html" class="">About Us</a>
-							</li>
-							<li class="mt-2">
-								<a href="#services" class="scroll">Services</a>
-							</li>
-							<li class="mt-2">
-								<a href="gallery.html" class="">Gallery</a>
-							</li>
-							<li class="mt-2">
-								<a href="contact.html" class="">Contact Us</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-lg-3 col-sm-6 w3l-footer mt-sm-0 mt-2">
-						<ul class="list-unstyled">
-							<li>
-								<a href="faqs.html">Faqs</a>
-							</li>
-							<li class="mt-2">
-								<a href="#feedback" class="scroll">Testimonials</a>
-							</li>
-							<li class="mt-2">
-								<a href="single.html" class="">Some More</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-lg-3 col-sm-6 w3l-footer footer-social-agile mt-lg-0 mt-4">
-						<h1 class="footer-head-w3ls mb-4">Connect with us</h1>
-						<ul class="list-unstyled">
-							<li>
-								<a href="#">
-									<i class="fab fa-facebook-f"></i>
-								</a>
-							</li>
-							<li class="mx-1">
-								<a href="#">
-									<i class="fab fa-twitter"></i>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="fab fa-dribbble"></i>
-								</a>
-							</li>
-							<li class="ml-1">
-								<a href="#">
-									<i class="fab fa-vk"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-lg-3 col-sm-6 w3l-footer payment-w3lsmk  mt-lg-0 mt-4">
-						<h2 class="footer-head-w3ls mb-4">Payment Options</h2>
-						<ul class="list-unstyled">
-							<li>
-								<a href="#">
-									<i class="fab fa-cc-amex"></i>
-								</a>
-							</li>
-							<li class="mx-1">
-								<a href="#">
-									<i class="fab fa-cc-discover"></i>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<i class="fab fa-cc-jcb"></i>
-								</a>
-							</li>
-							<li class="mx-1">
-								<a href="#">
-									<i class="fab fa-cc-visa"></i>
-								</a>
-							</li>
-							<li class="">
-								<a href="#">
-									<i class="fab fa-cc-paypal"></i>
-								</a>
-							</li>
-							<li class="mx-1">
-								<a href="#">
-									<i class="fab fa-cc-stripe"></i>
-								</a>
-							</li>
-							<li class="">
-								<a href="#">
-									<i class="fab fa-cc-visa"></i>
-								</a>
-							</li>
-							<li class="ml-1">
-								<a href="#">
-									<i class="fab fa-cc-mastercard"></i>
-								</a>
-							</li>
-						</ul>
+	<!-- //contact info -->
+	<div class="container-fluid" id="booking"><br/><br/><br/>
+		<h3 class="tittle text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
+			Reserva Ahora!
+		</h3>
+		<div class="row">
+			<div class="col-md-6 main_grid_contact">
+				<div class="form">
+					<h4 class="text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
+						Certificado Digital de Titularidad del Cielo
+					</h4>
+					<p>
+						Este certicado es un ejemplo, el certificado es diseñado por un artista digital y es único, ya que tu mismo cielo nadie más lo podrá tener
+					</p>
+					<br/>
+					<div class="feedback-grids">
+						<img src="{{asset('assets/images/certificado.jpg')}}" class="img-fluid"alt="">
+						<div class="clearfix"> </div>
 					</div>
 				</div>
 			</div>
+			<div class="col-md-6 main_grid_contact bg-light">
+				<div class="form">
+					<h4 class="text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
+						Reserva de Reserva
+					</h4>
+					<form action="#" method="post">
+						<div class="form-group">
+							<label class="mb-2">Tipo de reserva</label>
+							<select class="form-control" id="tipoId" name="tipoId">
+								<option selected>Seleccione ------</option>
+								<option value="1">Hora de Ciudad</option>
+								<option value="2">Hora de País</option>
+								<option value="3">Hora del Mundo</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="mb-2">País</label>
+							<select class="form-control" id="paisId" name="paisId">
+								<option selected>Seleccione ------</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="mb-2">Ciudad</label>
+							<select class="form-control" id="ciudadId" name="ciudadId">
+								<option selected>Seleccione ------</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="mb-2">Mes</label>
+							<select class="form-control" id="mes" name="mes">
+								<option selected>Seleccione ------</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="mb-2">Día</label>
+							<select class="form-control" id="dia" name="dia">
+								<option selected>Seleccione ------</option>
+							</select>
+						</div>
+						<div class="input-group1">
+							<input class="form-control" type="submit" value="Submit">
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-	</footer>
-	<!-- //footer -->
+	</div>
+	<!-- //contact -->
+
+	<!-- middle section -->
+	<div class="middle-w3l text-center py-5">
+		<div class="container py-xl-5 py-lg-3">
+			<h3 class="tittle text-center text-uppercase text-blue font-weight-bold mb-sm-4 mb-3 mt-4">
+				Importante
+			</h3>
+			<div class="w3l-slide-text" style="padding-top: 1em;">
+				<h3>
+					<p class="aos-init aos-animate" data-aos="fade-down">
+						El precio es por una (1) hora específica. Ejemplo: De las 3 a las 4 pm.
+					</p>
+				</h3>
+				<br/>
+				<p class="aos-init aos-animate" data-aos="fade-down">
+					Por supuesto que puedes comprar más de una hora, solo debes tener en cuenta que su precio incrementara de acuerdo al valor de cada hora escogida (ciudad, país o Mundo)
+				</p>
+				<br/>
+				<p class="aos-init aos-animate" data-aos="fade-down">
+					El cielo que compraste te pertenece de manera VITALICIA, es decir que cada año podrás ver, disfrutar y fotografiar tu propio cielo.
+				</p>
+				<br/>
+				<p class="aos-init aos-animate" data-aos="fade-down">
+					El certificado es diseñado por un artista digital y es único, ya que tu mismo cielo nadie más lo podrá tener
+				</p>
+			</div>
+		</div>
+	</div>
+	<!-- //middle section -->
 
 	<!-- copyright -->
 	<div class="copy-right-w3ls py-3">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 w3ls-left-copy text-lg-left text-center">
-					<p class="copy-right-grids text-white">© 2018 Outdoor. All Rights Reserved | Design by
-						<a href="https://w3layouts.com/" target="_blank">W3layouts</a>
+				<div class="col-lg-9 w3ls-left-copy text-lg-left text-center">
+					<p class="copy-right-grids text-white">
+						&copy; Copyright SkiesPlanet. Todos los derechos reservados | Hecho con ❤ por 
+						<a href="https://inkagenciad.com/" target="_blank">INK AGENCIA DIGITAL</a>
 					</p>
 				</div>
-				<div class="col-lg-4 w3ls-left-copy text-lg-right text-center">
+				<div class="col-lg-3 w3ls-left-copy text-lg-right text-center">
 					<p class="text-white">
-						<i class="fas fa-phone mr-2"></i> 1234567890</p>
+					</p>
 				</div>
 			</div>
 		</div>
