@@ -59,7 +59,17 @@ class IndexController extends Controller
      */
     public function seleccionarReserva(Request $request)
     {
-        //
+        $tipoReserva = TipoReserva::get($request->tipoId);
+        $fecha = $request->fecha;
+        $pais = null;
+        $ciudad = null;
+        if($request->has('paisId')){
+            $pais = Pais::get($request->paisId);
+        }
+        if($request->has('ciudadId')){
+            $ciudad = Ciudad::get($request->ciudadId);
+        }
+        return view('reservar', compact('tipoReserva', 'fecha', 'pais', 'ciudad'));
     }
 
     /**
@@ -68,9 +78,13 @@ class IndexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function agregarHora(Request $request)
     {
-        //
+        //dd($request->horas_array);
+        $horas_array = $request->horas_array.",".$request->hora;
+        $horas = explode(',',$horas_array);
+        
+        return view('horas', compact('horas', 'horas_array'));
     }
 
     /**

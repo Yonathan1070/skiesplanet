@@ -53,7 +53,6 @@
 
     @include('general.copyright')
 
-	<script src="{{asset('assets/scripts/ajax.js')}}"></script>
 
 	<!-- Js files -->
 	<!-- JavaScript -->
@@ -62,6 +61,7 @@
 	<script src="{{asset('assets/js/bootstrap.js')}}"></script>
 	<!-- Necessary-JavaScript-File-For-Bootstrap -->
 
+	<script src="{{asset('assets/scripts/ajax.js')}}"></script>
 	<!-- navigation -->
 	<!-- dropdown smooth -->
 	<script>
@@ -141,20 +141,6 @@
 					tipoReserva: $( "#tipoId option:selected" ).val()
 				};
 				ajaxRequest($( "#tipoId option:selected" ).data('url'), data, 'tipoReserva', 'paises');
-
-				/*if (selectCiudad == 1 && selectPais == 1) {
-					$('#pais').show();
-					$('#ciudad').show();
-				} else if (selectCiudad == 0 && selectPais == 1){
-					$('#pais').show();
-					$('#ciudad').hide();
-				}else if (selectCiudad == 0 && selectPais == 0){
-					$('#ciudad').hide();
-					$('#pais').hide();
-				}else{
-					$('#ciudad').hide();
-					$('#pais').hide();
-				}*/
 			});
 
 			$( "#fecha" ).blur(function() {
@@ -170,10 +156,8 @@
 					day = '0' + day.toString();
 			
 				var minDate = year + '-' + month + '-' + day;
-				alert(minDate);
-				alert(this.value);
-				if(this.value < minDate) {
-					$('#fecha').attr('min', minDate);
+				if(Date.parse(minDate) > Date.parse(this.value)) {
+					document.getElementById('fecha').value = minDate;
 				}
 			});
 		});

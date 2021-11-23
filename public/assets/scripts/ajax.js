@@ -17,6 +17,12 @@ function ajaxRequest(url, data, action, modal, form){
                 }else{
                     alert("Error");
                 }
+            }else if (action == 'agregar-hora'){
+                if(respuesta.tipo != 'error'){
+                    $('#'+modal).html(respuesta);
+                }else{
+                    alert("Error");
+                }
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown, error){
@@ -50,3 +56,30 @@ function paises(){
         ajaxRequest($( "#paisId option:selected" ).data('url'), data, 'paises', 'ciudades');
     });
 }
+
+$('#hora-0-12').on('click', '.hora', function(event){
+    event.preventDefault();
+    
+    var data = {};
+    
+    data = {
+        _token: $('input[name=_token]').val(),
+        hora: $(this).data('hora'),
+        horas_array: $('#horas-array').val()
+    };
+    ajaxRequest($(this).attr('href'), data, 'agregar-hora', 'horas');
+});
+
+$('#hora-12-24').on('click', '.hora', function(event){
+    event.preventDefault();
+    alert($('#horas-array').val());
+    
+    var data = {};
+    
+    data = {
+        _token: $('input[name=_token]').val(),
+        hora: $(this).data('hora'),
+        horas_array: $('#horas-array').val()
+    };
+    ajaxRequest($(this).attr('href'), data, 'agregar-hora', 'horas');
+});

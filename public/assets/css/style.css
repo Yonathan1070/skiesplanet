@@ -1045,7 +1045,37 @@ h3.what-title {
     transition: 0.5s all;
 }
 
+.main_grid_contact .input-group1 a {
+    outline: none;
+    padding: 16px 0;
+    font-size: 15px;
+    color: #fff;
+    background: #343a40;
+    border: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 2em;
+    border-radius: 0px;
+    box-shadow: 1px 3px 4px 0px rgba(0, 0, 0, 0.2);
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    transition: 0.5s all;
+}
+
 .main_grid_contact .input-group1 input[type="submit"]:hover {
+    background: #000;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    transition: 0.5s all;
+}
+
+.main_grid_contact .input-group1 a:hover {
     background: #000;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;

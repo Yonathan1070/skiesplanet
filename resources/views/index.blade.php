@@ -130,7 +130,7 @@
 						<div class="form-group">
 							<label class="mb-2">Tipo de reserva</label>
 							<select class="form-control" id="tipoId" name="tipoId" required>
-								<option data-url="{{route('get_paises')}}" selected>Seleccione una opción</option>
+								<option data-url="{{route('get_paises')}}" value="" selected>Seleccione una opción</option>
 								@foreach ($tipoReservas as $tipo)
 									<option value="{{$tipo->id}}" data-selectpais="{{$tipo->TTR_Select_Pais_Tipo_Reserva}}" data-selectciudad="{{$tipo->TTR_Select_Ciudad_Tipo_Reserva}}" data-url="{{route('get_paises')}}">{{$tipo->TTR_Nombre_Tipo_Reserva}}</option>
 								@endforeach
@@ -139,7 +139,7 @@
 						<div id="paises"></div>
 						<div class="form-group">
 							<label class="mb-2">Fecha</label>
-							<input class="form-control" type="date" id="fecha" name="fecha">
+							<input class="form-control" type="date" id="fecha" name="fecha" required>
 						</div>
 						<div class="input-group1">
 							<input class="form-control" type="submit" value="Submit">

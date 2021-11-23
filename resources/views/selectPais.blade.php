@@ -3,7 +3,7 @@
         <div class="form-group" id="pais">
             <label class="mb-2">País</label>
             <select class="form-control" id="paisId" name="paisId" required>
-                <option selected data-url="{{route('get_ciudades')}}">Seleccione una opción</option>
+                <option selected data-url="{{route('get_ciudades')}}" value="">Seleccione una opción</option>
                 @foreach ($paises as $pais)
                     <option value="{{$pais->id}}" data-url="{{route('get_ciudades')}}">{{$pais->TPA_Nombre_Pais_Espanol}}</option>
                 @endforeach
