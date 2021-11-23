@@ -90,8 +90,15 @@ class IndexController extends Controller
             $horas_array = str_replace($request->hora, "", $horas_array);
         }
         $horas = explode(',',$horas_array);
+
+        $cantidad = 0;
+        foreach($horas as $hora){
+            if($hora != ""){
+                $cantidad++;
+            }
+        }
         
-        return view('horas', compact('horas', 'horas_array'));
+        return view('horas', compact('horas', 'horas_array', 'cantidad'));
     }
 
     /**
@@ -136,7 +143,19 @@ class IndexController extends Controller
      */
     public function reservar(Request $request)
     {
+        $tipoReserva = TipoReserva::get($request['tipo-reserva']);
+        if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $request->has('paisId')){
+            $pais = Pais::get($request->paisId);
+        }
+
+        if($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $request->has('ciudadId')){
+            $ciudad = Ciudad::get($request->ciudadId);
+        }
+
+        $fecha = $request->fecha;
+        $horas_array = explode(',', $request['horas-array']);
+        $total = $request['cantidad-horas'] * $tipoReserva->TTR_Costo_Tipo_Reserva;
         
-        dd($request->all());
+        return view('finalizar', compact('tipoReserva', 'pais', 'ciudad', 'fecha', 'horas_array', 'total'));
     }
 }

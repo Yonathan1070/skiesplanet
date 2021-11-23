@@ -21,6 +21,8 @@ function ajaxRequest(url, data, action, modal, form){
                 if(respuesta.tipo != 'error'){
                     $('#'+modal).html(respuesta);
                     data.horas_array = $('#horas-array').val();
+                    var total = $('#cantidad-horas').val() * $('#precio-reserva').val();
+                    $('#total').html(total.toString()+" US");
                     ajaxRequest(data.successUrl, data, 'actualizar_lista', 'horas_lista');
                 }else{
                     alert("Error");
@@ -119,7 +121,6 @@ function hora_12_24(){
 }
 
 $('#accion-reservar').on('submit', '#form-general', function(event){
-    event.preventDefault();
     var horasSeleccionadas = $('#horas_seleccionadas').val();
     if(horasSeleccionadas == '0'){
         var span = document.getElementById('spn_error');
@@ -128,7 +129,7 @@ $('#accion-reservar').on('submit', '#form-general', function(event){
         return false;
     }
 
-    const form = $(this);
+    /*const form = $(this);
     var data = {};
     data = {
         _token: $('input[name=_token]').val(),
@@ -138,5 +139,5 @@ $('#accion-reservar').on('submit', '#form-general', function(event){
         fecha: $('#fecha').val(),
         horas: $('#horas-array').val()
     };
-    ajaxRequest(form.attr('action'), data, 'reservar');
+    ajaxRequest(form.attr('action'), data, 'reservar');*/
 });

@@ -1,9 +1,10 @@
 <input type="hidden" name="horas-array" id="horas-array" value="{{$horas_array}}">
+<input type="hidden" name="cantidad-horas" id="cantidad-horas" value="{{$cantidad}}">
 <li class="d-flex justify-content-between"><b>Hora:</b>
     <ul class="w-hours list-unstyled">
         <input type="hidden" name="horas_seleccionadas" id="horas_seleccionadas" value="{{($horas_array == "," || $horas_array == "") ? '0' : '1'}}">
         @if ($horas_array == "," || $horas_array == "")
-        <span id="spn_error">Seleccione una hora</span>
+            <span id="spn_error">Seleccione una hora</span>
         @endif
         @foreach ($horas as $horas_seleccionadas)
             @if ($horas_seleccionadas != "")
@@ -14,4 +15,9 @@
             @endif
         @endforeach
     </ul>
+</li>
+
+<li class="d-flex justify-content-between">
+    <b>Total:</b>
+    <span id="total">0 US</span>
 </li>

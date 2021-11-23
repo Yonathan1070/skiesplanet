@@ -30,6 +30,7 @@
                             <ul class="w-hours list-unstyled">
                                 <li class="d-flex justify-content-between">
                                     <input type="hidden" name="tipo-reserva" id="tipo-reserva" value="{{$tipoReserva->id}}">
+                                    <input type="hidden" name="precio-reserva" id="precio-reserva" value="{{$tipoReserva->TTR_Costo_Tipo_Reserva}}">
                                     <b>Tipo:</b>
                                     <span>
                                         {{$tipoReserva->TTR_Nombre_Tipo_Reserva}}
