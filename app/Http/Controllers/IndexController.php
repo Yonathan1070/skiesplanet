@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TipoReserva;
+use App\Models\Pais;
+use App\Models\Ciudad;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -13,7 +16,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $tipoReservas = TipoReserva::get();
+        return view('index', compact('tipoReservas'));
     }
 
     /**
@@ -21,9 +25,14 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getPaises(Request $request)
     {
-        //
+        $tipoReserva = ($request->tipoReserva != null || $request->tipoReserva != 0) ? TipoReserva::get($request->tipoReserva) : null;
+        $paises = null;
+        if($tipoReserva && $tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1) {
+            $paises = Pais::get();
+        }
+        return view('selectPais', compact('tipoReserva', 'paises'));
     }
 
     /**
@@ -32,9 +41,14 @@ class IndexController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function getCiudades(Request $request)
     {
-        //
+        $pais = Pais::get($request->pais);
+
+        if($pais) {
+            $ciudades = Ciudad::getPorPais($pais->id);
+        }
+        return view('selectCiudad', compact('ciudades'));
     }
 
     /**
@@ -43,7 +57,7 @@ class IndexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function seleccionarReserva(Request $request)
     {
         //
     }

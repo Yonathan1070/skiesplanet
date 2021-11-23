@@ -1,74 +1,12 @@
-<!DOCTYPE html>
-<html lang="zxx">
+@extends('layout')
 
-<head>
-	<title>SkiesPlanet | Reservas</title>
-	<!-- Meta tag Keywords -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8" />
-	<script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
-
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-	<!--// Meta tag Keywords -->
-
-	<!-- Custom-Files -->
-	<link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
-	<!-- Bootstrap-Core-CSS -->
-	<link href="{{asset('assets/css/JiSlider.css')}}" rel="stylesheet">
-	<!-- //banner-slider -->
-	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}" type="text/css" media="all" />
-	<!-- Style-CSS -->
-	<link rel="stylesheet" href="{{asset('assets/css/fontawesome-all.css')}}">
-	<!-- Font-Awesome-Icons-CSS -->
-	<!-- //Custom-Files -->
-
-	<!-- Web-Fonts -->
-	<link href="//fonts.googleapis.com/css?family=Lato:100,200,300,500,800,900" rel="stylesheet">
-	<!-- //Web-Fonts -->
-	<style>
-		.logo{
-			font-weight: 600;
-			letter-spacing: 0.25em;
-		}
-
-		.idioma{
-			position: absolute;
-			right: 20px;
-		}
-	</style>
-
-</head>
-
-<body>
-	<!-- header -->
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-			<a class="navbar-brand logo" href="index.html">
-				SKIES PLANET
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-toggle" aria-controls="navbarNavAltMarkup"
-			    aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse navbar-toggle idioma" id="navbarNavAltMarkup">
-				<div class="top-info text-lg-right text-center mt-lg-0 mt-3">
-					<ul class="list-unstyled">
-						<li class="number-phone">
-							<a class="request text-uppercase font-weight-bold text-white" href="#">IDIOMA</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header>
-	<!-- //header -->
-
+@section('title')
+    Inicio
+@endsection
+@section('styles')
+    
+@endsection
+@section('contenido')
 	<!-- banner slider-->
 	<div class="banner-silder">
 		<div id="JiSlider" class="jislider">
@@ -187,28 +125,18 @@
 					<h4 class="text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
 						Reserva de Reserva
 					</h4>
-					<form action="#" method="post">
+					<form action="{{route('seleccionar_reserva')}}" method="post">
+						@csrf
 						<div class="form-group">
 							<label class="mb-2">Tipo de reserva</label>
-							<select class="form-control" id="tipoId" name="tipoId">
-								<option selected>Seleccione ------</option>
-								<option value="1">Hora de Ciudad</option>
-								<option value="2">Hora de País</option>
-								<option value="3">Hora del Mundo</option>
+							<select class="form-control" id="tipoId" name="tipoId" required>
+								<option data-url="{{route('get_paises')}}" selected>Seleccione una opción</option>
+								@foreach ($tipoReservas as $tipo)
+									<option value="{{$tipo->id}}" data-selectpais="{{$tipo->TTR_Select_Pais_Tipo_Reserva}}" data-selectciudad="{{$tipo->TTR_Select_Ciudad_Tipo_Reserva}}" data-url="{{route('get_paises')}}">{{$tipo->TTR_Nombre_Tipo_Reserva}}</option>
+								@endforeach
 							</select>
 						</div>
-						<div class="form-group">
-							<label class="mb-2">País</label>
-							<select class="form-control" id="paisId" name="paisId">
-								<option selected>Seleccione ------</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label class="mb-2">Ciudad</label>
-							<select class="form-control" id="ciudadId" name="ciudadId">
-								<option selected>Seleccione ------</option>
-							</select>
-						</div>
+						<div id="paises"></div>
 						<div class="form-group">
 							<label class="mb-2">Fecha</label>
 							<input class="form-control" type="date" id="fecha" name="fecha">
@@ -251,170 +179,4 @@
 		</div>
 	</div>
 	<!-- //middle section -->
-
-	<!-- copyright -->
-	<div class="copy-right-w3ls py-3">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-9 w3ls-left-copy text-lg-left text-center">
-					<p class="copy-right-grids text-white">
-						&copy; Copyright SkiesPlanet. Todos los derechos reservados | Hecho con ❤ por 
-						<a href="https://inkagenciad.com/" target="_blank">INK AGENCIA DIGITAL</a>
-					</p>
-				</div>
-				<div class="col-lg-3 w3ls-left-copy text-lg-right text-center">
-					<p class="text-white">
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //copyright -->
-
-
-	<!-- Js files -->
-	<!-- JavaScript -->
-	<script src="{{asset('assets/js/jquery-2.2.3.min.js')}}"></script>
-	<!-- Default-JavaScript-File -->
-	<script src="{{asset('assets/js/bootstrap.js')}}"></script>
-	<!-- Necessary-JavaScript-File-For-Bootstrap -->
-
-	<!-- navigation -->
-	<!-- dropdown smooth -->
-	<script>
-		$(document).ready(function () {
-			$(".dropdown").hover(
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideDown("fast");
-					$(this).toggleClass('open');
-				},
-				function () {
-					$('.dropdown-menu', this).stop(true, true).slideUp("fast");
-					$(this).toggleClass('open');
-				}
-			);
-		});
-	</script>
-	<!-- //dropdown smooth -->
-	<!-- fixed nav -->
-	<script>
-		$(window).scroll(function () {
-			if ($(document).scrollTop() > 50) {
-				$('nav').addClass('shrink');
-			} else {
-				$('nav').removeClass('shrink');
-			}
-		});
-	</script>
-	<!-- //fixed nav -->
-	<!-- //navigation -->
-
-	<!--banner-slider-->
-	<script src="{{asset('assets/js/JiSlider.js')}}"></script>
-	<script>
-		$(window).load(function () {
-			$('#JiSlider').JiSlider({
-				color: '#fff',
-				start: 3,
-				reverse: true
-			}).addClass('ff')
-		})
-	</script>
-	<!-- //banner-slider -->
-
-	<!-- carousel(for feedback) -->
-	<script src="{{asset('assets/js/owl.carousel.js')}}"></script>
-	<script>
-		$(document).ready(function () {
-			$('.owl-carousel').owlCarousel({
-				loop: true,
-				margin: 10,
-				responsiveClass: true,
-				responsive: {
-					0: {
-						items: 1,
-						nav: true
-					},
-					600: {
-						items: 2,
-						nav: false
-					},
-					1000: {
-						items: 3,
-						nav: true,
-						loop: false,
-						margin: 20
-					}
-				}
-			})
-		})
-	</script>
-	<link rel="stylesheet" href="{{asset('assets/css/owl.theme.css')}}" type="text/css" media="all">
-	<link rel="stylesheet" href="{{asset('assets/css/owl.carousel.css')}}" type="text/css" media="screen" property="" />
-	<!-- //carousel(for feedback) -->
-
-	<!-- flexisel(for filter) -->
-	<script src="{{asset('assets/js/jquery.flexisel.js')}}"></script>
-	<script>
-		$(window).load(function () {
-			$("#flexiselDemo1").flexisel({
-				visibleItems: 4,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 3000,
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-				responsiveBreakpoints: {
-					portrait: {
-						changePoint: 480,
-						visibleItems: 1
-					},
-					landscape: {
-						changePoint: 640,
-						visibleItems: 2
-					},
-					tablet: {
-						changePoint: 768,
-						visibleItems: 3
-					}
-				}
-			});
-
-		});
-	</script>
-	<!-- //flexisel(for filter) -->
-
-	<!-- smooth scrolling -->
-	<script src="{{asset('assets/js/SmoothScroll.min.js')}}"></script>
-	<!-- move-top -->
-	<script src="{{asset('assets/js/move-top.js')}}"></script>
-	<!-- easing -->
-	<script src="{{asset('assets/js/easing.js')}}"></script>
-	<!--  necessary snippets for few javascript files -->
-	<script src="{{asset('assets/js/outdoor.js')}}"></script>
-
-	<script src="{{asset('assets/js/bootstrap.js')}}"></script>
-	<!-- Necessary-JavaScript-File-For-Bootstrap -->
-
-	<!-- //Js files -->
-
-    <script>
-        $(function(){
-            var dtToday = new Date();
-        
-            var month = dtToday.getMonth() + 1;
-            var day = dtToday.getDate();
-            var year = dtToday.getFullYear();
-        
-            if(month < 10)
-                month = '0' + month.toString();
-            if(day < 10)
-                day = '0' + day.toString();
-        
-            var minDate = year + '-' + month + '-' + day;    
-            $('#fecha').attr('min', minDate);
-        });
-    </script>
-</body>
-
-</html>
+@endsection
