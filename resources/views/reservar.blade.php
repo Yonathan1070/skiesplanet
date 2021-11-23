@@ -20,8 +20,8 @@
         </h4>
 		<div class="row">
 			<div class="col-md-4 main_grid_contact">
-				<div class="form">
-                    <form action="{{route('seleccionar_reserva')}}" method="post">
+				<div class="form" id="accion-reservar">
+                    <form action="{{route('reservar')}}" method="post" id="form-general">
                         @csrf
                         <h4 class="text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
                             Tu selección
@@ -29,25 +29,40 @@
                         <div class="feedback-grids">
                             <ul class="w-hours list-unstyled">
                                 <li class="d-flex justify-content-between">
+                                    <input type="hidden" name="tipo-reserva" id="tipo-reserva" value="{{$tipoReserva->id}}">
                                     <b>Tipo:</b>
                                     <span>
                                         {{$tipoReserva->TTR_Nombre_Tipo_Reserva}}
                                     </span>
                                 </li>
                                 @if ($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais)
-                                    <li class="d-flex justify-content-between"><b>Pais:</b> <span>{{$pais->TPA_Nombre_Pais_Espanol}}</span></li>
+                                    <li class="d-flex justify-content-between">
+                                        <input type="hidden" name="paisId" id="paisId" value="{{$pais->id}}">
+                                        <b>Pais:</b>
+                                        <span>{{$pais->TPA_Nombre_Pais_Espanol}}</span>
+                                    </li>
                                 @endif
                                 @if ($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad)
-                                    <li class="d-flex justify-content-between"><b>Ciudad:</b> <span>{{$ciudad->TCI_Nombre_Ciudad}}</span></li>
+                                    <li class="d-flex justify-content-between">
+                                        <input type="hidden" name="ciudadId" id="ciudadId" value="{{$ciudad->id}}">
+                                        <b>Ciudad:</b>
+                                        <span>{{$ciudad->TCI_Nombre_Ciudad}}</span>
+                                    </li>
                                 @endif
                                 <li class="d-flex justify-content-between">
+                                    <input type="hidden" name="fecha" id="fecha" value="{{$fecha}}">
                                     <b>Fecha:</b>
                                     <span>
                                         {{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('d/M/Y')}}
                                     </span>
                                 </li>
                                 <div id="horas">
-
+                                    <li class="d-flex justify-content-between"><b>Hora:</b>
+                                        <ul class="w-hours list-unstyled">
+                                            <input type="hidden" name="horas_seleccionadas" id="horas_seleccionadas" value="0">
+                                            <span id="spn_error">Seleccione una hora</span>
+                                        </ul>
+                                    </li>
                                 </div>
                             </ul>
                             <div class="clearfix"> </div>

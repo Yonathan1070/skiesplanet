@@ -20,3 +20,5 @@ Route::post('/get-ciudades', [IndexController::class, 'getCiudades'])->name('get
 Route::post('/seleccionar-reserva', [IndexController::class, 'seleccionarReserva'])->name('seleccionar_reserva');
 Route::post('/agregar-hora', [IndexController::class, 'agregarHora'])->name('agregar_hora');
 Route::post('/actualizar-lista-horas', [IndexController::class, 'actualizarHoras'])->name('actualizar_lista_horas');
+Route::post('/total', [IndexController::class, 'total'])->name('total_reserva');
+Route::post('/reservar', [IndexController::class, 'reservar'])->name('reservar');

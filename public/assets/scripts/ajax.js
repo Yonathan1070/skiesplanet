@@ -33,6 +33,12 @@ function ajaxRequest(url, data, action, modal, form){
                 }else{
                     alert("Error");
                 }
+            }else if (action == 'reservar'){
+                if(respuesta.tipo != 'error'){
+                    
+                }else{
+                    alert("Error");
+                }
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown, error){
@@ -111,3 +117,26 @@ function hora_12_24(){
         ajaxRequest($(this).attr('href'), data, 'agregar-hora', 'horas');
     });
 }
+
+$('#accion-reservar').on('submit', '#form-general', function(event){
+    event.preventDefault();
+    var horasSeleccionadas = $('#horas_seleccionadas').val();
+    if(horasSeleccionadas == '0'){
+        var span = document.getElementById('spn_error');
+        span.style.color = 'red';
+        span.style.fontWeight = 'bold';
+        return false;
+    }
+
+    const form = $(this);
+    var data = {};
+    data = {
+        _token: $('input[name=_token]').val(),
+        tipoReserva: $('#tipo-reserva').val(),
+        paisId: $('#paisId').val(),
+        ciudadId: $('#ciudadId').val(),
+        fecha: $('#fecha').val(),
+        horas: $('#horas-array').val()
+    };
+    ajaxRequest(form.attr('action'), data, 'reservar');
+});
