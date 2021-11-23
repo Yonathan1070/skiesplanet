@@ -19,3 +19,4 @@ Route::post('/get-paises', [IndexController::class, 'getPaises'])->name('get_pai
 Route::post('/get-ciudades', [IndexController::class, 'getCiudades'])->name('get_ciudades');
 Route::post('/seleccionar-reserva', [IndexController::class, 'seleccionarReserva'])->name('seleccionar_reserva');
 Route::post('/agregar-hora', [IndexController::class, 'agregarHora'])->name('agregar_hora');
+Route::post('/actualizar-lista-horas', [IndexController::class, 'actualizarHoras'])->name('actualizar_lista_horas');
