@@ -11,9 +11,11 @@ use Illuminate\Support\Str;
 class IndexController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra la vista de inicio
      *
-     * @return \Illuminate\Http\Response
+     * @return view index
+     * 
+     * Yonathan Bohorquez - 17/11/2021
      */
     public function index()
     {
@@ -22,9 +24,12 @@ class IndexController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra la vista para el select de paises
      *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return view selectPais
+     * 
+     * Yonathan Bohorquez - 17/11/2021
      */
     public function getPaises(Request $request)
     {
@@ -37,10 +42,12 @@ class IndexController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Muestra la vista para el select de ciudades
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return view selectCiudad
+     * 
+     * Yonathan Bohorquez - 17/11/2021
      */
     public function getCiudades(Request $request)
     {
@@ -53,10 +60,12 @@ class IndexController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra la vista para el formulario de reserva y selección de horas disponibles
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return view reservar
+     * 
+     * Yonathan Bohorquez - 22/11/2021
      */
     public function seleccionarReserva(Request $request)
     {
@@ -76,10 +85,12 @@ class IndexController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra la vista actualizar la sección de la reserva y listado de horas seleccionadas
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return view horas
+     * 
+     * Yonathan Bohorquez - 23/11/2021
      */
     public function agregarHora(Request $request)
     {
@@ -102,11 +113,12 @@ class IndexController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Muestra la vista para actualizar la sección de horas disponibles y seleccionadas
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view horas_lista
+     * 
+     * Yonathan Bohorquez - 23/11/2021
      */
     public function actualizarHoras(Request $request)
     {
@@ -136,10 +148,12 @@ class IndexController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Muestra la vista para finalizar la reserva
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return view finalizar
+     * 
+     * Yonathan Bohorquez - 23/11/2021
      */
     public function reservar(Request $request)
     {

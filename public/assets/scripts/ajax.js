@@ -128,16 +128,4 @@ $('#accion-reservar').on('submit', '#form-general', function(event){
         span.style.fontWeight = 'bold';
         return false;
     }
-
-    /*const form = $(this);
-    var data = {};
-    data = {
-        _token: $('input[name=_token]').val(),
-        tipoReserva: $('#tipo-reserva').val(),
-        paisId: $('#paisId').val(),
-        ciudadId: $('#ciudadId').val(),
-        fecha: $('#fecha').val(),
-        horas: $('#horas-array').val()
-    };
-    ajaxRequest(form.attr('action'), data, 'reservar');*/
 });
