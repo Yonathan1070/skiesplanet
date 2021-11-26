@@ -88,6 +88,8 @@ function hora_0_12(){
         
         data = {
             _token: $('input[name=_token]').val(),
+            tipoReserva: $('#tipo-reserva').val(),
+            fecha: $('#fecha').val(),
             hora: $(this).data('hora'),
             horas_array: $('#horas-array').val(),
             selected: selected,
@@ -111,6 +113,8 @@ function hora_12_24(){
         
         data = {
             _token: $('input[name=_token]').val(),
+            tipoReserva: $('#tipo-reserva').val(),
+            fecha: $('#fecha').val(),
             hora: $(this).data('hora'),
             horas_array: $('#horas-array').val(),
             selected: selected,

@@ -88,15 +88,85 @@ class IndexController extends Controller
         $fecha = $request->fecha;
         $pais = null;
         $ciudad = null;
-        $horas0_12 = [['0-1', '0'],['1-2', '0'],['2-3', '0'],['3-4', '0'],['4-5', '0'],['5-6', '0'],['6-7', '0'],['7-8', '0'],['8-9', '0'],['9-10', '0'],['10-11', '0'],['11-12', '0']];
-        $horas12_24 = [['12-13', '0'],['13-14', '0'],['14-15', '0'],['15-16', '0'],['16-17', '0'],['17-18', '0'],['18-19', '0'],['19-20', '0'],['20-21', '0'],['21-22', '0'],['22-23', '0'],['23-24', '0']];
+
+        $horas0_12_old = [['0-1', '0'],['1-2', '0'],['2-3', '0'],['3-4', '0'],['4-5', '0'],['5-6', '0'],['6-7', '0'],['7-8', '0'],['8-9', '0'],['9-10', '0'],['10-11', '0'],['11-12', '0']];
+        $horas12_24_old = [['12-13', '0'],['13-14', '0'],['14-15', '0'],['15-16', '0'],['16-17', '0'],['17-18', '0'],['18-19', '0'],['19-20', '0'],['20-21', '0'],['21-22', '0'],['22-23', '0'],['23-24', '0']];
+        $horas0_12 = [];
+        $horas12_24 = [];
+        $cantidadOcupadas = 0;
+
+        //Verificar disponibilidad de horas
+        $disponibilidad = Reserva::from('TBL_Reserva as r')
+            ->join('TBL_Pago as p', 'r.id', 'p.TPG_Reserva_Id')
+            ->where('p.TPG_Estado_Pago', 'Aprobada')
+            ->where('r.TRE_Fecha_Reserva', $fecha)
+            ->where('r.TRE_Tipo_Reserva_Id', $tipoReserva->id)
+            ->select('r.TRE_Hora_Reserva')
+            ->get();
+
+        foreach ($horas0_12_old as $hora) {
+            foreach ($disponibilidad as $horaP) {
+                $horas_array = explode(",",$horaP->TRE_Hora_Reserva);
+                if(in_array($hora[0], $horas_array)){
+                    $hora[1] = '2';
+                    $cantidadOcupadas++;
+                }
+            }
+            array_push($horas0_12, $hora);
+        }
+
+        foreach ($horas12_24_old as $hora) {
+            foreach ($disponibilidad as $horaP) {
+                $horas_array = explode(",",$horaP->TRE_Hora_Reserva);
+                if(in_array($hora[0], $horas_array)){
+                    $hora[1] = '2';
+                    $cantidadOcupadas++;
+                }
+            }
+            array_push($horas12_24, $hora);
+        }
+        $horas0_12_old = $horas0_12;
+        $horas0_12 = [];
+        $horas12_24_old = $horas12_24;
+        $horas12_24 = [];
+
+        $disponibilidad = Reserva::from('TBL_Reserva as r')
+            ->join('TBL_Pago as p', 'r.id', 'p.TPG_Reserva_Id')
+            ->where('p.TPG_Estado_Pago', 'Pendiente')
+            ->where('r.TRE_Fecha_Reserva', $fecha)
+            ->where('r.TRE_Tipo_Reserva_Id', $tipoReserva->id)
+            ->select('r.TRE_Hora_Reserva')
+            ->get();
+
+        foreach ($horas0_12_old as $hora) {
+            foreach ($disponibilidad as $horaP) {
+                $horas_array = explode(",",$horaP->TRE_Hora_Reserva);
+                if(in_array($hora[0], $horas_array)){
+                    $hora[1] = '1';
+                    $cantidadOcupadas++;
+                }
+            }
+            array_push($horas0_12, $hora);
+        }
+
+        foreach ($horas12_24_old as $hora) {
+            foreach ($disponibilidad as $horaP) {
+                $horas_array = explode(",",$horaP->TRE_Hora_Reserva);
+                if(in_array($hora[0], $horas_array)){
+                    $hora[1] = '1';
+                    $cantidadOcupadas++;
+                }
+            }
+            array_push($horas12_24, $hora);
+        }
+
         if($request->has('paisId')){
             $pais = Pais::get($request->paisId);
         }
         if($request->has('ciudadId')){
             $ciudad = Ciudad::get($request->ciudadId);
         }
-        return view('reservar', compact('tipoReserva', 'fecha', 'pais', 'ciudad', 'horas0_12', 'horas12_24'));
+        return view('reservar', compact('tipoReserva', 'fecha', 'pais', 'ciudad', 'horas0_12', 'horas12_24', 'cantidadOcupadas'));
     }
 
     /**
@@ -137,14 +207,79 @@ class IndexController extends Controller
      */
     public function actualizarHoras(Request $request)
     {
-        $horas0_12 = [['0-1', '0'],['1-2', '0'],['2-3', '0'],['3-4', '0'],['4-5', '0'],['5-6', '0'],['6-7', '0'],['7-8', '0'],['8-9', '0'],['9-10', '0'],['10-11', '0'],['11-12', '0']];
-        $horas12_24 = [['12-13', '0'],['13-14', '0'],['14-15', '0'],['15-16', '0'],['16-17', '0'],['17-18', '0'],['18-19', '0'],['19-20', '0'],['20-21', '0'],['21-22', '0'],['22-23', '0'],['23-24', '0']];
+        $horas0_12_old = [['0-1', '0'],['1-2', '0'],['2-3', '0'],['3-4', '0'],['4-5', '0'],['5-6', '0'],['6-7', '0'],['7-8', '0'],['8-9', '0'],['9-10', '0'],['10-11', '0'],['11-12', '0']];
+        $horas12_24_old = [['12-13', '0'],['13-14', '0'],['14-15', '0'],['15-16', '0'],['16-17', '0'],['17-18', '0'],['18-19', '0'],['19-20', '0'],['20-21', '0'],['21-22', '0'],['22-23', '0'],['23-24', '0']];
+        $horas0_12 = [];
+        $horas12_24 = [];
         $horas0_12_new = [];
         $horas12_24_new = [];
+
+        //Verificar disponibilidad de horas
+        $fecha = $request['fecha'];
+        $disponibilidad = Reserva::from('TBL_Reserva as r')
+            ->join('TBL_Pago as p', 'r.id', 'p.TPG_Reserva_Id')
+            ->where('p.TPG_Estado_Pago', 'Aprobada')
+            ->where('r.TRE_Fecha_Reserva', $fecha)
+            ->where('r.TRE_Tipo_Reserva_Id', $request['tipoReserva'])
+            ->select('r.TRE_Hora_Reserva')
+            ->get();
+
+        foreach ($horas0_12_old as $hora) {
+            foreach ($disponibilidad as $horaP) {
+                $horas_array = explode(",",$horaP->TRE_Hora_Reserva);
+                if(in_array($hora[0], $horas_array)){
+                    $hora[1] = '2';
+                }
+            }
+            array_push($horas0_12, $hora);
+        }
+
+        foreach ($horas12_24_old as $hora) {
+            foreach ($disponibilidad as $horaP) {
+                $horas_array = explode(",",$horaP->TRE_Hora_Reserva);
+                if(in_array($hora[0], $horas_array)){
+                    $hora[1] = '2';
+                }
+            }
+            array_push($horas12_24, $hora);
+        }
+        $horas0_12_old = $horas0_12;
+        $horas0_12 = [];
+        $horas12_24_old = $horas12_24;
+        $horas12_24 = [];
+
+        $disponibilidad = Reserva::from('TBL_Reserva as r')
+            ->join('TBL_Pago as p', 'r.id', 'p.TPG_Reserva_Id')
+            ->where('p.TPG_Estado_Pago', 'Pendiente')
+            ->where('r.TRE_Fecha_Reserva', $fecha)
+            ->where('r.TRE_Tipo_Reserva_Id', $request['tipoReserva'])
+            ->select('r.TRE_Hora_Reserva')
+            ->get();
+
+        foreach ($horas0_12_old as $hora) {
+            foreach ($disponibilidad as $horaP) {
+                $horas_array = explode(",",$horaP->TRE_Hora_Reserva);
+                if(in_array($hora[0], $horas_array)){
+                    $hora[1] = '1';
+                }
+            }
+            array_push($horas0_12, $hora);
+        }
+
+        foreach ($horas12_24_old as $hora) {
+            foreach ($disponibilidad as $horaP) {
+                $horas_array = explode(",",$horaP->TRE_Hora_Reserva);
+                if(in_array($hora[0], $horas_array)){
+                    $hora[1] = '1';
+                }
+            }
+            array_push($horas12_24, $hora);
+        }
+
         $horas_array = explode(",",$request->horas_array);
         foreach ($horas0_12 as $hora) {
             if(in_array($hora[0], $horas_array)){
-                $hora[1] = '1';
+                $hora[1] = '4';
             }
 
             array_push($horas0_12_new, $hora);
@@ -153,7 +288,7 @@ class IndexController extends Controller
 
         foreach ($horas12_24 as $hora) {
             if(in_array($hora[0], $horas_array)){
-                $hora[1] = '1';
+                $hora[1] = '4';
             }
             array_push($horas12_24_new, $hora);
         }

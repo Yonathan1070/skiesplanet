@@ -16,7 +16,7 @@
             El cielo {{($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad) ? 'de '.$ciudad->TCI_Nombre_Ciudad.' ('.$pais->TPA_Nombre_Pais_Espanol.')' : (($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 0) ? 'de '.$pais->TPA_Nombre_Pais_Espanol : 'del Mundo')}} puede ser tuyo, acontinuación te presentamos las horas disponibles para el día {{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('d/M/Y')}}
         </h4>
         <h4 class="tittle text-center text-dark mb-sm-5 mb-4">
-            Actualmente hay 24 horas del cielo de este día para ti. <br/>Cada hora u horas de este cielo, son exclusivas para quien las compre.
+            Actualmente hay <b>{{24-$cantidadOcupadas}} horas</b> del cielo de este día para ti. <br/>Cada hora u horas de este cielo, son exclusivas para quien las compre.
         </h4>
 		<div class="row">
 			<div class="col-md-4 main_grid_contact">
@@ -83,10 +83,10 @@
                                 <div class="list-group" id="hora-0-12">
                                     @foreach ($horas0_12 as $hora)
                                         <a href="{{route('agregar_hora')}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-cente hora"
-                                            data-hora="{{$hora[0]}}" data-selected="{{$hora[1]}}" data-successurl="{{route('actualizar_lista_horas')}}">
+                                            data-hora="{{$hora[0]}}" data-selected="{{$hora[1]}}" data-successurl="{{route('actualizar_lista_horas')}}" style="{{($hora[1] == 0) ? '' : 'pointer-events: none;'}}">
                                             <?php $hora_split = explode("-", $hora[0]); ?>
                                             {{$hora_split[0].':00'}} - {{$hora_split[1].':00'}}
-                                            <span class="badge {{($hora[1] == 0) ? 'bg-success' : 'bg-danger'}} rounded-pill text-white">{{($hora[1] == 0) ? 'Disponible' : 'Ocupado'}}</span>
+                                            <span class="badge {{($hora[1] == 0) ? 'bg-success' : (($hora[1] == 1) ? 'bg-warning' : 'bg-danger')}} rounded-pill text-white">{{($hora[1] == 0) ? 'Disponible' : (($hora[1] == 1) ? 'Ocupado' : 'Reservado')}}</span>
                                         </a>
                                     @endforeach
                                 </div>
@@ -100,10 +100,10 @@
                                 <div class="list-group" id="hora-12-24">
                                     @foreach ($horas12_24 as $hora)
                                         <a href="{{route('agregar_hora')}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-cente hora"
-                                            data-hora="{{$hora[0]}}" data-selected="{{$hora[1]}}" data-successurl="{{route('actualizar_lista_horas')}}">
+                                            data-hora="{{$hora[0]}}" data-selected="{{$hora[1]}}" data-successurl="{{route('actualizar_lista_horas')}}" style="{{($hora[1] == 0) ? '' : 'pointer-events: none;'}}">
                                             <?php $hora_split = explode("-", $hora[0]); ?>
                                             {{$hora_split[0].':00'}} - {{$hora_split[1].':00'}}
-                                            <span class="badge {{($hora[1] == 0) ? 'bg-success' : 'bg-danger'}} rounded-pill text-white">{{($hora[1] == 0) ? 'Disponible' : 'Ocupado'}}</span>
+                                            <span class="badge {{($hora[1] == 0) ? 'bg-success' : (($hora[1] == 1) ? 'bg-warning' : 'bg-danger')}} rounded-pill text-white">{{($hora[1] == 0) ? 'Disponible' : (($hora[1] == 1) ? 'Ocupado' : 'Reservado')}}</span>
                                         </a>
                                     @endforeach
                                 </div>
