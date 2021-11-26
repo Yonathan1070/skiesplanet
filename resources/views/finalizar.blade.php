@@ -13,7 +13,7 @@
 			Finalizar Compra
 		</h3>
 		<div class="col-md-12 main_grid_contact">
-            <form action="{{route('reservar')}}" method="post" id="form-general">
+            <form action="{{route('finalizar')}}" method="post" id="form-general">
                 <div class="row">
                     <div class="col-md-8" id="horas_lista">
                         <div class="row">
@@ -93,6 +93,7 @@
                                         <ul class="w-hours list-unstyled">
                                             <li class="d-flex justify-content-between">
                                                 <input type="hidden" name="tipo-reserva" id="tipo-reserva" value="{{$tipoReserva->id}}">
+                                                <input type="hidden" id="nombre-tipo-reserva" value="{{$tipoReserva->TTR_Nombre_Tipo_Reserva}}">
                                                 <b>Tipo:</b>
                                                 <span>
                                                     {{$tipoReserva->TTR_Nombre_Tipo_Reserva}}
@@ -101,6 +102,7 @@
                                             @if ($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais)
                                                 <li class="d-flex justify-content-between">
                                                     <input type="hidden" name="paisId" id="paisId" value="{{$pais->id}}">
+                                                    <input type="hidden" id="nombrePais" value="{{$pais->TPA_Nombre_Pais_Espanol}}">
                                                     <b>Pais:</b>
                                                     <span>{{$pais->TPA_Nombre_Pais_Espanol}}</span>
                                                 </li>
@@ -108,6 +110,7 @@
                                             @if ($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad)
                                                 <li class="d-flex justify-content-between">
                                                     <input type="hidden" name="ciudadId" id="ciudadId" value="{{$ciudad->id}}">
+                                                    <input type="hidden" id="nombreCiudad" value="{{$ciudad->TCI_Nombre_Ciudad}}">
                                                     <b>Ciudad:</b>
                                                     <span>{{$ciudad->TCI_Nombre_Ciudad}}</span>
                                                 </li>
@@ -120,6 +123,7 @@
                                                 </span>
                                             </li>
                                             <li class="d-flex justify-content-between">
+                                                <input type="hidden" name="horas-array" id="horas-array" value="{{$horas}}">
                                                 <b>Hora:</b>
                                                 <ul class="w-hours list-unstyled">
                                                     @foreach ($horas_array as $horas_seleccionadas)
@@ -141,7 +145,7 @@
                                             </li>
                                         </ul>
                                         <div class="input-group1">
-                                            <input class="form-control" type="submit" value="FINALIZAR COMPRA">
+                                            <input class="form-control" type="button" onclick="epayco();" value="FINALIZAR COMPRA">
                                         </div>
                                         <div class="clearfix"> </div>
                                     </div>
@@ -156,6 +160,8 @@
 	<!-- //contact -->
 @endsection
 @section('scripts')
+    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>
+    <script src="{{asset('assets/scripts/epayco.js')}}"></script>
     <script>
         $(document).ready(function(){
             hora_0_12();

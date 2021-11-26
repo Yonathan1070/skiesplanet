@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\TipoReserva;
 use App\Models\Pais;
 use App\Models\Ciudad;
+use App\Models\Usuario;
+use App\Models\Reserva;
+use App\Models\Rol;
+use App\Models\Pago;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class IndexController extends Controller
 {
@@ -20,7 +25,17 @@ class IndexController extends Controller
     public function index()
     {
         $tipoReservas = TipoReserva::get();
+        // Mail::send('index', [
+        //     'tipoReservas' => $tipoReservas
+        // ], function($message) {
+        //     $message->from('admin@skiesplanet.com', 'SKIES PLANET');
+        //     $message->to(
+        //         'yonathancam1997@gmail.com', 'SKIES PLANET'
+        //     )->subject('Prueba');
+        //     $message->attach(public_path('files/comercio.pdf'));
+        // });
         return view('index', compact('tipoReservas'));
+        //return view('correo.confirmacion', compact('tipoReservas'));
     }
 
     /**
@@ -158,18 +173,386 @@ class IndexController extends Controller
     public function reservar(Request $request)
     {
         $tipoReserva = TipoReserva::get($request['tipo-reserva']);
+        $pais = null;
         if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $request->has('paisId')){
             $pais = Pais::get($request->paisId);
         }
 
+        $ciudad = null;
         if($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $request->has('ciudadId')){
             $ciudad = Ciudad::get($request->ciudadId);
         }
 
         $fecha = $request->fecha;
         $horas_array = explode(',', $request['horas-array']);
+        $horas = $request['horas-array'];
         $total = $request['cantidad-horas'] * $tipoReserva->TTR_Costo_Tipo_Reserva;
         
-        return view('finalizar', compact('tipoReserva', 'pais', 'ciudad', 'fecha', 'horas_array', 'total'));
+        return view('finalizar', compact('tipoReserva', 'pais', 'ciudad', 'fecha', 'horas_array', 'horas' , 'total'));
+    }
+
+    public function finalizar(Request $request)
+    {
+        $rolCliente = Rol::where('TRO_Nombre_Rol', 'Cliente')->first();
+        if($rolCliente == null){
+            $rolCliente = Rol::guardar('Cliente');
+        }
+
+        $rolTitular = Rol::where('TRO_Nombre_Rol', 'Titular')->first();
+        if($rolTitular == null){
+            $rolTitular = Rol::guardar('Titular');
+        }
+
+        $cliente = Usuario::obtener($request->correoCliente);
+        if($cliente == null){
+            $cliente = Usuario::guardar($request->nombreCliente.' '.$request->apellidoCliente, $request->correoCliente, $request->telefonoCliente, $rolCliente->id);
+        }
+
+        $titular = Usuario::obtener($request->correoTitular);
+        if($titular == null){
+            $titular = Usuario::guardar($request->nombreTitular, $request->correoTitular, null, $rolTitular->id);
+        }
+
+        $reserva = new Reserva();
+        $reserva->TRE_Tipo_Reserva_Id = $request['tipo-reserva'];
+        $reserva->TRE_Pais_Id = $request['paisId'];
+        $reserva->TRE_Ciudad_Id = $request['ciudadId'];
+        $reserva->TRE_Fecha_Reserva = $request['fecha'];
+        $reserva->TRE_Hora_Reserva = $request['horas-array'];
+        $reserva->TRE_Cliente_Id = $cliente->id;
+        $reserva->TRE_Titular_Id = $titular->id;
+
+        $reserva = Reserva::guardar($reserva);
+
+        return redirect()->route('inicio');
+    }
+
+    public function confirmacion()
+    {
+        /*En esta página se reciben las variables enviadas desde ePayco hacia el servidor.
+        Antes de realizar cualquier movimiento en base de datos se deben comprobar algunos valores
+        Es muy importante comprobar la firma enviada desde ePayco
+        Ingresar  el valor de p_cust_id_cliente lo encuentras en la configuración de tu cuenta ePayco
+        Ingresar  el valor de p_key lo encuentras en la configuración de tu cuenta ePayco
+        */
+
+        $p_cust_id_cliente = '562742';
+        $p_key             = '6f8b192fd60db2ad10d5603046504e2df28371aa';
+
+        $x_ref_payco      = $_REQUEST['x_ref_payco'];
+        $x_transaction_id = $_REQUEST['x_transaction_id'];
+        $x_amount         = $_REQUEST['x_amount'];
+        $x_currency_code  = $_REQUEST['x_currency_code'];
+        $x_signature      = $_REQUEST['x_signature'];
+
+
+        $signature = hash('sha256', $p_cust_id_cliente . '^' . $p_key . '^' . $x_ref_payco . '^' . $x_transaction_id . '^' . $x_amount . '^' . $x_currency_code);
+
+        $x_response     = $_REQUEST['x_response'];
+        $x_motivo       = $_REQUEST['x_response_reason_text'];
+        $x_id_invoice   = $_REQUEST['x_id_invoice'];
+        $x_autorizacion = $_REQUEST['x_approval_code'];
+        $x_description  = $_REQUEST['x_description'];
+        $x_transaction_date = $_REQUEST['x_transaction_date'];
+        //Datos del pedido
+        $x_extra1       = $_REQUEST['x_extra1']; //tipo
+        $x_extra2       = $_REQUEST['x_extra2']; //fecha
+        $x_extra3       = $_REQUEST['x_extra3']; //horas
+        $x_extra4       = $_REQUEST['x_extra4']; //nombre cliente
+        $x_extra5       = $_REQUEST['x_extra5']; //apellido cliente
+        $x_extra6       = $_REQUEST['x_extra6']; //email cliente
+        $x_extra7       = $_REQUEST['x_extra7']; //telefono cliente
+        $x_extra8       = $_REQUEST['x_extra8']; //nombre titular
+        $x_extra9       = $_REQUEST['x_extra9']; //email titular
+        $x_extra10      = $_REQUEST['x_extra10']; //pais
+        $x_extra11      = $_REQUEST['x_extra11']; //ciudad
+        $x_extra12      = $_REQUEST['x_extra12']; //idioma
+        $x_extra13      = $_REQUEST['x_extra13']; //nombre pais
+        $x_extra14      = $_REQUEST['x_extra14']; //nombre ciudad
+        $fecha          = date("Y-m-d");
+
+        //Validamos la firma
+        if ($x_signature == $signature) {
+            /*Si la firma esta bien podemos verificar los estado de la transacción*/
+            $x_cod_response = $_REQUEST['x_cod_response'];
+
+            //Buscar Rol cliente
+            $rolCliente = Rol::where('TRO_Nombre_Rol', 'Cliente')->first();
+            //Crear rol de cliente si no existe
+            if(!$rolCliente){
+                $rolCliente = Rol::guardar('Cliente');
+            }
+            //Buscar cliente por correo
+            $cliente = Usuario::obtener($x_extra6);
+            //Si no existe el cliente lo creamos
+            if(!$cliente){
+                $cliente = Usuario::guardar($x_extra4.' '.$x_extra5, $x_extra6, $x_extra7, $rolCliente->id);
+            }
+
+            //Buscar Rol titular
+            $rolTitular = Rol::where('TRO_Nombre_Rol', 'Titular')->first();
+            //Crear rol de titular si no existe
+            if(!$rolTitular){
+                $rolTitular = Rol::guardar('Titular');
+            }
+            //Buscar titular por correo
+            $titular = Usuario::obtener($x_extra9);
+            //Si no existe el titular lo creamos
+            if(!$titular){
+                $titular = Usuario::guardar($x_extra8, $x_extra9, null, $rolTitular->id);
+            }
+
+            switch ((int) $x_cod_response) {
+                case 1:
+                    # code transacción aceptada
+                    if ($cliente && $titular) { 
+                        $idCliente = $cliente->id;
+                        $idTitular = $titular->id;
+
+                        $tipoReserva = TipoReserva::get($x_extra1);
+                        $pais = null;
+                        $ciudad = null;
+                        if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1){
+                            $pais = Pais::get($x_extra10);
+                            if($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1){
+                                $ciudad = Ciudad::get($x_extra11);
+                            }
+                        }
+
+                        //Obtenemos la reserva
+                        $reserva = Reserva::obtenerReserva($tipoReserva->id, $x_extra2, $x_extra3, $idCliente, $idTitular, (($pais) ? $pais->id : null), (($ciudad) ? $ciudad->id : null));
+                        //Si no existe la reserva la creamos
+                        if(!$reserva){
+                            $reserva = new Reserva();
+                            $reserva->TRE_Tipo_Reserva_Id = $tipoReserva->id;
+                            $reserva->TRE_Pais_Id = (($pais) ? $pais->id : null);
+                            $reserva->TRE_Ciudad_Id = (($ciudad) ? $ciudad->id : null);
+                            $reserva->TRE_Fecha_Reserva = $x_extra2;
+                            $reserva->TRE_Hora_Reserva = $x_extra3;
+                            $reserva->TRE_Cliente_Id = $idCliente;
+                            $reserva->TRE_Titular_Id = $idTitular;
+
+                            $reserva = Reserva::guardar($reserva);
+                        }
+
+                        $pago = new Pago();
+                        $pago->TPG_Reserva_Id = $tipoReserva->id;
+                        $pago->TPG_Total_Pago = $x_amount;
+                        $pago->TPG_Fecha_Pago = Carbon::now()->format('Y-m-d');
+                        $pago->TPG_Estado_Pago = 'Aprobada';
+                        $pago->TPG_Idioma_Pago = $x_extra12;
+                        $pago->TPG_Referencia_Pago = $x_id_invoice;
+
+                        $pago = Pago::guardar($pago);
+
+                        if($pago){
+                            $idPago = $pago->id;
+
+                            $files = [
+                                public_path('files/comercio.pdf')
+                            ];
+
+                            //Inicio envio correo
+                            enviarMail(
+                                $tipoReserva,
+                                $pais,
+                                $ciudad,
+                                $cliente,
+                                $titular,
+                                $x_extra2,
+                                $x_extra3,
+                                $x_amount,
+                                $files,
+                                'Gracias por reservar con<br/>SKIES PLANET',
+                                'se ha confirmado la reserva #'.$pago->id,
+                                'Esta es la descripción del pedido',
+                                'Reserva Aprobada',
+                                'El certificado se generará con el siguiente titular:',
+                            );
+                            //Fn envio correo
+                        }//#end insert
+                    }//#end
+                    break;
+
+                case 2:
+                    # code transacción rechazada
+                    if ($cliente && $titular) { 
+                        $idCliente = $cliente->id;
+                        $idTitular = $titular->id;
+
+                        $tipoReserva = TipoReserva::get($x_extra1);
+                        $pais = null;
+                        $ciudad = null;
+                        if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1){
+                            $pais = Pais::get($x_extra10);
+                            if($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1){
+                                $ciudad = Ciudad::get($x_extra11);
+                            }
+                        }
+
+                        //Obtenemos la reserva
+                        $reserva = Reserva::obtenerReserva($tipoReserva->id, $x_extra2, $x_extra3, $idCliente, $idTitular, (($pais) ? $pais->id : null), (($ciudad) ? $ciudad->id : null));
+                        //Si no existe la reserva la creamos
+                        if(!$reserva){
+                            $reserva = new Reserva();
+                            $reserva->TRE_Tipo_Reserva_Id = $tipoReserva->id;
+                            $reserva->TRE_Pais_Id = (($pais) ? $pais->id : null);
+                            $reserva->TRE_Ciudad_Id = (($ciudad) ? $ciudad->id : null);
+                            $reserva->TRE_Fecha_Reserva = $x_extra2;
+                            $reserva->TRE_Hora_Reserva = $x_extra3;
+                            $reserva->TRE_Cliente_Id = $idCliente;
+                            $reserva->TRE_Titular_Id = $idTitular;
+
+                            $reserva = Reserva::guardar($reserva);
+                        }
+
+                        $pago = new Pago();
+                        $pago->TPG_Reserva_Id = $tipoReserva->id;
+                        $pago->TPG_Total_Pago = $x_amount;
+                        $pago->TPG_Fecha_Pago = Carbon::now()->format('Y-m-d');
+                        $pago->TPG_Estado_Pago = 'Rechazada';
+                        $pago->TPG_Idioma_Pago = $x_extra12;
+                        $pago->TPG_Referencia_Pago = $x_id_invoice;
+
+                        $pago = Pago::guardar($pago);
+
+                        if($pago){
+                            $idPago = $pago->id;
+
+                            //Inicio envio correo
+                            enviarMail(
+                                $tipoReserva,
+                                $pais,
+                                $ciudad,
+                                $cliente,
+                                $titular,
+                                $x_extra2,
+                                $x_extra3,
+                                $x_amount,
+                                $files = null,
+                                'Gracias por usar con<br/>SKIES PLANET',
+                                'se ha rechazado la reserva #'.$pago->id,
+                                'Esta es la descripción del pedido',
+                                'Reserva Rechazada'
+                            );
+                            //Fn envio correo
+                        }
+                    }
+                    //echo 'transacción rechazada';
+                    break;
+
+                case 3:
+                    # code transacción pendiente
+                    if ($cliente && $titular) { 
+                        $idCliente = $cliente->id;
+                        $idTitular = $titular->id;
+
+                        $tipoReserva = TipoReserva::get($x_extra1);
+                        $pais = null;
+                        $ciudad = null;
+                        if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1){
+                            $pais = Pais::get($x_extra10);
+                            if($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1){
+                                $ciudad = Ciudad::get($x_extra11);
+                            }
+                        }
+
+                        //Obtenemos la reserva
+                        $reserva = Reserva::obtenerReserva($tipoReserva->id, $x_extra2, $x_extra3, $idCliente, $idTitular, (($pais) ? $pais->id : null), (($ciudad) ? $ciudad->id : null));
+                        //Si no existe la reserva la creamos
+                        if(!$reserva){
+                            $reserva = new Reserva();
+                            $reserva->TRE_Tipo_Reserva_Id = $tipoReserva->id;
+                            $reserva->TRE_Pais_Id = (($pais) ? $pais->id : null);
+                            $reserva->TRE_Ciudad_Id = (($ciudad) ? $ciudad->id : null);
+                            $reserva->TRE_Fecha_Reserva = $x_extra2;
+                            $reserva->TRE_Hora_Reserva = $x_extra3;
+                            $reserva->TRE_Cliente_Id = $idCliente;
+                            $reserva->TRE_Titular_Id = $idTitular;
+
+                            $reserva = Reserva::guardar($reserva);
+                        }
+
+                        $pago = new Pago();
+                        $pago->TPG_Reserva_Id = $tipoReserva->id;
+                        $pago->TPG_Total_Pago = $x_amount;
+                        $pago->TPG_Fecha_Pago = Carbon::now()->format('Y-m-d');
+                        $pago->TPG_Estado_Pago = 'Pendiente';
+                        $pago->TPG_Idioma_Pago = $x_extra12;
+                        $pago->TPG_Referencia_Pago = $x_id_invoice;
+
+                        $pago = Pago::guardar($pago);
+
+                        if($pago){
+                            $idPago = $pago->id;
+
+                            //Inicio envio correo
+                            enviarMail(
+                                $tipoReserva,
+                                $pais,
+                                $ciudad,
+                                $cliente,
+                                $titular,
+                                $x_extra2,
+                                $x_extra3,
+                                $x_amount,
+                                $files = null,
+                                'Gracias por reservar con<br/>SKIES PLANET',
+                                'la reserva #'.$pago->id.' está pendiente',
+                                'Esta es la descripción del pedido',
+                                'Reserva Pendiente'
+                            );
+                            //Fn envio correo
+                        }
+                    }
+                    //echo 'transacción pendiente';
+                    break;
+
+                case 4:
+                    # code transacción fallida
+                    //echo 'transacción fallida';
+                    break;
+            }
+
+        } else {
+            die('Firma no valida');
+        }
+    }
+    
+    public function respuesta()
+    {
+
+    }
+
+    private function enviarMail($tipoReserva, $pais, $ciudad, $cliente, $titular, $x_extra2, $x_extra3, $x_amount, $files, $titulo, $subTitulo, $tituloContenido, $asunto, $tituloContenido2 = null)
+    {
+        try{
+            Mail::send('correo.confirmacion', [
+                'titulo' => $titulo,
+                'nombreCliente' => $cliente->Usu_Nombre_Usuario,
+                'subtitulo' => $subTitulo,
+                'tituloContenido' => $tituloContenido,
+                'cliente' => $cliente,
+                'articulo' => 'Cielo',
+                'tipo' => $tipoReserva,
+                'pais' => $pais,
+                'ciudad' => $ciudad,
+                'fecha' => $x_extra2,
+                'horas' => $x_extra3,
+                'total' => $x_amount,
+                'tituloContenido2' => $tituloContenido2,
+                'titular' => $titular
+            ], function($message) use ($cliente, $files, $asunto) {
+                $message->from('admin@skiesplanet.com', 'SKIES PLANET');
+                $message->to(
+                    $cliente->TUS_Correo_Electronico_Usuario, 'SKIES PLANET'
+                )->subject($asunto);
+                $message->attach($files[0]);
+            });
+
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }

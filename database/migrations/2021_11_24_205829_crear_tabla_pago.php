@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTablaUsuario extends Migration
+class CrearTablaPago extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CrearTablaUsuario extends Migration
      */
     public function up()
     {
-        Schema::create('TBL_Usuario', function (Blueprint $table) {
+        Schema::create('TBL_Pago', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('TUS_Nombre_Completo_Usuario', 250);
-            $table->string('TUS_Correo_Electronico_Usuario', 500);
-            $table->string('TUS_Telefono_Usuario', 20)->nullable();
-            $table->unsignedBigInteger('TUS_Rol_Id');
-            $table->foreign('TUS_Rol_Id', 'FK_Usuario_Rol')->references('id')->on('TBL_Rol')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('TPG_Reserva_Id');
+            $table->foreign('TPG_Reserva_Id', 'FK_Pago_Reserva')->references('id')->on('TBL_Reserva')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('TPG_Total_Pago');
+            $table->string('TPG_Fecha_Pago', 50);
+            $table->text('TPG_Estado_Pago');
+            $table->string('TPG_Idioma_Pago', 100);
+            $table->text('TPG_Referencia_Pago');
             $table->timestamps();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
@@ -34,7 +36,7 @@ class CrearTablaUsuario extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
-        Schema::dropIfExists('TBL_Usuario');
+        Schema::dropIfExists('TBL_Pago');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
     }
 }

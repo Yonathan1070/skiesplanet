@@ -16,10 +16,10 @@ class CrearTablaReserva extends Migration
         Schema::create('TBL_Reserva', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('TRE_Tipo_Reserva_Id', 250);
-            $table->unsignedBigInteger('TRE_Pais_Id');
-            $table->unsignedBigInteger('TRE_Ciudad_Id');
+            $table->unsignedBigInteger('TRE_Pais_Id')->nullable();
+            $table->unsignedBigInteger('TRE_Ciudad_Id')->nullable();
             $table->string('TRE_Fecha_Reserva', 15);
-            $table->string('TRE_Hora_Reserva', 6);
+            $table->text('TRE_Hora_Reserva');
             $table->unsignedBigInteger('TRE_Cliente_Id');
             $table->foreign('TRE_Cliente_Id', 'FK_Reserva_Cliente')->references('id')->on('TBL_Usuario')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('TRE_Titular_Id');

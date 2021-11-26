@@ -22,3 +22,6 @@ Route::post('/agregar-hora', [IndexController::class, 'agregarHora'])->name('agr
 Route::post('/actualizar-lista-horas', [IndexController::class, 'actualizarHoras'])->name('actualizar_lista_horas');
 Route::post('/total', [IndexController::class, 'total'])->name('total_reserva');
 Route::post('/reservar', [IndexController::class, 'reservar'])->name('reservar');
+Route::post('/finalizar', [IndexController::class, 'finalizar'])->name('finalizar');
+Route::get('/confirmacion', [IndexController::class, 'confirmacion'])->name('confirmacion');
+Route::get('/respuesta', [IndexController::class, 'respuesta'])->name('respuesta');
