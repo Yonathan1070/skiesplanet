@@ -4,8 +4,8 @@
 		<div class="row">
 			<div class="col-lg-9 w3ls-left-copy text-lg-left text-center">
 				<p class="copy-right-grids text-white">
-					&copy; Copyright SkiesPlanet. Todos los derechos reservados | Hecho con ❤ por 
-					<a href="https://inkagenciad.com/" target="_blank">INK AGENCIA DIGITAL</a>
+					&copy; {{Lang::get('messages.copyright')}} | {{Lang::get('messages.actor')}}
+					<a href="https://inkagenciad.com/" target="_blank">{{Lang::get('messages.ink')}}</a>
 				</p>
 			</div>
 			<div class="col-lg-3 w3ls-left-copy text-lg-right text-center">

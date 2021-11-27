@@ -1,4 +1,6 @@
 function epayco(){
+    var language = $('#locale').val();
+
     var tipoReserva = $('#nombre-tipo-reserva').val();
     var pais = $('#nombrePais').val();
     var ciudad = $('#nombreCiudad').val();
@@ -41,7 +43,7 @@ function epayco(){
         tax_base: "0",
         tax: "0",
         country: "co",
-        lang: "es",
+        lang: language,
         //Parametros del pedido
         extra1: tipoId,
         extra2: fechaReserva,

@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    Finalizar Compra
+    {{Lang::get('messages.finalizar')}}
 @endsection
 @section('styles')
     
@@ -10,7 +10,7 @@
 	<!-- //contact info -->
 	<div class="container-fluid" id="booking"><br/><br/><br/><br/><br/>
 		<h3 class="tittle text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
-			Finalizar Compra
+			{{Lang::get('messages.finalizarTitulo')}}
 		</h3>
 		<div class="col-md-12 main_grid_contact">
             <form action="{{route('finalizar')}}" method="post" id="form-general">
@@ -21,30 +21,30 @@
                                 <div class="form" id="accion-reservar">
                                     @csrf
                                     <h4 class="text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
-                                        Información de facturación
+                                        {{Lang::get('messages.finalizarTituloCard1')}}
                                     </h4>
                                     <p>
-                                        Ingresa tu información de facturación para poder realizar tu reserva.
+                                        {{Lang::get('messages.finalizarDescripcionCard1')}}
                                     </p>
                                     <div class="feedback-grids">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label class="mb-2">Nombre</label>
+                                                    <label class="mb-2">{{Lang::get('messages.nombre')}}</label>
                                                     <input class="form-control" type="text" id="nombreCliente" name="nombreCliente" required>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="mb-2">Apellido</label>
+                                                    <label class="mb-2">{{Lang::get('messages.apellido')}}</label>
                                                     <input class="form-control" type="text" id="apellidoCliente" name="apellidoCliente" required>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label class="mb-2">Correo</label>
+                                                    <label class="mb-2">{{Lang::get('messages.correo')}}</label>
                                                     <input class="form-control" type="email" id="correoCliente" name="correoCliente" required>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="mb-2">Telefono</label>
+                                                    <label class="mb-2">{{Lang::get('messages.telefono')}}</label>
                                                     <input class="form-control" type="text" id="telefonoCliente" name="telefonoCliente" required>
                                                 </div>
                                             </div>
@@ -60,20 +60,20 @@
                                 <div class="form" id="accion-reservar">
                                     @csrf
                                     <h4 class="text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
-                                        Información de facturación
+                                        {{Lang::get('messages.finalizarTituloCard2')}}
                                     </h4>
                                     <p>
-                                        Ingresa los datos del titular del certificado, lo recibirá en su correo una vez se confirme el pago.
+                                        {{Lang::get('messages.finalizarDescripcionCard2')}}
                                     </p>
                                     <div class="feedback-grids">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label class="mb-2">Nombre completo del titular</label>
+                                                    <label class="mb-2">{{Lang::get('messages.nombreTitular')}}</label>
                                                     <input class="form-control" type="text" id="nombreTitular" name="nombreTitular" required>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="mb-2">Correo del titular</label>
+                                                    <label class="mb-2">{{Lang::get('messages.correoTitular')}}</label>
                                                     <input class="form-control" type="email" id="correoTitular" name="correoTitular" required>
                                                 </div>
                                             </div>
@@ -94,16 +94,16 @@
                                             <li class="d-flex justify-content-between">
                                                 <input type="hidden" name="tipo-reserva" id="tipo-reserva" value="{{$tipoReserva->id}}">
                                                 <input type="hidden" id="nombre-tipo-reserva" value="{{$tipoReserva->TTR_Nombre_Tipo_Reserva}}">
-                                                <b>Tipo:</b>
+                                                <b>{{Lang::get('messages.tipoReserva')}}:</b>
                                                 <span>
-                                                    {{$tipoReserva->TTR_Nombre_Tipo_Reserva}}
+                                                    {{Lang::get('messages.'.$tipoReserva->TTR_Nombre_Tipo_Reserva)}}
                                                 </span>
                                             </li>
                                             @if ($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais)
                                                 <li class="d-flex justify-content-between">
                                                     <input type="hidden" name="paisId" id="paisId" value="{{$pais->id}}">
                                                     <input type="hidden" id="nombrePais" value="{{$pais->TPA_Nombre_Pais_Espanol}}">
-                                                    <b>Pais:</b>
+                                                    <b>{{Lang::get('messages.pais')}}:</b>
                                                     <span>{{$pais->TPA_Nombre_Pais_Espanol}}</span>
                                                 </li>
                                             @endif
@@ -111,20 +111,20 @@
                                                 <li class="d-flex justify-content-between">
                                                     <input type="hidden" name="ciudadId" id="ciudadId" value="{{$ciudad->id}}">
                                                     <input type="hidden" id="nombreCiudad" value="{{$ciudad->TCI_Nombre_Ciudad}}">
-                                                    <b>Ciudad:</b>
+                                                    <b>{{Lang::get('messages.ciudad')}}:</b>
                                                     <span>{{$ciudad->TCI_Nombre_Ciudad}}</span>
                                                 </li>
                                             @endif
                                             <li class="d-flex justify-content-between">
                                                 <input type="hidden" name="fecha" id="fecha" value="{{$fecha}}">
-                                                <b>Fecha:</b>
+                                                <b>{{Lang::get('messages.fecha')}}:</b>
                                                 <span>
                                                     {{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('d/M/Y')}}
                                                 </span>
                                             </li>
                                             <li class="d-flex justify-content-between">
                                                 <input type="hidden" name="horas-array" id="horas-array" value="{{$horas}}">
-                                                <b>Hora:</b>
+                                                <b>{{Lang::get('messages.hora')}}:</b>
                                                 <ul class="w-hours list-unstyled">
                                                     @foreach ($horas_array as $horas_seleccionadas)
                                                         @if ($horas_seleccionadas != "")
@@ -138,14 +138,14 @@
                                             </li>
                                             <li class="d-flex justify-content-between">
                                                 <input type="hidden" name="total" id="total" value="{{$total}}">
-                                                <b>Total:</b>
+                                                <b>{{Lang::get('messages.total')}}:</b>
                                                 <span>
                                                     {{$total." US"}}
                                                 </span>
                                             </li>
                                         </ul>
                                         <div class="input-group1">
-                                            <input class="form-control" type="button" onclick="epayco();" value="FINALIZAR COMPRA">
+                                            <input class="form-control" type="button" onclick="epayco();" value="{{Lang::get('messages.finalizarTitulo')}}">
                                         </div>
                                         <div class="clearfix"> </div>
                                     </div>
@@ -158,6 +158,7 @@
 		</div>
 	</div>
 	<!-- //contact -->
+    <input type="hidden" id="locale" value="{{Session::get('locale')}}">
 @endsection
 @section('scripts')
     <script type="text/javascript" src="https://checkout.epayco.co/checkout.js"></script>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\IdiomaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,4 @@ Route::post('/reservar', [IndexController::class, 'reservar'])->name('reservar')
 Route::post('/finalizar', [IndexController::class, 'finalizar'])->name('finalizar');
 Route::get('/confirmacion', [IndexController::class, 'confirmacion'])->name('confirmacion');
 Route::get('/respuesta', [IndexController::class, 'respuesta'])->name('respuesta');
+Route::get('/idioma/{idioma}', [IdiomaController::class, 'cambiar'])->name('cambiar_idioma');

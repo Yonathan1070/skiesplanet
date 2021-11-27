@@ -1,9 +1,9 @@
 @if ($tipoReserva)
     @if ($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1)
         <div class="form-group" id="pais">
-            <label class="mb-2">País</label>
+            <label class="mb-2">{{Lang::get('messages.pais')}}</label>
             <select class="form-control" id="paisId" name="paisId" required>
-                <option selected data-url="{{route('get_ciudades')}}" value="">Seleccione una opción</option>
+                <option selected data-url="{{route('get_ciudades')}}" value="">{{Lang::get('messages.seleccioneOpcion')}}</option>
                 @foreach ($paises as $pais)
                     <option value="{{$pais->id}}" data-url="{{route('get_ciudades')}}">{{$pais->TPA_Nombre_Pais_Espanol}}</option>
                 @endforeach
