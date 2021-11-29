@@ -11,7 +11,7 @@
     <!--[if !mso]><!-->
 	<link href="https://fonts.googleapis.com/css?family=Lato:100,200,300,500,800,900" rel="stylesheet" />
     <!--<![endif]-->
-	<title>{{Lang::get('messages.confirmation')}} - {{Lang::get('messages.appName')}}</title>
+	<title>{{Lang::get('messages.titularidad')}} - {{Lang::get('messages.appName')}}</title>
 	
 
 	<style type="text/css" media="screen">
@@ -180,72 +180,10 @@
 																			<tr>
 																				<td align="left" style="font-size:0px;word-break:break-word;">
 																					<div style="font-family:'Lato', sans-serif;font-size:13px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0; margin-top: 10px;" data-testid="z4fF5vJi9L">
-																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">{{$descripcion}}</span>
-																						</p>
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">&nbsp;</p>
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
 																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.cliente')}}:</b> {{$cliente->USU_Nombre_Usuario}}.&nbsp;
-																							</span>
-																						</p>
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.correo')}}: </b>{{$cliente->USU_Correo_Usuario}}.&nbsp;
-																							</span>
-																						</p>
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.articulo')}}: </b>{{$articulo}}
-																							</span>
-																						</p>
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.tipoReserva')}}: </b>{{$tipo->TTR_Nombre_Tipo_Reserva}}.&nbsp;
-																							</span>
-																						</p>
-                                                                                        @if ($tipo->TTR_Select_Pais_Tipo_Reserva == 1 && $pais)
-                                                                                            <p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-                                                                                                <span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-                                                                                                    <b>{{Lang::get('messages.pais')}}: </b>{{$pais->TPA_Nombre_Pais_Espanol}}.&nbsp;
-                                                                                                </span>
-                                                                                            </p>
-                                                                                        @endif
-                                                                                        @if ($tipo->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad)
-                                                                                            <p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-                                                                                                <span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-                                                                                                    <b>{{Lang::get('messages.ciudad')}}: </b>{{$ciudad->TCI_Nombre_Ciudad}}.&nbsp;
-                                                                                                </span>
-                                                                                            </p>
-                                                                                        @endif
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.fecha')}}: </b>{{$fecha}}.&nbsp;
-																							</span>
-																						</p>
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.hora')}}: </b>{{$horas}}.&nbsp;
-																							</span>
-																						</p>
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.total')}}: </b>{{$total}}US.&nbsp;
-																							</span>
-																						</p>
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">&nbsp;</p>
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">{{$tituloContenido2}}</span>
-																						</p>
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">&nbsp;</p>
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.nombre')}}: </b>{{$titular->USU_Nombre_Usuario}}
-																							</span>
-																						</p>
-																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
-																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.correo')}}: </b>{{$titular->USU_Correo_Usuario}}
+                                                                                                {{Lang::get('messages.certificadoDescripcion')}}
 																							</span>
 																						</p>
 																					</div>

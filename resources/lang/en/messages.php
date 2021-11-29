@@ -80,4 +80,38 @@ return [
     'finalizarDescripcionCard2' => 'Enter the data of the certificate holder, you will receive it in your mail once the payment is confirmed.',
     'nombreTitular' => 'Name of the holder',
     'correoTitular' => 'Email of the holder',
+
+    //Correo confirmacion
+    'confirmation' => 'Confirmation',
+    'confirmacionTitulo' => 'Thanks for booking with',
+    'confirmacionSubtitulo' => 'reservation has been confirmed #',
+    'confirmacionDescripcion' => 'This is the description of the order',
+    'transaccionAprobada' => 'Reservation approved',
+    'transaccionPendiente' => 'Reservation pending',
+    'transaccionRechazada' => 'Reservation rejected',
+    'confirmacionTitulo2' => 'The certificate will be generated with the following holder:',
+    'rechazadoTitulo' => 'Thanks for using',
+    'rechazadoSubtitulo' => 'reservation has been rejected #',
+    'pendienteSubtitulo' => 'the reserve #',
+    'pendienteSubtitulo2' => 'is pending',
+    'cliente' => 'Customer',
+    'articulo' => 'Article',
+    'pieCorreo' => 'Thanks for use'
+
+    //Correo certificado
+    'titularidad' => 'Ownership',
+    'certificadoTitulo' => 'You have a piece of heaven with',
+    'certificadoSubtitulo' => 'you just received a piece of heaven, enjoy it!',
+    'certificadoAsunto' => 'Certificate of Ownership',
+    'certificadoDescripcion' => 'Attached we are sending you the certificate of the sky that you bought on our platform, which allows you in a VITALITY way, that is to say that every year you will be able to see, enjoy and photograph your own sky. <br/> <br/> ** Try to be the rainbow in someone\'s storm ** <br/> <br/> Remember to take a picture of your sky, upload it to Instagram and tag us: <b> @ skies.planet </b>',
+
+    //Certificado
+    'certificado' => 'Certificate Ownership',
+    'certificadoSec1' => 'Certify that:',
+    'certificadoSec2_1' => 'The ownership of the sky',
+    'certificadoSec2_2' => 'the day',
+    'certificadoSec2_3' => 'Hour(s):',
+    'certificadoSec2_4' => 'belongs to:',
+    'certificadoSec4' => 'This title is delivered for life.',
+    'certificadoTerminos' => 'Terms and conditions apply',
 ];

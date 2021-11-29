@@ -80,4 +80,39 @@ return [
     'finalizarDescripcionCard2' => 'Ingresa los datos del titular del certificado, lo recibirá en su correo una vez se confirme el pago.',
     'nombreTitular' => 'Nombre completo del titular',
     'correoTitular' => 'Correo electrónico del titular',
+
+    //Correo de confirmación
+    'confirmation' => 'Confirmación',
+    'confirmacionTitulo' => 'Gracias por reservar con',
+    'confirmacionSubtitulo' => 'se ha confirmado la reserva #',
+    'confirmacionDescripcion' => 'Esta es la descripción del pedido',
+    'transaccionAprobada' => 'Reserva Aprobada',
+    'transaccionPendiente' => 'Reserva Pendiente',
+    'transaccionRechazada' => 'Reserva Rechazada',
+    'confirmacionTitulo2' => 'El certificado se generará con el siguiente titular:',
+    'rechazadoTitulo' => 'Gracias por usar',
+    'rechazadoSubtitulo' => 'se ha rechazado la reserva #',
+    'pendienteSubtitulo' => 'la reserva #',
+    'pendienteSubtitulo2' => ' está pendiente',
+    'cliente' => 'Cliente',
+    'articulo' => 'Artículo',
+    'pieCorreo' => 'Gracias por usar',
+
+    //Correo de certificado
+    'titularidad' => 'Titularidad',
+    'certificadoTitulo' => 'Tienes un fragmento de cielo con',
+    'certificadoSubtitulo' => 'acabas de recibir un fragmento del cielo, ¡Disfrutalo!',
+    'certificadoAsunto' => 'Certificado de Titularidad',
+    'certificadoDescripcion' => 'Adjunto te estamos enviando el certificado del cielo que compraste en nuestra plataforma, el cual te permitenece de manera VITALICIA, es decir que cada año podrás ver, disfrutar y fotografiar tu propio cielo.<br/><br/>**Intenta ser el arcoiris en la tormenta de alguien**<br/><br/>Recuerda tomar una foto de tu cielo, subirla a Instagram y etiquetarnos:<b>@skies.planet</b>',
+
+    //Certificado
+    'certificado' => 'Certificado Titularidad',
+    'certificadoSec1' => 'Certifica que:',
+    'certificadoSec2_1' => 'La titularidad del cielo',
+    'certificadoSec2_2' => 'el día',
+    'certificadoSec2_3' => 'Hora(s):',
+    'certificadoSec2_4' => 'le pertenece a:',
+    'certificadoSec2_5' => 'Nombre completo del titular',
+    'certificadoSec4' => 'Este titulo se entrega de manera vitalicia.',
+    'certificadoTerminos' => 'Aplican terminos y condiciones',
 ];

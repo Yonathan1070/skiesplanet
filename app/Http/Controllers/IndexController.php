@@ -12,6 +12,7 @@ use App\Models\Pago;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class IndexController extends Controller
 {
@@ -25,17 +26,16 @@ class IndexController extends Controller
     public function index()
     {
         $tipoReservas = TipoReserva::get();
-        // Mail::send('index', [
-        //     'tipoReservas' => $tipoReservas
-        // ], function($message) {
-        //     $message->from('admin@skiesplanet.com', 'SKIES PLANET');
-        //     $message->to(
-        //         'yonathancam1997@gmail.com', 'SKIES PLANET'
-        //     )->subject('Prueba');
-        //     $message->attach(public_path('files/comercio.pdf'));
-        // });
+        
         return view('index', compact('tipoReservas'));
-        //return view('correo.confirmacion', compact('tipoReservas'));
+
+        // $pdf = PDF::loadView(
+        //     'pdf.certificado'
+        // )->setPaper('letter', 'landscape');
+
+        // $fileName = 'CertificadoTitularidad-';
+        // return $pdf->stream($fileName.'.pdf');
+        // return view('pdf.certificado');
     }
 
     /**
@@ -483,12 +483,8 @@ class IndexController extends Controller
                         if($pago){
                             $idPago = $pago->id;
 
-                            $files = [
-                                public_path('files/comercio.pdf')
-                            ];
-
-                            //Inicio envio correo
-                            enviarMail(
+                            //Inicio envio correo pago
+                            enviarMailPago(
                                 $tipoReserva,
                                 $pais,
                                 $ciudad,
@@ -497,12 +493,20 @@ class IndexController extends Controller
                                 $x_extra2,
                                 $x_extra3,
                                 $x_amount,
-                                $files,
-                                'Gracias por reservar con<br/>SKIES PLANET',
-                                'se ha confirmado la reserva #'.$pago->id,
-                                'Esta es la descripción del pedido',
-                                'Reserva Aprobada',
-                                'El certificado se generará con el siguiente titular:',
+                                Lang::get('messages.confirmacionTitulo').'<br/>'.Lang::get('messages.appName'),
+                                Lang::get('messages.confirmacionSubtitulo').$pago->id,
+                                Lang::get('messages.confirmacionDescripcion'),
+                                Lang::get('messages.transaccionAprobada'),
+                                Lang::get('messages.confirmacionTitulo2'),
+                            );
+                            //Fn envio correo
+
+                            //Inicio envio correo certificado
+                            enviarMailCertificado(
+                                $titular,
+                                Lang::get('messages.certificadoTitulo').'<br/>'.Lang::get('messages.appName'),
+                                Lang::get('messages.certificadoSubtitulo'),
+                                Lang::get('messages.certificadoAsunto')
                             );
                             //Fn envio correo
                         }//#end insert
@@ -555,7 +559,7 @@ class IndexController extends Controller
                             $idPago = $pago->id;
 
                             //Inicio envio correo
-                            enviarMail(
+                            enviarMailPago(
                                 $tipoReserva,
                                 $pais,
                                 $ciudad,
@@ -564,11 +568,10 @@ class IndexController extends Controller
                                 $x_extra2,
                                 $x_extra3,
                                 $x_amount,
-                                $files = null,
-                                'Gracias por usar con<br/>SKIES PLANET',
-                                'se ha rechazado la reserva #'.$pago->id,
-                                'Esta es la descripción del pedido',
-                                'Reserva Rechazada'
+                                Lang::get('messages.rechazadoTitulo').'<br/>'.Lang::get('messages.appName'),
+                                Lang::get('messages.rechazadoSubtitulo').$pago->id,
+                                Lang::get('messages.confirmacionDescripcion'),
+                                Lang::get('messages.transaccionRechazada'),
                             );
                             //Fn envio correo
                         }
@@ -622,7 +625,7 @@ class IndexController extends Controller
                             $idPago = $pago->id;
 
                             //Inicio envio correo
-                            enviarMail(
+                            enviarMailPago(
                                 $tipoReserva,
                                 $pais,
                                 $ciudad,
@@ -631,11 +634,10 @@ class IndexController extends Controller
                                 $x_extra2,
                                 $x_extra3,
                                 $x_amount,
-                                $files = null,
-                                'Gracias por reservar con<br/>SKIES PLANET',
-                                'la reserva #'.$pago->id.' está pendiente',
-                                'Esta es la descripción del pedido',
-                                'Reserva Pendiente'
+                                Lang::get('messages.confirmacionTitulo').'<br/>'.Lang::get('messages.appName'),
+                                Laang::get('messages.pendienteSubtitulo').$pago->id.Lang::get('messages.pendienteSubtitulo2'),
+                                Lang::get('messages.confirmacionDescripcion'),
+                                Lang::get('messages.transaccionPendiente')
                             );
                             //Fn envio correo
                         }
@@ -659,7 +661,7 @@ class IndexController extends Controller
 
     }
 
-    private function enviarMail($tipoReserva, $pais, $ciudad, $cliente, $titular, $x_extra2, $x_extra3, $x_amount, $files, $titulo, $subTitulo, $tituloContenido, $asunto, $tituloContenido2 = null)
+    private function enviarMailPago($tipoReserva, $pais, $ciudad, $cliente, $titular, $x_extra2, $x_extra3, $x_amount, $titulo, $subTitulo, $tituloContenido, $asunto, $tituloContenido2 = null)
     {
         try{
             Mail::send('correo.confirmacion', [
@@ -676,13 +678,43 @@ class IndexController extends Controller
                 'horas' => $x_extra3,
                 'total' => $x_amount,
                 'tituloContenido2' => $tituloContenido2,
-                'titular' => $titular
-            ], function($message) use ($cliente, $files, $asunto) {
+                'titular' => $titular,
+                'descripcion' => Lang::get('messages.confirmacionDescripcion'),
+            ], function($message) use ($cliente, $asunto) {
                 $message->from('admin@skiesplanet.com', 'SKIES PLANET');
                 $message->to(
                     $cliente->TUS_Correo_Electronico_Usuario, 'SKIES PLANET'
                 )->subject($asunto);
-                $message->attach($files[0]);
+            });
+
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    private function enviarMailCertificado($titular, $titulo, $subTitulo, $asunto)
+    {
+        try{
+
+            $pdf = PDF::loadView(
+                'pdf.certificado', [
+                    'titular' => $titular,
+                ]
+            )->setPaper('legal', 'landscape');
+    
+            $fileName = 'CertificadoTitularidad-'.$titular->USU_Nombre_Usuario;
+
+            Mail::send('correo.confirmacion', [
+                'titulo' => $titulo,
+                'nombreCliente' => $titular->Usu_Nombre_Usuario,
+                'subtitulo' => $subTitulo
+            ], function($message) use ($titular, $asunto, $pdf, $fileName) {
+                $message->from('admin@skiesplanet.com', 'SKIES PLANET');
+                $message->to(
+                    $titular->TUS_Correo_Electronico_Usuario, 'SKIES PLANET'
+                )->subject($asunto);
+                $message->attachData($pdf->output(), $fileName.'.pdf');
             });
 
             return true;

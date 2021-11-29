@@ -7,14 +7,14 @@ function epayco(){
     var descripcion = "Reserva " + $('#nombre-tipo-reserva').val() + " para el día " + $('#fecha').val() + ", en la(s) hora(s) " + $('#horas-array').val() + " en " + (((pais != null || pais != undefined) && (ciudad != null || ciudad != undefined)) ? (pais+" ("+ciudad+")") : ((pais != null || pais != undefined) && (ciudad == null || ciudad == undefined)) ? pais : "el mundo");
     var total = $('#total').val();
     var fecha = new Date();
-    // var handler = ePayco.checkout.configure({
-    //     key: 'e84f59c5aba1b0ef2592fb4a39962408',
-    //     test: false
-    // });
     var handler = ePayco.checkout.configure({
-        key: '491d6a0b6e992cf924edd8d3d088aff1',
-        test: true
+        key: 'e84f59c5aba1b0ef2592fb4a39962408',
+        test: false
     });
+    // var handler = ePayco.checkout.configure({
+    //     key: '491d6a0b6e992cf924edd8d3d088aff1',
+    //     test: true
+    // });
 	var invoice = "Ref_"+fecha.getDate()+""+fecha.getMonth()+""+fecha.getFullYear()+""+fecha.getHours()+""+fecha.getMinutes();
     var nombreCliente = $('#nombreCliente').val()+" "+$('#apellidoCliente').val();
     var telefonoCliente = $('#telefonoCliente').val();
