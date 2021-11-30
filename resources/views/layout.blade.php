@@ -155,10 +155,10 @@
 				if(day < 10)
 					day = '0' + day.toString();
 			
-				var minDate = year + '-' + month + '-' + day;
+				/*var minDate = year + '-' + month + '-' + day;
 				if(Date.parse(minDate) > Date.parse(this.value)) {
 					document.getElementById('fecha').value = minDate;
-				}
+				}*/
 			});
 		});
 	</script>
@@ -223,8 +223,10 @@
             if(day < 10)
                 day = '0' + day.toString();
         
-            var minDate = year + '-' + month + '-' + day;    
+            var minDate = year + "-01-01";
+			var maxDate = year + "-12-31";
             $('#fecha').attr('min', minDate);
+			$('#fecha').attr('max', maxDate);
         });
     </script>
 

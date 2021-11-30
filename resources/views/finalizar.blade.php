@@ -116,10 +116,10 @@
                                                 </li>
                                             @endif
                                             <li class="d-flex justify-content-between">
-                                                <input type="hidden" name="fecha" id="fecha" value="{{$fecha}}">
+                                                <input type="hidden" name="fecha" id="fecha" value="{{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('m-d')}}">
                                                 <b>{{Lang::get('messages.fecha')}}:</b>
                                                 <span>
-                                                    {{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('d/M/Y')}}
+                                                    {{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('d').' - '.Lang::get('messages.'.Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('F'))}}
                                                 </span>
                                             </li>
                                             <li class="d-flex justify-content-between">
@@ -145,6 +145,8 @@
                                             </li>
                                         </ul>
                                         <div class="input-group1">
+                                            <input type="hidden" id="url-confirmacion" value="{{route('confirmacion')}}">
+                                            <input type="hidden" id="url-respuesta" value="{{route('respuesta')}}">
                                             <input class="form-control" type="button" onclick="epayco();" value="{{Lang::get('messages.finalizarTitulo')}}">
                                         </div>
                                         <div class="clearfix"> </div>

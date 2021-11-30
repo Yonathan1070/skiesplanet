@@ -13,10 +13,10 @@
 			{{Lang::get('messages.reservarTitulo')}}
 		</h3>
         <h4 class="tittle text-center text-dark mb-sm-5 mb-4">
-            {{Lang::get('messages.reservarDescripcion1')}} {{($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad) ? Lang::get('messages.reservasDescripcion1_2').$ciudad->TCI_Nombre_Ciudad.' ('.$pais->TPA_Nombre_Pais_Espanol.')' : (($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 0) ? Lang::get('messages.reservasDescripcion1_2').$pais->TPA_Nombre_Pais_Espanol : Lang::get('messages.reservasDescripcion1_3'))}} {{Lang::get('messages.reservarDescripcion1_4')}} {{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('d/M/Y')}}
+            {{Lang::get('messages.reservarDescripcion1')}} {{($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad) ? Lang::get('messages.reservasDescripcion1_2').$ciudad->TCI_Nombre_Ciudad.' ('.$pais->TPA_Nombre_Pais_Espanol.')' : (($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 0) ? Lang::get('messages.reservasDescripcion1_2').$pais->TPA_Nombre_Pais_Espanol : Lang::get('messages.reservasDescripcion1_3'))}} {{Lang::get('messages.reservarDescripcion1_4')}} {{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('d').' - '.Lang::get('messages.'.Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('F'))}}
         </h4>
         <h4 class="tittle text-center text-dark mb-sm-5 mb-4">
-            {{Lang::get('messages.reservarDescripcion2')}} <b>{{24-$cantidadOcupadas}} {{Lang::get('messages.reservasDescripcion3')}}</b> {{Lang::get('messages.reservarDescripcion4')}} <br/>{{Lang::get('messages.reservarDescripcion5')}}
+            {{Lang::get('messages.reservarDescripcion2')}} <b>{{24-$cantidadOcupadas}} {{Lang::get('messages.reservarDescripcion3')}}</b> {{Lang::get('messages.reservarDescripcion4')}} <br/>{{Lang::get('messages.reservarDescripcion5')}}
         </h4>
 		<div class="row">
 			<div class="col-md-4 main_grid_contact">
@@ -51,10 +51,10 @@
                                     </li>
                                 @endif
                                 <li class="d-flex justify-content-between">
-                                    <input type="hidden" name="fecha" id="fecha" value="{{$fecha}}">
+                                    <input type="hidden" name="fecha" id="fecha" value="{{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('m-d')}}">
                                     <b>{{Lang::get('messages.fecha')}}:</b>
                                     <span>
-                                        {{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('d/M/Y')}}
+                                        {{Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('d').' - '.Lang::get('messages.'.Carbon\Carbon::createFromFormat('Y-m-d', $fecha)->format('F'))}}
                                     </span>
                                 </li>
                                 <div id="horas">

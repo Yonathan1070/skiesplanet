@@ -13,6 +13,18 @@ return [
     'copyright' => 'Copyright SkiesPlanet. Todos los derechos reservados',
     'actor' => 'Hecho con ❤ por',
     'ink' => 'INK AGENCIA DIGITAL',
+    'January' => 'Enero',
+    'February' => 'Febrero',
+    'March' => 'Marzo',
+    'April' => 'Abril',
+    'May' => 'Mayo',
+    'June' => 'Junio',
+    'July' => 'Julio',
+    'August' => 'Agosto',
+    'September' => 'Septiembre',
+    'October' => 'Octubre',
+    'November' => 'Noviembre',
+    'December' => 'Diciembre',
 
     //Inicio
     'inicio' => 'Inicio',
@@ -112,7 +124,6 @@ return [
     'certificadoSec2_2' => 'el día',
     'certificadoSec2_3' => 'Hora(s):',
     'certificadoSec2_4' => 'le pertenece a:',
-    'certificadoSec2_5' => 'Nombre completo del titular',
     'certificadoSec4' => 'Este titulo se entrega de manera vitalicia.',
     'certificadoTerminos' => 'Aplican terminos y condiciones',
 ];

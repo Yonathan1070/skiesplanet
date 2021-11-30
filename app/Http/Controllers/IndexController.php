@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use PDF;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -99,7 +100,7 @@ class IndexController extends Controller
         $disponibilidad = Reserva::from('TBL_Reserva as r')
             ->join('TBL_Pago as p', 'r.id', 'p.TPG_Reserva_Id')
             ->where('p.TPG_Estado_Pago', 'Aprobada')
-            ->where('r.TRE_Fecha_Reserva', $fecha)
+            ->where('r.TRE_Fecha_Reserva', Carbon::createFromFormat('Y-m-d', $fecha)->format('m-d'))
             ->where('r.TRE_Tipo_Reserva_Id', $tipoReserva->id)
             ->select('r.TRE_Hora_Reserva')
             ->get();
@@ -133,7 +134,7 @@ class IndexController extends Controller
         $disponibilidad = Reserva::from('TBL_Reserva as r')
             ->join('TBL_Pago as p', 'r.id', 'p.TPG_Reserva_Id')
             ->where('p.TPG_Estado_Pago', 'Pendiente')
-            ->where('r.TRE_Fecha_Reserva', $fecha)
+            ->where('r.TRE_Fecha_Reserva', Carbon::createFromFormat('Y-m-d', $fecha)->format('m-d'))
             ->where('r.TRE_Tipo_Reserva_Id', $tipoReserva->id)
             ->select('r.TRE_Hora_Reserva')
             ->get();
@@ -318,7 +319,7 @@ class IndexController extends Controller
             $ciudad = Ciudad::get($request->ciudadId);
         }
 
-        $fecha = $request->fecha;
+        $fecha = Carbon::createFromFormat('m-d', $request->fecha)->format('Y-m-d');
         $horas_array = explode(',', $request['horas-array']);
         $horas = $request['horas-array'];
         $total = $request['cantidad-horas'] * $tipoReserva->TTR_Costo_Tipo_Reserva;

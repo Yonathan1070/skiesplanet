@@ -13,6 +13,18 @@ return [
     'copyright' => 'Copyright SkiesPlanet. All rights reserved',
     'actor' => 'Made with ❤ by',
     'ink' => 'INK AGENCIA DIGITAL',
+    'January' => 'January',
+    'February' => 'February',
+    'March' => 'March',
+    'April' => 'April',
+    'May' => 'May',
+    'June' => 'June',
+    'July' => 'July',
+    'August' => 'August',
+    'September' => 'September',
+    'October' => 'October',
+    'November' => 'November',
+    'December' => 'December',
 
     //Inicio
     'inicio' => 'Home',

@@ -1,5 +1,7 @@
 function epayco(){
     var language = $('#locale').val();
+    var urlConfirmacion = $('#url-confirmacion').val();
+    var urlRespuesta = $('#url-respuesta').val();
 
     var tipoReserva = $('#nombre-tipo-reserva').val();
     var pais = $('#nombrePais').val();
@@ -60,8 +62,8 @@ function epayco(){
         extra13: paisn,
         extra14: ciudadn,
         //Páginas
-        confirmation:"http://skiesplanet.test/confirmacion",
-        response: "http://skiesplanet.test/respuesta",
+        confirmation:urlConfirmacion,
+        response: urlRespuesta,
         //Onpage="false" - Standard="true"
         external: "false",
         //Atributos cliente

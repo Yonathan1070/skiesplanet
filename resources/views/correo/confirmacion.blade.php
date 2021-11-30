@@ -220,7 +220,7 @@
                                                                                         @endif
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
 																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.fecha')}}: </b>{{$fecha}}.&nbsp;
+																								<b>{{Lang::get('messages.fecha')}}: </b>{{Carbon\Carbon::createFromFormat('m-d', $fecha)->format('d').' - '.Lang::get('messages.'.Carbon\Carbon::createFromFormat('m-d', $fecha)->format('F'))}}.&nbsp;
 																							</span>
 																						</p>
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
