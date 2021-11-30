@@ -126,4 +126,14 @@ return [
     'certificadoSec2_4' => 'belongs to:',
     'certificadoSec4' => 'This title is delivered for life.',
     'certificadoTerminos' => 'Terms and conditions apply',
+
+    //Respuesta
+    'respuesta' => 'Response',
+    'respuestaTituloCard2Sec1' => 'Transaction Response',
+    'referencia' => 'Reference',
+    'fechaTxn' => 'Date',
+    'motivo' => 'Reason',
+    'banco' => 'Bank',
+    'recibo' => 'Receipt',
+    'regresarInicio' => 'Back to Skies Planet',
 ];

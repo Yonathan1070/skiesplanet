@@ -126,4 +126,14 @@ return [
     'certificadoSec2_4' => 'le pertenece a:',
     'certificadoSec4' => 'Este titulo se entrega de manera vitalicia.',
     'certificadoTerminos' => 'Aplican terminos y condiciones',
+
+    //Respuesta
+    'respuesta' => 'Respuesta',
+    'respuestaTituloCard2Sec1' => 'Respuesta de la transacción',
+    'referencia' => 'Referencia',
+    'fechaTxn' => 'Fecha',
+    'motivo' => 'Motivo',
+    'banco' => 'Banco',
+    'recibo' => 'Recibo',
+    'regresarInicio' => 'Regresar a skies planet',
 ];

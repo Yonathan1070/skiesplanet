@@ -672,7 +672,7 @@ class IndexController extends Controller
     
     public function respuesta()
     {
-
+        return view('respuesta');
     }
 
     private function enviarMailPago($tipoReserva, $pais, $ciudad, $cliente, $titular, $x_extra2, $x_extra3, $x_amount, $titulo, $subTitulo, $tituloContenido, $asunto, $tituloContenido2 = null)
