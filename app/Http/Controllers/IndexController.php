@@ -31,11 +31,19 @@ class IndexController extends Controller
         return view('index', compact('tipoReservas'));
 
         // $pdf = PDF::loadView(
-        //     'pdf.certificado'
+        //     'pdf.certificado', [
+        //         'titular' => Usuario::find(1),
+        //         'tipoReserva' => TipoReserva::find(3),
+        //         'pais' => Pais::find(1),
+        //         'ciudad' => Ciudad::find(1),
+        //         'fecha' => "02-02",
+        //         'horas' => explode(",", ",0-1,2-3")
+        //     ]
         // )->setPaper('letter', 'landscape');
 
         // $fileName = 'CertificadoTitularidad-';
         // return $pdf->stream($fileName.'.pdf');
+
         // return view('pdf.certificado');
     }
 
@@ -505,6 +513,11 @@ class IndexController extends Controller
                             //Inicio envio correo certificado
                             enviarMailCertificado(
                                 $titular,
+                                $tipoReserva,
+                                $pais,
+                                $ciudad,
+                                $x_extra2,
+                                $x_extra3,
                                 Lang::get('messages.certificadoTitulo').'<br/>'.Lang::get('messages.appName'),
                                 Lang::get('messages.certificadoSubtitulo'),
                                 Lang::get('messages.certificadoAsunto')
@@ -694,13 +707,18 @@ class IndexController extends Controller
         }
     }
 
-    private function enviarMailCertificado($titular, $titulo, $subTitulo, $asunto)
+    private function enviarMailCertificado($titular, $tipoReserva, $pais, $ciudad, $x_extra2, $x_extra3, $titulo, $subTitulo, $asunto)
     {
         try{
 
             $pdf = PDF::loadView(
                 'pdf.certificado', [
                     'titular' => $titular,
+                    'tipoReserva' => $tipoReserva,
+                    'pais' => $pais,
+                    'ciudad' => $ciudad,
+                    'fecha' => $x_extra2,
+                    'horas' => explode(",", $x_extra3)
                 ]
             )->setPaper('legal', 'landscape');
     

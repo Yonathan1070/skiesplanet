@@ -36,8 +36,17 @@
             <br><br><br>
             <span style="font-size:40px">{{Lang::get('messages.certificadoSec1')}}</span><br/><br/>
             <br><br>
-            <span style="font-size:25px"><b>{{Lang::get('messages.certificadoSec2_1')}} Pais(Ciudad) {{Lang::get('messages.certificadoSec2_2')}} dd de mm,</b></span><br/><br/>
-            <span style="font-size:25px"><b>{{Lang::get('messages.certificadoSec2_3')}} 00:00, 00:00, {{Lang::get('messages.certificadoSec2_4')}}</b></span> <br/><br/>
+            <span style="font-size:25px"><b>{{Lang::get('messages.certificadoSec2_1')}} {{($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad) ? Lang::get('messages.reservasDescripcion1_2').$ciudad->TCI_Nombre_Ciudad.' ('.$pais->TPA_Nombre_Pais_Espanol.')' : (($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 0) ? Lang::get('messages.reservasDescripcion1_2').$pais->TPA_Nombre_Pais_Espanol : Lang::get('messages.reservasDescripcion1_3'))}} {{Lang::get('messages.certificadoSec2_2')}} {{Carbon\Carbon::createFromFormat('m-d', $fecha)->format('d').' - '.Lang::get('messages.'.Carbon\Carbon::createFromFormat('m-d', $fecha)->format('F'))}},</b></span><br/><br/>
+            <span style="font-size:25px"><b>
+                {{Lang::get('messages.certificadoSec2_3')}} 
+                @foreach ($horas as $hora)
+                    @if ($hora != "")
+                        <?php $splitHora = explode("-", $hora); ?>
+                        {{$splitHora[0].':00 - '.$splitHora[1].':00, '}}
+                    @endif
+                @endforeach
+                {{Lang::get('messages.certificadoSec2_4')}}
+            </b></span> <br/><br/>
             <span style="font-size:40px; text-transform: uppercase;"><b>{{$titular->USU_Nombre_Usuario}}</b></span> <br/><br/><br/><br/><br/>
             <span style="font-size:25px;"><b>{{Lang::get('messages.certificadoSec4')}}</b></span> <br/><br/><br/><br/>
             <br><br><br>

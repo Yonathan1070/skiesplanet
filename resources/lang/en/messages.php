@@ -108,7 +108,7 @@ return [
     'pendienteSubtitulo2' => 'is pending',
     'cliente' => 'Customer',
     'articulo' => 'Article',
-    'pieCorreo' => 'Thanks for use'
+    'pieCorreo' => 'Thanks for use',
 
     //Correo certificado
     'titularidad' => 'Ownership',
