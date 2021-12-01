@@ -145,7 +145,7 @@
                                             </li>
                                         </ul>
                                         <div class="input-group1">
-                                            <input type="hidden" id="url-confirmacion" value="{{route('confirmacion')}}">
+                                            <input type="hidden" id="url-confirmacion" value="{{route('inicio').'/api/confirmacion'}}">
                                             <input type="hidden" id="url-respuesta" value="{{route('respuesta')}}">
                                             <input class="form-control" type="button" onclick="epayco();" value="{{Lang::get('messages.finalizarTitulo')}}">
                                         </div>
