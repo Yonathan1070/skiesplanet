@@ -371,7 +371,7 @@ class IndexController extends Controller
         return redirect()->route('inicio');
     }
 
-    public function confirmacion()
+    public function confirmacion(Request $request)
     {
         /*En esta página se reciben las variables enviadas desde ePayco hacia el servidor.
         Antes de realizar cualquier movimiento en base de datos se deben comprobar algunos valores
@@ -383,42 +383,42 @@ class IndexController extends Controller
         $p_cust_id_cliente = '562742';
         $p_key             = '6f8b192fd60db2ad10d5603046504e2df28371aa';
 
-        $x_ref_payco      = $_REQUEST['x_ref_payco'];
-        $x_transaction_id = $_REQUEST['x_transaction_id'];
-        $x_amount         = $_REQUEST['x_amount'];
-        $x_currency_code  = $_REQUEST['x_currency_code'];
-        $x_signature      = $_REQUEST['x_signature'];
+        $x_ref_payco      = $request['x_ref_payco'];
+        $x_transaction_id = $request['x_transaction_id'];
+        $x_amount         = $request['x_amount'];
+        $x_currency_code  = $request['x_currency_code'];
+        $x_signature      = $request['x_signature'];
 
 
         $signature = hash('sha256', $p_cust_id_cliente . '^' . $p_key . '^' . $x_ref_payco . '^' . $x_transaction_id . '^' . $x_amount . '^' . $x_currency_code);
 
-        $x_response     = $_REQUEST['x_response'];
-        $x_motivo       = $_REQUEST['x_response_reason_text'];
-        $x_id_invoice   = $_REQUEST['x_id_invoice'];
-        $x_autorizacion = $_REQUEST['x_approval_code'];
-        $x_description  = $_REQUEST['x_description'];
-        $x_transaction_date = $_REQUEST['x_transaction_date'];
+        $x_response     = $request['x_response'];
+        $x_motivo       = $request['x_response_reason_text'];
+        $x_id_invoice   = $request['x_id_invoice'];
+        $x_autorizacion = $request['x_approval_code'];
+        $x_description  = $request['x_description'];
+        $x_transaction_date = $request['x_transaction_date'];
         //Datos del pedido
-        $x_extra1       = $_REQUEST['x_extra1']; //tipo
-        $x_extra2       = $_REQUEST['x_extra2']; //fecha
-        $x_extra3       = $_REQUEST['x_extra3']; //horas
-        $x_extra4       = $_REQUEST['x_extra4']; //nombre cliente
-        $x_extra5       = $_REQUEST['x_extra5']; //apellido cliente
-        $x_extra6       = $_REQUEST['x_extra6']; //email cliente
-        $x_extra7       = $_REQUEST['x_extra7']; //telefono cliente
-        $x_extra8       = $_REQUEST['x_extra8']; //nombre titular
-        $x_extra9       = $_REQUEST['x_extra9']; //email titular
-        $x_extra10      = $_REQUEST['x_extra10']; //pais
-        $x_extra11      = $_REQUEST['x_extra11']; //ciudad
-        $x_extra12      = $_REQUEST['x_extra12']; //idioma
-        $x_extra13      = $_REQUEST['x_extra13']; //nombre pais
-        $x_extra14      = $_REQUEST['x_extra14']; //nombre ciudad
+        $x_extra1       = $request['x_extra1']; //tipo
+        $x_extra2       = $request['x_extra2']; //fecha
+        $x_extra3       = $request['x_extra3']; //horas
+        $x_extra4       = $request['x_extra4']; //nombre cliente
+        $x_extra5       = $request['x_extra5']; //apellido cliente
+        $x_extra6       = $request['x_extra6']; //email cliente
+        $x_extra7       = $request['x_extra7']; //telefono cliente
+        $x_extra8       = $request['x_extra8']; //nombre titular
+        $x_extra9       = $request['x_extra9']; //email titular
+        $x_extra10      = $request['x_extra10']; //pais
+        $x_extra11      = $request['x_extra11']; //ciudad
+        $x_extra12      = $request['x_extra12']; //idioma
+        $x_extra13      = $request['x_extra13']; //nombre pais
+        $x_extra14      = $request['x_extra14']; //nombre ciudad
         $fecha          = date("Y-m-d");
 
         //Validamos la firma
         if ($x_signature == $signature) {
             /*Si la firma esta bien podemos verificar los estado de la transacción*/
-            $x_cod_response = $_REQUEST['x_cod_response'];
+            $x_cod_response = $request['x_cod_response'];
 
             //Buscar Rol cliente
             $rolCliente = Rol::where('TRO_Nombre_Rol', 'Cliente')->first();
