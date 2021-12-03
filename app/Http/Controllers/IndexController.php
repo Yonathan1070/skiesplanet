@@ -493,7 +493,7 @@ class IndexController extends Controller
                             $idPago = $pago->id;
 
                             //Inicio envio correo pago
-                            enviarMailPago(
+                            $this->enviarMailPago(
                                 $tipoReserva,
                                 $pais,
                                 $ciudad,
@@ -511,7 +511,7 @@ class IndexController extends Controller
                             //Fn envio correo
 
                             //Inicio envio correo certificado
-                            enviarMailCertificado(
+                            $this->enviarMailCertificado(
                                 $titular,
                                 $tipoReserva,
                                 $pais,
@@ -573,7 +573,7 @@ class IndexController extends Controller
                             $idPago = $pago->id;
 
                             //Inicio envio correo
-                            enviarMailPago(
+                            $this->enviarMailPago(
                                 $tipoReserva,
                                 $pais,
                                 $ciudad,
@@ -639,7 +639,7 @@ class IndexController extends Controller
                             $idPago = $pago->id;
 
                             //Inicio envio correo
-                            enviarMailPago(
+                            $this->enviarMailPago(
                                 $tipoReserva,
                                 $pais,
                                 $ciudad,
