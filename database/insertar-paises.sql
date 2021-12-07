@@ -1,5 +1,5 @@
-ALTER TABLE TBL_Pais MODIFY TPA_ISO_3 varchar(3) null;
-ALTER TABLE TBL_Pais MODIFY TPA_Nombre_Pais_Ingles varchar(250) null;
+#ALTER TABLE TBL_Pais MODIFY TPA_ISO_3 varchar(3) null;
+#ALTER TABLE TBL_Pais MODIFY TPA_Nombre_Pais_Ingles varchar(250) null;
 INSERT INTO `TBL_Pais` (`TPA_ISO_2`, `TPA_Nombre_Pais_Espanol`) VALUES
 	('AU', 'Australia'),
 	('CN', 'China'),
