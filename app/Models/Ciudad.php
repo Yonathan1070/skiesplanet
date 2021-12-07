@@ -24,7 +24,7 @@ class Ciudad extends Model
     public static function get($id = null)
     {
         if ($id == null) {
-            return Ciudad::all();
+            return Ciudad::orderBy('TCI_Nombre_Ciudad', 'asc')->get();
         } else {
             return Ciudad::find($id);
         }
@@ -32,6 +32,6 @@ class Ciudad extends Model
 
     public static function getPorPais($id = null)
     {
-        return Ciudad::where('TCI_Pais_Id', $id)->get();
+        return Ciudad::where('TCI_Pais_Id', $id)->orderBy('TCI_Nombre_Ciudad', 'asc')->get();
     }
 }

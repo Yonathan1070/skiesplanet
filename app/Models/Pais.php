@@ -21,7 +21,7 @@ class Pais extends Model
     public static function get($id = null)
     {
         if ($id == null) {
-            return Pais::all();
+            return Pais::orderBy('TPA_Nombre_Pais_Espanol', 'asc')->get();
         } else {
             return Pais::find($id);
         }
