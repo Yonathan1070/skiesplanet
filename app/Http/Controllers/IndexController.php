@@ -732,7 +732,7 @@ class IndexController extends Controller
                         ]
                     )->setPaper('letter', 'landscape');
             
-                    $fileName = 'CertificadoTitularidad-'.$titular->USU_Nombre_Usuario.'-'.$hora;
+                    $fileName = 'CertificadoTitularidad-'.$titular->TUS_Nombre_Completo_Usuario.'-'.$hora.'-'.(($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad) ? $ciudad->TCI_Nombre_Ciudad : (($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 0) ? $pais->TPA_Nombre_Pais_Espanol : Lang::get('messages.reservasDescripcion1_3'))).'-'.Carbon::now()->format('Y-m-d').'.pdf';
 
                     array_push($pdfs, [$pdf, $fileName]);
                 }
@@ -740,7 +740,7 @@ class IndexController extends Controller
 
             Mail::send('correo.titularidad', [
                 'titulo' => $titulo,
-                'nombreCliente' => $titular->Usu_Nombre_Usuario,
+                'nombreCliente' => $titular->TUS_Nombre_Completo_Usuario,
                 'subtitulo' => $subTitulo
             ], function($message) use ($titular, $asunto, $pdfs) {
                 $message->from('admin@skiesplanet.com', 'SKIES PLANET');
