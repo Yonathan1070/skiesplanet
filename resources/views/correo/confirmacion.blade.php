@@ -186,12 +186,12 @@
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">&nbsp;</p>
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
 																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.cliente')}}:</b> {{$cliente->USU_Nombre_Usuario}}.&nbsp;
+																								<b>{{Lang::get('messages.cliente')}}:</b> {{$cliente->TUS_Nombre_Completo_Usuario}}.&nbsp;
 																							</span>
 																						</p>
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
 																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.correo')}}: </b>{{$cliente->USU_Correo_Usuario}}.&nbsp;
+																								<b>{{Lang::get('messages.correo')}}: </b>{{$cliente->TUS_Correo_Electronico_Usuario}}.&nbsp;
 																							</span>
 																						</p>
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">

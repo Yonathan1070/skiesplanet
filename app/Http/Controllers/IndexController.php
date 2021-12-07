@@ -687,7 +687,7 @@ class IndexController extends Controller
         try{
             Mail::send('correo.confirmacion', [
                 'titulo' => $titulo,
-                'nombreCliente' => $cliente->Usu_Nombre_Usuario,
+                'nombreCliente' => $cliente->TUS_Nombre_Completo_Usuario,
                 'subtitulo' => $subTitulo,
                 'tituloContenido' => $tituloContenido,
                 'cliente' => $cliente,
