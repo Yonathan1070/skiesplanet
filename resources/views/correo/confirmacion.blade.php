@@ -240,12 +240,12 @@
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">&nbsp;</p>
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
 																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.nombre')}}: </b>{{$titular->USU_Nombre_Usuario}}
+																								<b>{{Lang::get('messages.nombre')}}: </b>{{$titular->TUS_Nombre_Completo_Usuario}}
 																							</span>
 																						</p>
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
 																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-																								<b>{{Lang::get('messages.correo')}}: </b>{{$titular->USU_Correo_Usuario}}
+																								<b>{{Lang::get('messages.correo')}}: </b>{{$titular->TUS_Correo_Electronico_Usuario}}
 																							</span>
 																						</p>
 																					</div>

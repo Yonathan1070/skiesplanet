@@ -717,30 +717,39 @@ class IndexController extends Controller
     private function enviarMailCertificado($titular, $tipoReserva, $pais, $ciudad, $x_extra2, $x_extra3, $titulo, $subTitulo, $asunto)
     {
         try{
+            $horasSplit = explode(",", $x_extra3);
+            $pdfs = [];
+            foreach ($horasSplit as $hora) {
+                if($hora != ""){
+                    $pdf = PDF::loadView(
+                        'pdf.certificado', [
+                            'titular' => $titular,
+                            'tipoReserva' => $tipoReserva,
+                            'pais' => $pais,
+                            'ciudad' => $ciudad,
+                            'fecha' => $x_extra2,
+                            'horas' => explode(",", $x_extra3)
+                        ]
+                    )->setPaper('legal', 'landscape');
+            
+                    $fileName = 'CertificadoTitularidad-'.$titular->USU_Nombre_Usuario.'-'.$hora;
 
-            $pdf = PDF::loadView(
-                'pdf.certificado', [
-                    'titular' => $titular,
-                    'tipoReserva' => $tipoReserva,
-                    'pais' => $pais,
-                    'ciudad' => $ciudad,
-                    'fecha' => $x_extra2,
-                    'horas' => explode(",", $x_extra3)
-                ]
-            )->setPaper('legal', 'landscape');
-    
-            $fileName = 'CertificadoTitularidad-'.$titular->USU_Nombre_Usuario;
+                    array_push($pdfs, [$pdf, $fileName]);
+                }
+            }
 
-            Mail::send('correo.confirmacion', [
+            Mail::send('correo.certificado', [
                 'titulo' => $titulo,
                 'nombreCliente' => $titular->Usu_Nombre_Usuario,
                 'subtitulo' => $subTitulo
-            ], function($message) use ($titular, $asunto, $pdf, $fileName) {
+            ], function($message) use ($titular, $asunto, $pdfs) {
                 $message->from('admin@skiesplanet.com', 'SKIES PLANET');
                 $message->to(
                     $titular->TUS_Correo_Electronico_Usuario, 'SKIES PLANET'
                 )->subject($asunto);
-                $message->attachData($pdf->output(), $fileName.'.pdf');
+                foreach ($pdfs as $pdf) {
+                    $message->attachData($pdf[0]->output(), $pdf[1].'.pdf');
+                }
             });
 
             return true;
