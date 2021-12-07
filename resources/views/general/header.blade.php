@@ -1,7 +1,7 @@
 <!-- header -->
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-		<a class="navbar-brand logo" href="index.html">
+		<a class="navbar-brand logo" href="https://www.skiesplanet.com">
 			{{Lang::get('messages.appName')}}
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-toggle" aria-controls="navbarNavAltMarkup"
