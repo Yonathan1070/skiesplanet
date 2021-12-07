@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use PDF;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Lang;
 
 class IndexController extends Controller
 {
@@ -32,10 +33,10 @@ class IndexController extends Controller
 
         // $pdf = PDF::loadView(
         //     'pdf.certificado', [
-        //         'titular' => Usuario::find(1),
+        //         'titular' => Usuario::first(),
         //         'tipoReserva' => TipoReserva::find(3),
-        //         'pais' => Pais::find(1),
-        //         'ciudad' => Ciudad::find(1),
+        //         'pais' => Pais::first(),
+        //         'ciudad' => Ciudad::first(),
         //         'fecha' => "02-02",
         //         'horas' => explode(",", ",0-1,2-3")
         //     ]
@@ -44,7 +45,13 @@ class IndexController extends Controller
         // $fileName = 'CertificadoTitularidad-';
         // return $pdf->stream($fileName.'.pdf');
 
-        // return view('pdf.certificado');
+        // $titular = Usuario::find(1);
+        // $tipoReserva = TipoReserva::find(1);
+        // $pais = Pais::find(1);
+        // $ciudad = Ciudad::find(1);
+        // $fecha = "02-02";
+        // $horas = explode(",", ",0-1,2-3");
+        // return view('pdf.certificado', compact('titular', 'tipoReserva', 'pais', 'ciudad', 'fecha', 'horas'));
     }
 
     /**
