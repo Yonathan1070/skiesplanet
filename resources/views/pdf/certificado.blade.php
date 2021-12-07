@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Web-Fonts -->
-	<link href="//fonts.googleapis.com/css?family=Lato:100,200,300,500,800,900" rel="stylesheet">
     <title>{{Lang::get('messages.certificado')}} - {{Lang::get('messages.appName')}}</title>
     <style>
-        * {
-            font-family:'Lato', sans-serif;
+        
+
+        *{
+            font-family: "Georgia", serif;";
         }
+
         body {
             margin: 0;
         }
@@ -36,18 +37,14 @@
             <br><br><br>
             <span style="font-size:40px">{{Lang::get('messages.certificadoSec1')}}</span><br/><br/>
             <br><br>
-            <span style="font-size:25px"><b>{{Lang::get('messages.certificadoSec2_1')}} {{($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad) ? Lang::get('messages.reservasDescripcion1_2').$ciudad->TCI_Nombre_Ciudad.' ('.$pais->TPA_Nombre_Pais_Espanol.')' : (($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 0) ? Lang::get('messages.reservasDescripcion1_2').$pais->TPA_Nombre_Pais_Espanol : Lang::get('messages.reservasDescripcion1_3'))}} {{Lang::get('messages.certificadoSec2_2')}} {{Carbon\Carbon::createFromFormat('m-d', $fecha)->format('d').' - '.Lang::get('messages.'.Carbon\Carbon::createFromFormat('m-d', $fecha)->format('F'))}},</b></span><br/><br/>
+            <span style="font-size:25px"><b>{{Lang::get('messages.certificadoSec2_1')}} {{($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad) ? Lang::get('messages.reservasDescripcion1_2').$ciudad->TCI_Nombre_Ciudad.', '.$pais->TPA_Nombre_Pais_Espanol.' ' : (($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 0) ? Lang::get('messages.reservasDescripcion1_5').$pais->TPA_Nombre_Pais_Espanol : Lang::get('messages.reservasDescripcion1_3'))}} {{Lang::get('messages.certificadoSec2_2')}} {{Carbon\Carbon::createFromFormat('m-d', $fecha)->format('d').' '.Lang::get('messages.reservasDescripcion1_6').' '.Lang::get('messages.'.Carbon\Carbon::createFromFormat('m-d', $fecha)->format('F'))}},</b></span><br/><br/>
             <span style="font-size:25px"><b>
                 {{Lang::get('messages.certificadoSec2_3')}} 
-                @foreach ($horas as $hora)
-                    @if ($hora != "")
-                        <?php $splitHora = explode("-", $hora); ?>
-                        {{$splitHora[0].':00 - '.$splitHora[1].':00, '}}
-                    @endif
-                @endforeach
+                <?php $splitHora = explode("-", $horas); ?>
+                {{Carbon\Carbon::createFromFormat('h:m', $splitHora[0].':00')->format('g:i A').' - '.Carbon\Carbon::createFromFormat('h:m', $splitHora[1].':00')->format('g:i A').', '}}
                 {{Lang::get('messages.certificadoSec2_4')}}
             </b></span> <br/><br/>
-            <span style="font-size:40px; text-transform: uppercase;"><b>{{$titular->USU_Nombre_Usuario}}</b></span> <br/><br/><br/><br/><br/>
+            <span style="font-size:40px; text-transform: uppercase;"><b>{{$titular->TUS_Nombre_Completo_Usuario}}</b></span> <br/><br/><br/><br/><br/>
             <span style="font-size:25px;"><b>{{Lang::get('messages.certificadoSec4')}}</b></span> <br/><br/><br/><br/>
             <br><br><br>
             <br><br><br>

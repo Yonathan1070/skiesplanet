@@ -728,9 +728,9 @@ class IndexController extends Controller
                             'pais' => $pais,
                             'ciudad' => $ciudad,
                             'fecha' => $x_extra2,
-                            'horas' => explode(",", $x_extra3)
+                            'horas' => $hora
                         ]
-                    )->setPaper('legal', 'landscape');
+                    )->setPaper('letter', 'landscape');
             
                     $fileName = 'CertificadoTitularidad-'.$titular->USU_Nombre_Usuario.'-'.$hora;
 
@@ -738,7 +738,7 @@ class IndexController extends Controller
                 }
             }
 
-            Mail::send('correo.certificado', [
+            Mail::send('correo.titularidad', [
                 'titulo' => $titulo,
                 'nombreCliente' => $titular->Usu_Nombre_Usuario,
                 'subtitulo' => $subTitulo
