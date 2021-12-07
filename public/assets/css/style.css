@@ -1663,7 +1663,7 @@ li.subitem1 p {
     }
 
     .bs-slider-overlay {
-        height: 90vw;
+        height: 100%;
     }
 
     .ch-grid li {

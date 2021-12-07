@@ -10,7 +10,7 @@
 	<!-- banner slider-->
 	<div class="banner-silder">
 		<div id="JiSlider" class="jislider">
-			<div class="w3layouts-banner-top w3layouts-banner-top">
+			<div class="w3layouts-banner-top">
 				<div class="bs-slider-overlay">
 					<div class="container">
 						<!-- Slide Text Layer -->
@@ -19,7 +19,7 @@
 							<h4 class="aos-init aos-animate" data-aos="fade-down">
 								{{Lang::get('messages.inicioDescripcionSec1')}}
 							</h4>
-							<a href="#services" class="button-style-blue" data-animation="animated fadeInDown" data-aos="fade-down">
+							<a href="#services" class="button-style-blue scroll" data-animation="animated fadeInDown" data-aos="fade-down">
 								{{Lang::get('messages.inicioBotonSec1')}}
 							</a>
 						</div>
@@ -31,7 +31,7 @@
 	<!-- //banner slider -->
 
 	<!-- feedback -->
-	<section class="news py-5" id="services">
+	<div class="news py-5" id="services">
 		<div class="container py-xl-5 py-lg-3">
 			<h3 class="tittle text-center text-uppercase text-brand font-weight-bold mb-sm-5 mb-4">
 				{{Lang::get('messages.inicioTituloSec2')}}
@@ -92,11 +92,11 @@
 					</div>
 				</div>
 			</div>
-			<a href="#booking" class="button-style-blue-center" data-animation="animated fadeInDown" data-aos="fade-down">
+			<a href="#booking" class="button-style-blue-center scroll" data-animation="animated fadeInDown" data-aos="fade-down">
 				{{Lang::get('messages.inicioBotonSec2')}}
 			</a>
 		</div>
-	</section>
+	</div>
 	<!-- //feedback -->
 
 	<!-- //contact info -->
