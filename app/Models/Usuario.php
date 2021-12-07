@@ -18,11 +18,13 @@ class Usuario extends Model
     ];
     protected $guarded = ['id'];
 
-    public static function obtener($correo = null){
+    public static function obtener($rolId, $correo = null){
         if($correo != null){
-            return Usuario::where('TUS_Correo_Electronico_Usuario', $correo)->first();
+            return Usuario::where('TUS_Rol_Id', $rolId)
+                ->where('TUS_Correo_Electronico_Usuario', $correo)
+                ->first();
         }
-        return Usuario::all();
+        return Usuario::where('TUS_Rol_Id', $rolId)->get();
     }
 
     public static function guardar($nombreCompletoUsuario, $correoElectronicoUsuario, $telefonoUsuario = null, $rolId){

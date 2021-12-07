@@ -64,7 +64,7 @@ class IndexController extends Controller
      */
     public function getPaises(Request $request)
     {
-        $tipoReserva = ($request->tipoReserva != null || $request->tipoReserva != 0) ? TipoReserva::get($request->tipoReserva) : null;
+        $tipoReserva = ($request->tipoReserva != null || $request->tipoReserva != 0) ? TipoReserva::obtener($request->tipoReserva) : null;
         $paises = null;
         if($tipoReserva && $tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1) {
             $paises = Pais::get();
@@ -100,7 +100,7 @@ class IndexController extends Controller
      */
     public function seleccionarReserva(Request $request)
     {
-        $tipoReserva = TipoReserva::get($request->tipoId);
+        $tipoReserva = TipoReserva::obtener($request->tipoId);
         $fecha = $request->fecha;
         $pais = null;
         $ciudad = null;
@@ -323,7 +323,7 @@ class IndexController extends Controller
      */
     public function reservar(Request $request)
     {
-        $tipoReserva = TipoReserva::get($request['tipo-reserva']);
+        $tipoReserva = TipoReserva::obtener($request['tipo-reserva']);
         $pais = null;
         if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $request->has('paisId')){
             $pais = Pais::get($request->paisId);
@@ -354,12 +354,12 @@ class IndexController extends Controller
             $rolTitular = Rol::guardar('Titular');
         }
 
-        $cliente = Usuario::obtener($request->correoCliente);
+        $cliente = Usuario::obtener($rolCliente->id, $request->correoCliente);
         if($cliente == null){
             $cliente = Usuario::guardar($request->nombreCliente.' '.$request->apellidoCliente, $request->correoCliente, $request->telefonoCliente, $rolCliente->id);
         }
 
-        $titular = Usuario::obtener($request->correoTitular);
+        $titular = Usuario::obtener($rolTitular->id, $request->correoTitular);
         if($titular == null){
             $titular = Usuario::guardar($request->nombreTitular, $request->correoTitular, null, $rolTitular->id);
         }
@@ -434,7 +434,7 @@ class IndexController extends Controller
                 $rolCliente = Rol::guardar('Cliente');
             }
             //Buscar cliente por correo
-            $cliente = Usuario::obtener($x_extra6);
+            $cliente = Usuario::obtener($rolCliente->id, $x_extra6);
             //Si no existe el cliente lo creamos
             if(!$cliente){
                 $cliente = Usuario::guardar($x_extra4.' '.$x_extra5, $x_extra6, $x_extra7, $rolCliente->id);
@@ -447,7 +447,7 @@ class IndexController extends Controller
                 $rolTitular = Rol::guardar('Titular');
             }
             //Buscar titular por correo
-            $titular = Usuario::obtener($x_extra9);
+            $titular = Usuario::obtener($rolTitular->id, $x_extra9);
             //Si no existe el titular lo creamos
             if(!$titular){
                 $titular = Usuario::guardar($x_extra8, $x_extra9, null, $rolTitular->id);
@@ -460,7 +460,7 @@ class IndexController extends Controller
                         $idCliente = $cliente->id;
                         $idTitular = $titular->id;
 
-                        $tipoReserva = TipoReserva::get($x_extra1);
+                        $tipoReserva = TipoReserva::obtener($x_extra1);
                         $pais = null;
                         $ciudad = null;
                         if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1){
@@ -487,7 +487,7 @@ class IndexController extends Controller
                         }
 
                         $pago = new Pago();
-                        $pago->TPG_Reserva_Id = $tipoReserva->id;
+                        $pago->TPG_Reserva_Id = $reserva->id;
                         $pago->TPG_Total_Pago = $x_amount;
                         $pago->TPG_Fecha_Pago = Carbon::now()->format('Y-m-d');
                         $pago->TPG_Estado_Pago = 'Aprobada';
@@ -540,7 +540,7 @@ class IndexController extends Controller
                         $idCliente = $cliente->id;
                         $idTitular = $titular->id;
 
-                        $tipoReserva = TipoReserva::get($x_extra1);
+                        $tipoReserva = TipoReserva::obtener($x_extra1);
                         $pais = null;
                         $ciudad = null;
                         if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1){
@@ -567,7 +567,7 @@ class IndexController extends Controller
                         }
 
                         $pago = new Pago();
-                        $pago->TPG_Reserva_Id = $tipoReserva->id;
+                        $pago->TPG_Reserva_Id = $reserva->id;
                         $pago->TPG_Total_Pago = $x_amount;
                         $pago->TPG_Fecha_Pago = Carbon::now()->format('Y-m-d');
                         $pago->TPG_Estado_Pago = 'Rechazada';
@@ -606,7 +606,7 @@ class IndexController extends Controller
                         $idCliente = $cliente->id;
                         $idTitular = $titular->id;
 
-                        $tipoReserva = TipoReserva::get($x_extra1);
+                        $tipoReserva = TipoReserva::obtener($x_extra1);
                         $pais = null;
                         $ciudad = null;
                         if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1){
@@ -633,7 +633,7 @@ class IndexController extends Controller
                         }
 
                         $pago = new Pago();
-                        $pago->TPG_Reserva_Id = $tipoReserva->id;
+                        $pago->TPG_Reserva_Id = $reserva->id;
                         $pago->TPG_Total_Pago = $x_amount;
                         $pago->TPG_Fecha_Pago = Carbon::now()->format('Y-m-d');
                         $pago->TPG_Estado_Pago = 'Pendiente';

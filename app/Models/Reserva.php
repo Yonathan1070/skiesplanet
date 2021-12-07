@@ -42,6 +42,6 @@ class Reserva extends Model
             }
         }
 
-        return $reserva->first();
+        return $reserva->orderBy('created_at', 'desc')->first();
     }
 }

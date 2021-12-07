@@ -18,7 +18,7 @@ class TipoReserva extends Model
     ];
     protected $guarded = ['id'];
 
-    public static function get($id = null)
+    public static function obtener($id = null)
     {
         if ($id == null) {
             return TipoReserva::all();
