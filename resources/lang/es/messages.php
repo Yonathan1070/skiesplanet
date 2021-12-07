@@ -117,7 +117,10 @@ return [
     'certificadoTitulo' => 'Tienes un fragmento de cielo con',
     'certificadoSubtitulo' => 'acabas de recibir un fragmento del cielo, ¡Disfrutalo!',
     'certificadoAsunto' => 'Certificado de Titularidad',
-    'certificadoDescripcion' => 'Adjunto te estamos enviando el certificado del cielo que compraste en nuestra plataforma, el cual te permitenece de manera VITALICIA, es decir que cada año podrás ver, disfrutar y fotografiar tu propio cielo.<br/><br/>**Intenta ser el arcoiris en la tormenta de alguien**<br/><br/>Recuerda tomar una foto de tu cielo, subirla a Instagram y etiquetarnos:<b>@skies.planet</b>',
+    'certificadoDescripcion' => 'Adjunto te estamos enviando el certificado del cielo que compraste en nuestra plataforma, el cual te permitenece de manera VITALICIA, es decir que cada año podrás ver, disfrutar y fotografiar tu propio cielo.',
+    'certificadoDescripcion_2' => '**Intenta ser el arcoiris en la tormenta de alguien**',
+    'certificadoDescripcion_3' => 'Recuerda tomar una foto de tu cielo, subirla a Instagram y etiquetarnos:',
+    'certificadoDescripcion_4' => '@skies.planet',
 
     //Certificado
     'certificado' => 'Certificado Titularidad',

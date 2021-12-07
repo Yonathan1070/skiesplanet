@@ -509,7 +509,7 @@ class IndexController extends Controller
                                 $x_extra2,
                                 $x_extra3,
                                 $x_amount,
-                                Lang::get('messages.confirmacionTitulo').'<br/>'.Lang::get('messages.appName'),
+                                Lang::get('messages.confirmacionTitulo'),
                                 Lang::get('messages.confirmacionSubtitulo').$pago->id,
                                 Lang::get('messages.confirmacionDescripcion'),
                                 Lang::get('messages.transaccionAprobada'),
@@ -525,7 +525,7 @@ class IndexController extends Controller
                                 $ciudad,
                                 $x_extra2,
                                 $x_extra3,
-                                Lang::get('messages.certificadoTitulo').'<br/>'.Lang::get('messages.appName'),
+                                Lang::get('messages.certificadoTitulo'),
                                 Lang::get('messages.certificadoSubtitulo'),
                                 Lang::get('messages.certificadoAsunto')
                             );

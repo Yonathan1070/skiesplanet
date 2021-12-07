@@ -115,7 +115,7 @@
 																		<td style="padding: 30px 0px;">
 																			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																				<tr>
-																					<td class="h1 center pb25" style="color:#223a66; text-shadow: 1px 1px 3px #292828; font-weight: 600; font-family:'Lato', Arial,sans-serif; font-size:40px; line-height:46px; text-align:center; padding-bottom:25px;"><multiline>{{$titulo}}</multiline></td>
+																					<td class="h1 center pb25" style="color:#223a66; text-shadow: 1px 1px 3px #292828; font-weight: 600; font-family:'Lato', Arial,sans-serif; font-size:40px; line-height:46px; text-align:center; padding-bottom:25px;"><multiline>{{$titulo}}<br/>{{Lang::get('messages.appName')}}</multiline></td>
 																				</tr>
 																				<tr>
 																					<td class="text-center" style="color:#ffffff; font-family:'Lato', sans-serif; font-size:16px; line-height:30px; text-align:center;"><multiline></multiline></td>
@@ -183,7 +183,9 @@
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">&nbsp;</p>
 																						<p class="text-build-content" style="line-height: 12px; margin: 10px 0;" data-testid="z4fF5vJi9L">
 																							<span style="color:#292929;font-family:'Lato', sans-serif;font-size:15px;">
-                                                                                                {{Lang::get('messages.certificadoDescripcion')}}
+                                                                                                {{Lang::get('messages.certificadoDescripcion')}}<br/><br/>
+																								{{Lang::get('messages.certificadoDescripcion_2')}}<br/><br/>
+																								{{Lang::get('messages.certificadoDescripcion_3')}}<b>{{Lang::get('messages.certificadoDescripcion_4')}}</b>
 																							</span>
 																						</p>
 																					</div>

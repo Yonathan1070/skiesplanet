@@ -117,7 +117,10 @@ return [
     'certificadoTitulo' => 'You have a piece of heaven with',
     'certificadoSubtitulo' => 'you just received a piece of heaven, enjoy it!',
     'certificadoAsunto' => 'Certificate of Ownership',
-    'certificadoDescripcion' => 'Attached we are sending you the certificate of the sky that you bought on our platform, which allows you in a VITALITY way, that is to say that every year you will be able to see, enjoy and photograph your own sky. <br/> <br/> ** Try to be the rainbow in someone\'s storm ** <br/> <br/> Remember to take a picture of your sky, upload it to Instagram and tag us: <b> @ skies.planet </b>',
+    'certificadoDescripcion' => 'Attached we are sending you the certificate of the sky that you bought on our platform, which allows you in a VITALITY way, that is to say that every year you will be able to see, enjoy and photograph your own sky.',
+    'certificadoDescripcion2' => '** Try to be the rainbow in someone\'s storm **',
+    'certificadoDescripcion3' => 'Remember to take a picture of your sky, upload it to Instagram and tag us:',
+    'certificadoDescripcion4' => '@skies.planet',
 
     //Certificado
     'certificado' => 'Certificate Ownership',
