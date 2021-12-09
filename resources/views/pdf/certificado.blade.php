@@ -41,7 +41,7 @@
             <span style="font-size:25px"><b>
                 {{Lang::get('messages.certificadoSec2_3')}} 
                 <?php $splitHora = explode("-", $horas); ?>
-                {{Carbon\Carbon::createFromFormat('h:m', $splitHora[0].':00')->format('g:i A').' - '.Carbon\Carbon::createFromFormat('h:m', $splitHora[1].':00')->format('g:i A').', '}}
+                {{Carbon\Carbon::createFromFormat('H:i', $splitHora[0].':00')->format('g:i A').' - '.Carbon\Carbon::createFromFormat('H:i', $splitHora[1].':00')->format('g:i A').', '}}
                 {{Lang::get('messages.certificadoSec2_4')}}
             </b></span> <br/><br/>
             <span style="font-size:40px; text-transform: uppercase;"><b>{{$titular->TUS_Nombre_Completo_Usuario}}</b></span> <br/><br/><br/><br/><br/>
