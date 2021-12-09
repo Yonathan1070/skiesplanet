@@ -103,7 +103,7 @@
                                             data-hora="{{$hora[0]}}" data-selected="{{$hora[1]}}" data-successurl="{{route('actualizar_lista_horas')}}" style="{{($hora[1] == 0) ? '' : 'pointer-events: none;'}}">
                                             <?php $hora_split = explode("-", $hora[0]); ?>
                                             {{$hora_split[0].':00'}} - {{$hora_split[1].':00'}}
-                                            <span class="badge {{($hora[1] == 0) ? 'bg-success' : (($hora[1] == 1) ? 'bg-warning' : 'bg-danger')}} rounded-pill text-white">{{($hora[1] == 0) ? Lang::get('messages.disponible') : (($hora[1] == 1) ? Lanh::get('messages.ocupado') : Lang::get('messages.reservado'))}}</span>
+                                            <span class="badge {{($hora[1] == 0) ? 'bg-success' : (($hora[1] == 1) ? 'bg-warning' : 'bg-danger')}} rounded-pill text-white">{{($hora[1] == 0) ? Lang::get('messages.disponible') : (($hora[1] == 1) ? Lang::get('messages.ocupado') : Lang::get('messages.reservado'))}}</span>
                                         </a>
                                     @endforeach
                                 </div>
