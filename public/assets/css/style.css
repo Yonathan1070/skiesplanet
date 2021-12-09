@@ -993,6 +993,7 @@ h3.what-title {
 
 .main_grid_contact input[type="text"],
 .main_grid_contact input[type="email"],
+.main_grid_contact input[type="password"],
 .main_grid_contact textarea {
     outline: none;
     padding: 13px 15px;

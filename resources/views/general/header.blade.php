@@ -26,6 +26,11 @@
 							</div>
 						</li>
 					@endif
+					<li>
+						<a class="nav-link dropdown-toggle request text-uppercase font-weight-bold text-white" href="{{route('login')}}" id="navbarDropdown" role="button">
+							Entrar
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>

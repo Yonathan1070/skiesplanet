@@ -27,3 +27,10 @@ Route::post('/finalizar', [IndexController::class, 'finalizar'])->name('finaliza
 Route::post('/confirmacion', [IndexController::class, 'confirmacion'])->name('confirmacion');
 Route::get('/respuesta', [IndexController::class, 'respuesta'])->name('respuesta');
 Route::get('/idioma/{idioma}', [IdiomaController::class, 'cambiar'])->name('cambiar_idioma');
+
+Route::group(['prefix' => '/login'], function () {
+    Route::get('/', function () {
+        //dd(session()->all());
+        return view('general.login');
+    })->name('login');
+});
