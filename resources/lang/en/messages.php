@@ -131,6 +131,7 @@ return [
     'certificadoSec2_4' => 'belongs to:',
     'certificadoSec4' => 'This title is delivered for life.',
     'certificadoTerminos' => 'Terms and conditions apply',
+    'slogan' => '¡Be infinitive, be like us!',
 
     //Respuesta
     'respuesta' => 'Response',

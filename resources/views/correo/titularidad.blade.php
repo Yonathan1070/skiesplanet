@@ -174,7 +174,7 @@
 																		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 																			<tr>
 																				<td class="h4 pb20" style="color:#114490; font-family:'Lato', sans-serif; font-size:20px; line-height:28px; text-align:left; padding-bottom:20px;"><multiline>
-																					{{$nombreCliente}}, {{$subtitulo}}.&nbsp;
+																					{{$nombreCliente}}, {{$subtitulo}}&nbsp;
 																				</multiline></td>
 																			</tr>
 																			<tr>

@@ -27,23 +27,23 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $tipoReservas = TipoReserva::get();
+        // $tipoReservas = TipoReserva::get();
         
-        return view('index', compact('tipoReservas'));
+        // return view('index', compact('tipoReservas'));
 
-        // $pdf = PDF::loadView(
-        //     'pdf.certificado', [
-        //         'titular' => Usuario::first(),
-        //         'tipoReserva' => TipoReserva::find(3),
-        //         'pais' => Pais::first(),
-        //         'ciudad' => Ciudad::first(),
-        //         'fecha' => "02-02",
-        //         'horas' => explode(",", ",0-1,2-3")
-        //     ]
-        // )->setPaper('letter', 'landscape');
+        $pdf = PDF::loadView(
+            'pdf.certificado', [
+                'titular' => Usuario::first(),
+                'tipoReserva' => TipoReserva::find(3),
+                'pais' => Pais::first(),
+                'ciudad' => Ciudad::first(),
+                'fecha' => "02-02",
+                'horas' => "0-1"
+            ]
+        )->setPaper([0, 0, 1500,  1060.5]);
 
-        // $fileName = 'CertificadoTitularidad-';
-        // return $pdf->stream($fileName.'.pdf');
+        $fileName = 'CertificadoTitularidad-';
+        return $pdf->stream($fileName.'.pdf');
 
         // $titular = Usuario::find(1);
         // $tipoReserva = TipoReserva::find(1);

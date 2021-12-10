@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\IdiomaController;
+use App\Http\Controllers\AdministracionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,10 @@ Route::get('/idioma/{idioma}', [IdiomaController::class, 'cambiar'])->name('camb
 
 Route::group(['prefix' => '/login'], function () {
     Route::get('/', function () {
-        //dd(session()->all());
         return view('general.login');
     })->name('login');
+});
+
+Route::group(['prefix' => '/administrador', 'middleware' => ['auth']], function () {
+    Route::get('/', [AdministracionController::class, 'index'])->name('administracion');
 });
