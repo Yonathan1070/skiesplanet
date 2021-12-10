@@ -27,23 +27,23 @@ class IndexController extends Controller
      */
     public function index()
     {
-        // $tipoReservas = TipoReserva::get();
+        $tipoReservas = TipoReserva::get();
         
-        // return view('index', compact('tipoReservas'));
+        return view('index', compact('tipoReservas'));
 
-        $pdf = PDF::loadView(
-            'pdf.certificado', [
-                'titular' => Usuario::first(),
-                'tipoReserva' => TipoReserva::find(3),
-                'pais' => Pais::first(),
-                'ciudad' => Ciudad::first(),
-                'fecha' => "02-02",
-                'horas' => "0-1"
-            ]
-        )->setPaper([0, 0, 1500,  1060.5]);
+        // $pdf = PDF::loadView(
+        //     'pdf.certificado', [
+        //         'titular' => Usuario::first(),
+        //         'tipoReserva' => TipoReserva::find(3),
+        //         'pais' => Pais::first(),
+        //         'ciudad' => Ciudad::first(),
+        //         'fecha' => "02-02",
+        //         'horas' => "0-1"
+        //     ]
+        // )->setPaper([0, 0, 1500,  1060.5]);
 
-        $fileName = 'CertificadoTitularidad-';
-        return $pdf->stream($fileName.'.pdf');
+        // $fileName = 'CertificadoTitularidad-';
+        // return $pdf->stream($fileName.'.pdf');
 
         // $titular = Usuario::find(1);
         // $tipoReserva = TipoReserva::find(1);
@@ -730,7 +730,7 @@ class IndexController extends Controller
                             'fecha' => $x_extra2,
                             'horas' => $hora
                         ]
-                    )->setPaper('letter', 'landscape');
+                    )->setPaper([0, 0, 1500,  1060.5]);
             
                     $fileName = 'CertificadoTitularidad-'.$titular->TUS_Nombre_Completo_Usuario.'-'.$hora.'-'.(($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $ciudad) ? $ciudad->TCI_Nombre_Ciudad : (($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $pais && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 0) ? $pais->TPA_Nombre_Pais_Espanol : Lang::get('messages.reservasDescripcion1_3'))).'-'.Carbon::now()->format('Y-m-d').'.pdf';
 
