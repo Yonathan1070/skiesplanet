@@ -12,6 +12,7 @@ class TipoReserva extends Model
     protected $table = "TBL_Tipo_Reserva";
     protected $fillable = [
         'TTR_Nombre_Tipo_Reserva',
+        'TTR_Descripcion_Tipo_Reserva',
         'TTR_Costo_Tipo_Reserva',
         'TTR_Select_Pais_Tipo_Reserva',
         'TTR_Select_Ciudad_Tipo_Reserva'

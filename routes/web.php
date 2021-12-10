@@ -3,6 +3,8 @@
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\IdiomaController;
 use App\Http\Controllers\AdministracionController;
+use App\Http\Controllers\PlanesController;
+use App\Http\Controllers\TitularesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,4 +39,26 @@ Route::group(['prefix' => '/login'], function () {
 
 Route::group(['prefix' => '/administrador', 'middleware' => ['auth']], function () {
     Route::get('/', [AdministracionController::class, 'index'])->name('administracion');
+    Route::get('/titulares', [AdministracionController::class, 'titulares'])->name('titulares');
+    //Planes
+    Route::group(['prefix' => '/planes'], function () {
+        Route::get('/', [PlanesController::class, 'index'])->name('planes');
+        Route::get('page', [PlanesController::class, 'page'])->name('page_planes');
+        Route::post('/crear', [PlanesController::class, 'crear'])->name('crear_plan');
+        Route::put('/{id}/editar', [PlanesController::class, 'editar'])->name('editar_plan');
+        Route::post('', [PlanesController::class, 'guardar'])->name('guardar_plan');
+        Route::put('/{id}', [PlanesController::class, 'actualizar'])->name('actualizar_plan');
+        Route::delete('/{id}/eliminar', [PlanesController::class, 'eliminar'])->name('eliminar_plan');
+    });
+
+    //Titulares
+    Route::group(['prefix' => '/titulares'], function () {
+        Route::get('/', [TitularesController::class, 'index'])->name('titulares');
+        Route::get('page', [TitularesController::class, 'page'])->name('page_titulares');
+        Route::post('/crear', [TitularesController::class, 'crear'])->name('crear_titular');
+        Route::put('/{id}/editar', [TitularesController::class, 'editar'])->name('editar_titular');
+        Route::post('', [TitularesController::class, 'guardar'])->name('guardar_titular');
+        Route::put('/{id}', [TitularesController::class, 'actualizar'])->name('actualizar_titular');
+        Route::delete('/{id}/eliminar', [TitularesController::class, 'eliminar'])->name('eliminar_titular');
+    });
 });
