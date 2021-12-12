@@ -67,7 +67,7 @@ class IndexController extends Controller
         $tipoReserva = ($request->tipoReserva != null || $request->tipoReserva != 0) ? TipoReserva::obtener($request->tipoReserva) : null;
         $paises = null;
         if($tipoReserva && $tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1) {
-            $paises = Pais::get();
+            $paises = Pais::obtener();
         }
         return view('selectPais', compact('tipoReserva', 'paises'));
     }
@@ -82,7 +82,7 @@ class IndexController extends Controller
      */
     public function getCiudades(Request $request)
     {
-        $pais = Pais::get($request->pais);
+        $pais = Pais::obtener($request->pais);
 
         if($pais) {
             $ciudades = Ciudad::getPorPais($pais->id);
@@ -177,10 +177,10 @@ class IndexController extends Controller
         }
 
         if($request->has('paisId')){
-            $pais = Pais::get($request->paisId);
+            $pais = Pais::obtener($request->paisId);
         }
         if($request->has('ciudadId')){
-            $ciudad = Ciudad::get($request->ciudadId);
+            $ciudad = Ciudad::obtener($request->ciudadId);
         }
         return view('reservar', compact('tipoReserva', 'fecha', 'pais', 'ciudad', 'horas0_12', 'horas12_24', 'cantidadOcupadas'));
     }
@@ -326,12 +326,12 @@ class IndexController extends Controller
         $tipoReserva = TipoReserva::obtener($request['tipo-reserva']);
         $pais = null;
         if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $request->has('paisId')){
-            $pais = Pais::get($request->paisId);
+            $pais = Pais::obtener($request->paisId);
         }
 
         $ciudad = null;
         if($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $request->has('ciudadId')){
-            $ciudad = Ciudad::get($request->ciudadId);
+            $ciudad = Ciudad::obtener($request->ciudadId);
         }
 
         $fecha = Carbon::createFromFormat('m-d', $request->fecha)->format('Y-m-d');
@@ -464,9 +464,9 @@ class IndexController extends Controller
                         $pais = null;
                         $ciudad = null;
                         if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1){
-                            $pais = Pais::get($x_extra10);
+                            $pais = Pais::obtener($x_extra10);
                             if($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1){
-                                $ciudad = Ciudad::get($x_extra11);
+                                $ciudad = Ciudad::obtener($x_extra11);
                             }
                         }
 
@@ -544,9 +544,9 @@ class IndexController extends Controller
                         $pais = null;
                         $ciudad = null;
                         if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1){
-                            $pais = Pais::get($x_extra10);
+                            $pais = Pais::obtener($x_extra10);
                             if($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1){
-                                $ciudad = Ciudad::get($x_extra11);
+                                $ciudad = Ciudad::obtener($x_extra11);
                             }
                         }
 
@@ -610,9 +610,9 @@ class IndexController extends Controller
                         $pais = null;
                         $ciudad = null;
                         if($tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1){
-                            $pais = Pais::get($x_extra10);
+                            $pais = Pais::obtener($x_extra10);
                             if($tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1){
-                                $ciudad = Ciudad::get($x_extra11);
+                                $ciudad = Ciudad::obtener($x_extra11);
                             }
                         }
 

@@ -21,7 +21,7 @@ class Ciudad extends Model
         return $this->belongsTo(Pais::class, 'TCI_Pais_Id');
     }
 
-    public static function get($id = null)
+    public static function obtener($id = null)
     {
         if ($id == null) {
             return Ciudad::orderBy('TCI_Nombre_Ciudad', 'asc')->get();

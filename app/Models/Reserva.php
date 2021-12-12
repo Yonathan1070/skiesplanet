@@ -21,6 +21,21 @@ class Reserva extends Model
     ];
     protected $guarded = ['id'];
 
+    public function tipo_reserva()
+    {
+        return $this->belongsTo(TipoReserva::class, 'TRE_Tipo_Reserva_Id');
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Usuario::class, 'TRE_Cliente_Id');
+    }
+
+    public function titular()
+    {
+        return $this->belongsTo(Usuario::class, 'TRE_Titular_Id');
+    }
+
     public static function guardar(Reserva $reserva){
         $reserva->save();
 
