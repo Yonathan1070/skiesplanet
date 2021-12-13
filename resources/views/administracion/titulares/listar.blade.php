@@ -7,6 +7,8 @@
     
 @endsection
 @section('contenido')
+    <input type="hidden" id="modalName" data-modal="accion-titular">
+    @csrf
     <div class="content-header row">
         <div class="content-header-left col-md-4 col-12 mb-2"></div>
         <div class="content-header-right col-md-8 col-12"></div>
@@ -38,7 +40,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="accion-plan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+    <div class="modal fade" id="accion-titular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body"></div>

@@ -7,6 +7,8 @@ return [
 
     //General
     'idioma' => 'Idioma',
+    'es' => 'Español',
+    'en' => 'Inglés',
     'en_US' => 'Inglés',
     'es_CO' => 'Español',
     'title' => 'Skies Planet',
@@ -25,6 +27,9 @@ return [
     'October' => 'Octubre',
     'November' => 'Noviembre',
     'December' => 'Diciembre',
+    'NotificationTypeSuccess' => 'success',
+    'NotificationTypeWarning' => 'warning',
+    'NotificationTypeError' => 'error',
 
     //Inicio
     'inicio' => 'Inicio',

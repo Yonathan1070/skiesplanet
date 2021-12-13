@@ -22,7 +22,7 @@ class TipoReserva extends Model
     public static function obtener($id = null)
     {
         if ($id == null) {
-            return TipoReserva::all();
+            return TipoReserva::get();
         } else {
             return TipoReserva::find($id);
         }

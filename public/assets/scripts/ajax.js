@@ -41,6 +41,38 @@ function ajaxRequest(url, data, action, modal, form){
                 }else{
                     alert("Error");
                 }
+            }else if(action == 'crear' || action == 'editar'){
+                if(respuesta.tipo != 'error'){
+                    $('#'+modal+' .modal-body').html(respuesta);
+                    $('#'+modal).modal('show');
+                }else{
+                    $(".preloader").fadeOut();
+                    //taxmendez.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
+                }
+            }else if(action == 'guardar'){
+                if(respuesta.tipo == 'success'){
+                    tablaData(respuesta.view, modal);
+                }
+                $(".preloader").fadeOut();
+                //taxmendez.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
+            }else if(action == 'actualizar'){
+                if(respuesta.tipo == 'success'){
+                    tablaData(respuesta.view, modal);
+                }
+                $(".preloader").fadeOut();
+                //taxmendez.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
+            }else if(action == 'eliminar'){
+                if(respuesta.tipo == 'success'){
+                    var row = document.getElementById('row'+respuesta.row);
+                    row.parentNode.removeChild(row);
+                }
+                $(".preloader").fadeOut();
+                //taxmendez.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
+            }else if(action == 'traducir'){
+                $('#'+modal+' .modal-body').html(respuesta);
+                $('#'+modal).modal('show');
+                $(".preloader").fadeOut();
+                //taxmendez.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown, error){
@@ -133,3 +165,46 @@ $('#accion-reservar').on('submit', '#form-general', function(event){
         return false;
     }
 });
+
+$('#nuevo-registro').on('click', function(event){
+    event.preventDefault();
+    $(".preloader").fadeIn();
+    var data = {};
+    var modalName = $('#modalName').data('modal');
+    data = {
+        _token: $('input[name=_token]').val()
+    };
+    ajaxRequest($(this).attr('href'), data, 'crear', modalName);
+});
+
+//Traducir Registro
+$('#data-table').on('click', '.traducir-registro', function(event){
+    event.preventDefault();
+    $(".preloader").fadeIn();
+    var data = {};
+    var modalName = $('#modalName').data('modal');
+    data = {
+        _method: 'POST',
+        _token: $('input[name=_token]').val(),
+        id: $(this).data('id'),
+        tabla: $('#tableName').val()
+    };
+    
+    ajaxRequest($(this).attr('href'), data, 'traducir', modalName);
+});
+
+$('#'+$('#modalName').data('modal')).on('submit', '#form-general', function(event){
+    event.preventDefault();
+    $(".preloader").fadeIn();
+    const form = $(this);
+    var modalName = $('#modalName').data('modal');
+
+    ajaxRequest(form.attr('action'), form.serialize(), 'guardar', modalName);
+});
+
+function tablaData(respuesta, modal){
+    //$('#paginador').remove();
+    $('#'+modal+' .modal-body').html(respuesta);
+    //inicializarPaginador();
+    //$('#'+modal).modal('hide');
+}

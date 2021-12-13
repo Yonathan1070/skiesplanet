@@ -39,7 +39,17 @@ Route::group(['prefix' => '/login'], function () {
 
 Route::group(['prefix' => '/administrador', 'middleware' => ['auth']], function () {
     Route::get('/', [AdministracionController::class, 'index'])->name('administracion');
-    Route::get('/titulares', [AdministracionController::class, 'titulares'])->name('titulares');
+    
+    //Traducciones
+    Route::group(['prefix' => '/traducciones'], function () {
+        Route::post('/listado', [AdministracionController::class, 'traduccion'])->name('traduccion');
+        Route::post('/crear', [AdministracionController::class, 'crearTraduccion'])->name('crear_traduccion');
+        Route::put('/{id}/editar', [AdministracionController::class, 'editarTraduccion'])->name('editar_traduccion');
+        Route::post('', [AdministracionController::class, 'guardarTraduccion'])->name('guardar_traduccion');
+        Route::put('/{id}', [AdministracionController::class, 'actualizarTraduccion'])->name('actualizar_traduccion');
+        Route::delete('/{id}/eliminar', [AdministracionController::class, 'eliminarTraduccion'])->name('eliminar_traduccion');
+    });
+
     //Planes
     Route::group(['prefix' => '/planes'], function () {
         Route::get('/', [PlanesController::class, 'index'])->name('planes');

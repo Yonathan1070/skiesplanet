@@ -37,60 +37,28 @@
 				{{Lang::get('messages.inicioTituloSec2')}}
 			</h3>
 			<div class="owl-carousel owl-theme">
-				<div class="item">
-					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">
-							{{Lang::get('messages.inicioTituloCard1Sec2')}}
-						</h4>
-						<p>
-							{{Lang::get('messages.inicioDescripcionCard1Sec2')}}&nbsp;
-						</p>
-						<div class="feedback-grids mt-4">
-							<div class="feedback-img-info-blue">
-								<h5>
-									$10US
-								</h5>
+				@foreach ($tipoReservas as $tipoReserva)
+					<div class="item">
+						<div class="feedback-info bg-white py-5 px-4">
+							<h4 class="mb-2">
+								<?php $campoNombre = App\Models\Traduccion::obtenerCampo('TBL_Tipo_Reserva', $tipoReserva->id, session()->get('locale'), 'TTR_Nombre_Tipo_Reserva'); ?>
+								{{(!$campoNombre) ? $tipoReserva->TTR_Nombre_Tipo_Reserva : $campoNombre->TTD_Descripcion_Traduccion}}
+							</h4>
+							<p>
+								<?php $campoDescripcion = App\Models\Traduccion::obtenerCampo('TBL_Tipo_Reserva', $tipoReserva->id, session()->get('locale'), 'TTR_Descripcion_Tipo_Reserva'); ?>
+                				{{(!$campoDescripcion) ? $tipoReserva->TTR_Descripcion_Tipo_Reserva : $campoDescripcion->TTD_Descripcion_Traduccion}}&nbsp;
+							</p>
+							<div class="feedback-grids mt-4">
+								<div class="feedback-img-info-blue">
+									<h5>
+										${{$tipoReserva->TTR_Costo_Tipo_Reserva}}US
+									</h5>
+								</div>
+								<div class="clearfix"> </div>
 							</div>
-							<div class="clearfix"> </div>
 						</div>
 					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">
-							{{Lang::get('messages.inicioTituloCard2Sec2')}}
-						</h4>
-						<p>
-							{{Lang::get('messages.inicioDescripcionCard2Sec2')}}
-						</p>
-						<div class="feedback-grids mt-4">
-							<div class="feedback-img-info-blue">
-								<h5>
-									$50US
-								</h5>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info bg-white py-5 px-4">
-						<h4 class="mb-2">
-							{{Lang::get('messages.inicioTituloCard3Sec2')}}
-						</h4>
-						<p>
-							{{Lang::get('messages.inicioDescripcionCard3Sec2')}}
-						</p>
-						<div class="feedback-grids mt-4">
-							<div class="feedback-img-info-blue">
-								<h5>
-									$500US
-								</h5>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
+				@endforeach
 			</div>
 			<a href="#booking" class="button-style-blue-center scroll" data-animation="animated fadeInDown" data-aos="fade-down">
 				{{Lang::get('messages.inicioBotonSec2')}}
@@ -132,7 +100,8 @@
 							<select class="form-control" id="tipoId" name="tipoId" required>
 								<option data-url="{{route('get_paises')}}" value="" selected>{{Lang::get('messages.seleccioneOpcion')}}</option>
 								@foreach ($tipoReservas as $tipo)
-									<option value="{{$tipo->id}}" data-selectpais="{{$tipo->TTR_Select_Pais_Tipo_Reserva}}" data-selectciudad="{{$tipo->TTR_Select_Ciudad_Tipo_Reserva}}" data-url="{{route('get_paises')}}">{{Lang::get('messages.'.$tipo->TTR_Nombre_Tipo_Reserva)}}</option>
+									<?php $campoNombre = App\Models\Traduccion::obtenerCampo('TBL_Tipo_Reserva', $tipo->id, session()->get('locale'), 'TTR_Nombre_Tipo_Reserva'); ?>
+									<option value="{{$tipo->id}}" data-selectpais="{{$tipo->TTR_Select_Pais_Tipo_Reserva}}" data-selectciudad="{{$tipo->TTR_Select_Ciudad_Tipo_Reserva}}" data-url="{{route('get_paises')}}">{{(!$campoNombre) ? $tipo->TTR_Nombre_Tipo_Reserva : $campoNombre->TTD_Descripcion_Traduccion}}</option>
 								@endforeach
 							</select>
 						</div>

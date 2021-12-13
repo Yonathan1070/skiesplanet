@@ -12,4 +12,12 @@ class PlanesController extends Controller
         $planes = TipoReserva::obtener();
         return view('administracion.planes.listar', compact('planes'));
     }
+
+    public function crear(Request $request)
+    {
+        if($request->ajax()){
+            return view('administracion.planes.crear');
+        }
+        abort(404);
+    }
 }

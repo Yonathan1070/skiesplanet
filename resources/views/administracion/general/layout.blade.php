@@ -55,7 +55,7 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="{{asset('assets/dashboard/theme-assets/js/scripts/pages/dashboard-lite.js')}}" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
-
+    <script src="{{asset('assets/scripts/ajax.js')}}" type="text/javascript"></script>
     @yield('scripts')
   </body>
 </html>

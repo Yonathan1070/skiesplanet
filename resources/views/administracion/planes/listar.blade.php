@@ -7,6 +7,9 @@
     
 @endsection
 @section('contenido')
+    <input type="hidden" id="modalName" data-modal="accion-plan">
+    <input type="hidden" id="tableName" value="TBL_Tipo_Reserva">
+    @csrf
     <div class="content-header row">
         <div class="content-header-left col-md-4 col-12 mb-2"></div>
         <div class="content-header-right col-md-8 col-12"></div>
@@ -22,7 +25,7 @@
                             <ul class="list-inline mb-0">
                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                <li><a><i class="la la-plus"></i></a></li>
+                                <li><a href="{{route('crear_plan')}}" id="nuevo-registro"><i class="la la-plus"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -39,7 +42,7 @@
     </div>
 
     <div class="modal fade" id="accion-plan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body"></div>
             </div>

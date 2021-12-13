@@ -14,7 +14,7 @@ class CrearColumnaDescripcionTipoReserva extends Migration
     public function up()
     {
         Schema::table('TBL_Tipo_Reserva', function (Blueprint $table) {
-            $table->boolean('TTR_Descripcion_Tipo_Reserva')->after('TTR_Nombre_Tipo_Reserva');
+            $table->text('TTR_Descripcion_Tipo_Reserva')->after('TTR_Nombre_Tipo_Reserva');
         });
     }
 
