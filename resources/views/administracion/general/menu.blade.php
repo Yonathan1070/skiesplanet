@@ -12,19 +12,19 @@
     </div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="active">
+            {{--  <li class="active">
                 <a href="{{route('administracion')}}">
                     <i class="ft-home"></i>
                     <span class="menu-title" data-i18n="">{{Lang::get('messages.inicio')}}</span>
                 </a>
-            </li>
-            <li class=" nav-item">
+            </li>  --}}
+            <li class=" nav-item {{  request()->routeIs('titulares') ? 'active' : '' }} {{  request()->routeIs('administracion') ? 'active' : '' }}">
                 <a href="{{route('titulares')}}">
                     <i class="ft-credit-card"></i>
                     <span class="menu-title" data-i18n="">{{Lang::get('messages.titulares')}}</span>
                 </a>
             </li>
-            <li class=" nav-item">
+            <li class=" nav-item {{  request()->routeIs('planes') ? 'active' : '' }}">
                 <a href="{{route('planes')}}">
                     <i class="ft-layers"></i>
                     <span class="menu-title" data-i18n="">{{Lang::get('messages.planes')}}</span>

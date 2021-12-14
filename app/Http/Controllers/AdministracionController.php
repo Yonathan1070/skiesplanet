@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Traduccion;
 use App\Models\TipoReserva;
+use App\Models\Pago;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 
@@ -11,7 +12,15 @@ class AdministracionController extends Controller
 {
     public function index()
     {
-        return view('administracion.index');
+        // return view('administracion.index');
+
+        $titulares = Pago::where('TPG_Estado_Pago', 'Aprobada')
+            ->with('reserva')
+            ->with('reserva.titular')
+            ->with('reserva.tipo_reserva')
+            ->paginate(10);
+        
+        return view('administracion.titulares.listar', compact('titulares'));
     }
 
     public function traduccion(Request $request)

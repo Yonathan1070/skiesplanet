@@ -27,12 +27,20 @@
                 <ul class="nav navbar-nav float-right">
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:void(0);" data-toggle="dropdown">             <span class="avatar avatar-online"><img src="{{asset('assets/dashboard/theme-assets/images/portrait/small/avatar-s-19.png')}}" alt="avatar"><i></i></span></a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <div class="arrow_box_right"><a class="dropdown-item" href="javascript:void(0);"><span class="avatar avatar-online"><img src="{{asset('assets/dashboard/theme-assets/images/portrait/small/avatar-s-19.png')}}" alt="avatar"><span class="user-name text-bold-700 ml-1">John Doe</span></span></a>
-                                <div class="dropdown-divider"></div>
+                            <div class="arrow_box_right">
                                 <a class="dropdown-item" href="javascript:void(0);">
-                                    <i class="ft-user"></i> {{Lang::get('messages.editarPerfil')}}
+                                    <span class="avatar avatar-online">
+                                        <img src="{{asset('assets/dashboard/theme-assets/images/portrait/small/avatar-s-19.png')}}" alt="avatar">
+                                        <span class="user-name text-bold-700 ml-1">
+                                            {{$usuario->TUS_Nombre_Completo_Usuario}}
+                                        </span>
+                                    </span>
                                 </a>
                                 <div class="dropdown-divider"></div>
+                                {{--  <a class="dropdown-item" href="javascript:void(0);">
+                                    <i class="ft-user"></i> {{Lang::get('messages.editarPerfil')}}
+                                </a>
+                                <div class="dropdown-divider"></div>  --}}
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="ft-power"></i> {{Lang::get('messages.cerrarSesion')}}
                                 </a>
