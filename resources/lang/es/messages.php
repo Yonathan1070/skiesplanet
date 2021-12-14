@@ -197,4 +197,10 @@ return [
     'certificadoNoExiste' => 'El certificado no existe',
     'Next' => 'Siguiente',
     'Previous' => 'Anterior',
+
+    //login
+    'iniciarSesion' => 'Iniciar Sesión',
+    'correoElectronico' => 'Correo Electrónico',
+    'contrasena' => 'Contraseña',
+    'entrar' => 'Entrar',
 ];

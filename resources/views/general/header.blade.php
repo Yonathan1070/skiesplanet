@@ -28,7 +28,7 @@
 					@endif
 					<li>
 						<a class="nav-link dropdown-toggle request text-uppercase font-weight-bold text-white" href="{{route('login')}}" id="navbarDropdown" role="button">
-							Entrar
+							{{Lang::get('messages.entrar')}}
 						</a>
 					</li>
 				</ul>

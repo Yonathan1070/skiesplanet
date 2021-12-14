@@ -29,21 +29,21 @@
 			<div class="col-md-6 main_grid_contact bg-light">
 				<div class="form">
 					<h4 class="text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
-						Iniciar Sesión
+						{{Lang::get('messages.iniciarSesion')}}
 					</h4>
 					<form action="{{route('login')}}" method="post">
 						@csrf
 						<div class="form-group was-validated">
-							<label class="mb-2">Nombre de Usuario</label>
+							<label class="mb-2">{{Lang::get('messages.correoElectronico')}}</label>
 							<input class="form-control" type="email" id="TUS_Correo_Electronico_Usuario" name="TUS_Correo_Electronico_Usuario" required>
 						</div>
 						<div id="paises"></div>
 						<div class="form-group was-validated">
-							<label class="mb-2">Contraseña</label>
+							<label class="mb-2">{{Lang::get('messages.contrasena')}}</label>
 							<input class="form-control" type="password" id="password" name="password" required>
 						</div>
 						<div class="input-group1">
-							<input class="form-control" type="submit" value="Entrar">
+							<input class="form-control" type="submit" value="{{Lang::get('messages.entrar')}}">
 						</div>
 					</form>
 				</div>
