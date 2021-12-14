@@ -32,4 +32,12 @@ class Pago extends Model
 
         return $pago;
     }
+
+    public static function obtener($id = null){
+        if($id == null){
+            return Pago::all();
+        }else{
+            return Pago::find($id);
+        }
+    }
 }

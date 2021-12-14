@@ -4,7 +4,7 @@
             <h4 class="card-title">{{Lang::get('messages.cambiarTitular')}}</h4>
         </div>
         <div class="card-body">
-            <form class="form" action="{{route('cambiar_titular', ['id'=> $pago->id])}}" method="POST" id="form-general">
+            <form class="form" action="{{route('actualizar_titular', ['id'=> $pago->id])}}" method="POST" id="form-general">
                 @csrf @method('put')
                 @include('administracion.titulares.form')
                 <div class="form-actions center">

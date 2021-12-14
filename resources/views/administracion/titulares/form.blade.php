@@ -18,6 +18,7 @@
     </div>
     <div class="form-group">
         <h5 class="mt-2">{{Lang::get('messages.hora')}}</h5>
+        <input type="hidden" name="hora" id="hora" value="{{$hora}}">
         <?php $splitHora = explode('-', $hora); ?>
         <h5 class="mt-2">{{Carbon\Carbon::createFromFormat('H:i', $splitHora[0].':00')->format('g:i A').' - '.Carbon\Carbon::createFromFormat('H:i', $splitHora[1].':00')->format('g:i A')}}</h5>
     </div>

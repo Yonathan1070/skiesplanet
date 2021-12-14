@@ -93,4 +93,13 @@ class PlanesController extends Controller
     {
         return response()->json(['view'=>$vista, 'mensaje'=>$mensaje, 'titulo'=>$titulo, 'tipo'=>$tipo]);
     }
+
+    function page(Request $request)
+    {
+        if($request->ajax()){
+            $planes = TipoReserva::obtener();
+            
+            return view('administracion.planes.table-data', compact('planes'))->render();
+        }
+    }
 }

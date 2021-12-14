@@ -193,4 +193,8 @@ return [
     'titularNoExiste' => 'El titular no existe',
     'reservaNoExiste' => 'La reserva no existe',
     'cambiarTitular' => 'Cambiar Titular',
+    'titularCambiado' => 'Titular cambiado',
+    'certificadoNoExiste' => 'El certificado no existe',
+    'Next' => 'Siguiente',
+    'Previous' => 'Anterior',
 ];

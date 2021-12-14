@@ -39,3 +39,7 @@
         @endforeach
     </tbody>
 </table>
+<div id="paginador">
+    <a href="{{$planes->previousPageUrl()}}" class="btn btn-info btn-min-width mr-1 mb-1 {{($planes->previousPageUrl() == '') ? 'disabled' : ''}} paginate" data-url="{{route('page_planes')}}">{{Lang::get('messages.Previous')}}</a>
+    <a href="{{$planes->nextPageUrl()}}" class="btn btn-info btn-min-width mr-1 mb-1 {{($planes->nextPageUrl() == '') ? 'disabled' : ''}} paginate" data-url="{{route('page_planes')}}">{{Lang::get('messages.Next')}}</a>
+</div>

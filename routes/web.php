@@ -66,5 +66,6 @@ Route::group(['prefix' => '/administrador', 'middleware' => ['auth']], function 
         Route::get('/', [TitularesController::class, 'index'])->name('titulares');
         Route::get('page', [TitularesController::class, 'page'])->name('page_titulares');
         Route::put('/{id}/cambiar', [TitularesController::class, 'cambiar'])->name('cambiar_titular');
+        Route::put('/{id}', [TitularesController::class, 'actualizar'])->name('actualizar_titular');
     });
 });

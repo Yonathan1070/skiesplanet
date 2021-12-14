@@ -29,7 +29,7 @@
                     </div>
                     <div class="card-content collapse show">
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive" id="tabla-data">
                                 @include('administracion.titulares.table-data')
                             </div>
                         </div>

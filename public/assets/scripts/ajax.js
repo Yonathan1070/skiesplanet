@@ -178,55 +178,67 @@ $('#nuevo-registro').on('click', function(event){
 });
 
 //Traducir Registro
-$('#data-table').on('click', '.traducir-registro', function(event){
-    event.preventDefault();
-    $(".preloader").fadeIn();
-    var data = {};
-    var modalName = $('#modalName').data('modal');
-    data = {
-        _method: 'POST',
-        _token: $('input[name=_token]').val(),
-        id: $(this).data('id'),
-        tabla: $('#tableName').val()
-    };
-    
-    ajaxRequest($(this).attr('href'), data, 'traducir', modalName);
-});
+function traducirRegistro(){
+    $('#data-table').on('click', '.traducir-registro', function(event){
+        event.preventDefault();
+        $(".preloader").fadeIn();
+        var data = {};
+        var modalName = $('#modalName').data('modal');
+        data = {
+            _method: 'POST',
+            _token: $('input[name=_token]').val(),
+            id: $(this).data('id'),
+            tabla: $('#tableName').val()
+        };
+        
+        ajaxRequest($(this).attr('href'), data, 'traducir', modalName);
+    });
+}
+
+traducirRegistro();
 
 //Traducir Registro
-$('#data-table').on('click', '.editar-registro', function(event){
-    event.preventDefault();
-    $(".preloader").fadeIn();
-    var data = {};
-    var modalName = $('#modalName').data('modal');
-    if(modalName == 'accion-titular'){
-        data = {
-            _method: 'PUT',
-            _token: $('input[name=_token]').val(),
-            hora: $(this).data('hora')
-        };
-    }else{
-        data = {
-            _method: 'PUT',
-            _token: $('input[name=_token]').val()
-        };
-    }
-    
-    ajaxRequest($(this).attr('href'), data, 'editar', modalName);
-});
+function editarRegistro(){
+    $('#data-table').on('click', '.editar-registro', function(event){
+        event.preventDefault();
+        $(".preloader").fadeIn();
+        var data = {};
+        var modalName = $('#modalName').data('modal');
+        if(modalName == 'accion-titular'){
+            data = {
+                _method: 'PUT',
+                _token: $('input[name=_token]').val(),
+                hora: $(this).data('hora')
+            };
+        }else{
+            data = {
+                _method: 'PUT',
+                _token: $('input[name=_token]').val()
+            };
+        }
+        
+        ajaxRequest($(this).attr('href'), data, 'editar', modalName);
+    });
+}
 
-$('#data-table').on('submit', '.eliminar-registro', function(event){
-    event.preventDefault();
-    const form = $(this);
-    swalWarning(
-        form,
-        document.getElementById('SwalTitleWarning').value,
-        document.getElementById('SwalDescWarning').value,
-        document.getElementById('SwalTypeWarning').value,
-        document.getElementById('SwalAcceptWarning').value,
-        document.getElementById('SwalCancelWarning').value
-    );
-});
+editarRegistro();
+
+function submitDelete(){
+    $('#data-table').on('submit', '.eliminar-registro', function(event){
+        event.preventDefault();
+        const form = $(this);
+        swalWarning(
+            form,
+            document.getElementById('SwalTitleWarning').value,
+            document.getElementById('SwalDescWarning').value,
+            document.getElementById('SwalTypeWarning').value,
+            document.getElementById('SwalAcceptWarning').value,
+            document.getElementById('SwalCancelWarning').value
+        );
+    });
+}
+
+submitDelete();
 
 function swalWarning(form, title, text, type, confirm, cancel){
     swal({   
@@ -245,22 +257,56 @@ function swalWarning(form, title, text, type, confirm, cancel){
     });
 }
 
-$('#'+$('#modalName').data('modal')).on('submit', '#form-general', function(event){
-    event.preventDefault();
-    $(".preloader").fadeIn();
-    const form = $(this);
-    var modalName = $('#modalName').data('modal');
+function submitForm(){
+    $('#'+$('#modalName').data('modal')).on('submit', '#form-general', function(event){
+        event.preventDefault();
+        $(".preloader").fadeIn();
+        const form = $(this);
+        var modalName = $('#modalName').data('modal');
 
-    ajaxRequest(form.attr('action'), form.serialize(), 'guardar', modalName);
-});
+        ajaxRequest(form.attr('action'), form.serialize(), 'guardar', modalName);
+    });
+}
+
+submitForm();
 
 function tablaData(respuesta, modal){
-    //$('#paginador').remove();
     if(modal == 'traduccion'){
         $('#'+modal+' .modal-body').html(respuesta);
     }else{
-        $('#data-table').html(respuesta);
+        $('#paginador').remove();
+        $('#tabla-data').html(respuesta);
+        traducirRegistro();
+        editarRegistro();
+        submitDelete();
         $('#'+modal).modal('hide');
     }
-    //inicializarPaginador();
+    inicializarPaginador();
+}
+
+function inicializarPaginador(){
+    $('.paginate').on('click', function(event){
+        event.preventDefault(); 
+        $(".preloader").fadeIn();
+        var page = $(this).attr('href').split('page=')[1];
+        var url = $(this).attr('data-url');
+        pagination(page, url);
+    });
+}
+
+inicializarPaginador();
+
+function pagination(page, url){
+    $.ajax({
+        url:url+"?page="+page,
+        success:function(data){
+            $('#paginador').remove();
+            $('#tabla-data').html(data);
+            traducirRegistro();
+            editarRegistro();
+            submitDelete();
+            inicializarPaginador();
+            $(".preloader").fadeOut();
+        }
+    });
 }
