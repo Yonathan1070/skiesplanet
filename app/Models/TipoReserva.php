@@ -27,4 +27,9 @@ class TipoReserva extends Model
             return TipoReserva::find($id);
         }
     }
+
+    public static function obtenerPorNombre($nombre)
+    {
+        return TipoReserva::where('TTR_Nombre_Tipo_Reserva', $nombre)->first();
+    }
 }

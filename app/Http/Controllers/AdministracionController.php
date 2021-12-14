@@ -85,7 +85,7 @@ class AdministracionController extends Controller
                     ->where('TTD_Id_Traduccion', $id)
                     ->get();
 
-                return $this->vista(Lang::get('messages.TraduccionCreada'), Lang::get('messages.TaxMendez'), Lang::get('messages.NotificationTypeSuccess'), view('administracion.planes.traducciones')->with('nombre', $nombre)->with('id', $id)->with('traducciones', $traducciones)->render());
+                return $this->vista(Lang::get('messages.TraduccionCreada'), Lang::get('messages.appName'), Lang::get('messages.NotificationTypeSuccess'), view('administracion.planes.traducciones')->with('nombre', $nombre)->with('id', $id)->with('traducciones', $traducciones)->render());
             }
         }else{
             abort(404);

@@ -2,10 +2,10 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Nombre</th>
-            <th>Plan</th>
-            <th>Fecha</th>
-            <th>Horas</th>
+            <th>{{Lang::get('messages.nombreTitular')}}</th>
+            <th>{{Lang::get('messages.plan')}}</th>
+            <th>{{Lang::get('messages.fecha')}}</th>
+            <th>{{Lang::get('messages.horas')}}</th>
         </tr>
     </thead>
     <tbody>

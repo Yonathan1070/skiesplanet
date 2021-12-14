@@ -147,4 +147,47 @@ return [
     'banco' => 'Bank',
     'recibo' => 'Receipt',
     'regresarInicio' => 'Back to Skies Planet',
+
+    //Administracion
+    //General
+    'editarPerfil' => 'Edit Profile',
+    'cerrarSesion' => 'Log out',
+    //Menu
+    'titulares' => 'Certificates',
+    'planes' => 'Plans',
+
+    //Planes
+    'listadoPlanes' => 'List of plans',
+    'plan' => 'Plan',
+    'descripcion' => 'Description',
+    'valor' => 'Value',
+    'traduccion' => 'Translation',
+    //Agregar plan
+    'agregarPlan' => 'Add plan',
+    'planCreado' => 'Plan created',
+    //Editar Plan
+    'editarPlan' => 'Edit plan',
+    'planNoExiste' => 'Plan does not exist',
+    'planExiste' => 'Plan already exists',
+    'planEditado' => 'Plan edited',
+    'cerrar' => 'Close',
+    'guardar' => 'Save',
+    //Eliminar plan
+    'SwalTitleWarning' => 'Do you want to delete this record?',
+    'SwalDescWarning' => 'Confirm action!',
+    'SwalTypeWarning' => 'warning',
+    'Accept' => 'Accept',
+    'Cancel' => 'Cancel',
+    'planEliminado' => 'Plan deleted',
+    //Traducir plan
+    'traducirPlan' => 'Translate plan',
+    'idioma' => 'Language',
+    'campo' => 'Field',
+    'TTR_Nombre_Tipo_Reserva' => 'Name',
+    'TTR_Descripcion_Tipo_Reserva' => 'Description',
+    'noHayRegistros' => 'There are no records',
+
+    //Titulares
+    'listadoTitulares' => 'List of certificates',
+    'horas' => 'Hours',
 ];

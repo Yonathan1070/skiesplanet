@@ -4,7 +4,7 @@
             <li class="nav-item mr-auto">
                 <a class="navbar-brand" href="{{route('administracion')}}">
                     <img class="brand-logo" alt="Chameleon admin logo" src="{{asset('assets/dashboard/theme-assets/images/logo/favicon.png')}}"/>
-                    <h3 class="brand-text">SKIES PLANET</h3>
+                    <h3 class="brand-text">{{Lang::get('messages.appName')}}</h3>
                 </a>
             </li>
             <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
@@ -15,19 +15,19 @@
             <li class="active">
                 <a href="{{route('administracion')}}">
                     <i class="ft-home"></i>
-                    <span class="menu-title" data-i18n="">Inicio</span>
+                    <span class="menu-title" data-i18n="">{{Lang::get('messages.inicio')}}</span>
                 </a>
             </li>
             <li class=" nav-item">
                 <a href="{{route('titulares')}}">
                     <i class="ft-credit-card"></i>
-                    <span class="menu-title" data-i18n="">Titulares</span>
+                    <span class="menu-title" data-i18n="">{{Lang::get('messages.titulares')}}</span>
                 </a>
             </li>
             <li class=" nav-item">
                 <a href="{{route('planes')}}">
                     <i class="ft-layers"></i>
-                    <span class="menu-title" data-i18n="">Planes</span>
+                    <span class="menu-title" data-i18n="">{{Lang::get('messages.planes')}}</span>
                 </a>
             </li>
         </ul>

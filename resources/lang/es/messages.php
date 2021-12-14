@@ -147,4 +147,44 @@ return [
     'banco' => 'Banco',
     'recibo' => 'Recibo',
     'regresarInicio' => 'Regresar a skies planet',
+
+    //Administración
+    //General
+    'editarPerfil' => 'Editar Perfil',
+    'cerrarSesion' => 'Cerrar Sesión',
+    //Menu
+    'titulares' => 'Titulares',
+    'planes' => 'Planes',
+
+    //Planes
+    'listadoPlanes' => 'Listado de Planes',
+    'plan' => 'Plan',
+    'descripcion' => 'Descripción',
+    'valor' => 'Valor',
+    'traduccion' => 'Traducción',
+    //Agregar Plan
+    'agregarPlan' => 'Agregar Plan',
+    'planCreado' => 'Plan creado',
+    //Editar Plan
+    'editarPlan' => 'Editar Plan',
+    'planNoExiste' => 'El plan no existe',
+    'planExiste' => 'El plan ya existe',
+    'planEditado' => 'Plan editado',
+    //Eliminar Plan
+    'SwalTitleWarning' => '¿Desea eliminar este registro?',
+    'SwalDescWarning' => 'Confirmar acción!',
+    'SwalTypeWarning' => 'warning',
+    'Accept' => 'Aceptar',
+    'Cancel' => 'Cancelar',
+    'cerrar' => 'Cerrar',
+    'guardar' => 'Guardar',
+    'planEliminado' => 'Plan eliminado',
+    //Traducir plan
+    'traducirPlan' => 'Traducir Plan ',
+    'idioma' => 'Idioma',
+    'campo' => 'Campo',
+    'TTR_Nombre_Tipo_Reserva' => 'Nombre',
+    'TTR_Descripcion_Tipo_Reserva' => 'Descripción',
+    'noHayRegistros' => 'No hay registros',
+    'horas' => 'Horas',
 ];

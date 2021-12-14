@@ -47,32 +47,32 @@ function ajaxRequest(url, data, action, modal, form){
                     $('#'+modal).modal('show');
                 }else{
                     $(".preloader").fadeOut();
-                    //taxmendez.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
+                    skiesplanet.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
                 }
             }else if(action == 'guardar'){
                 if(respuesta.tipo == 'success'){
                     tablaData(respuesta.view, modal);
                 }
                 $(".preloader").fadeOut();
-                //taxmendez.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
+                skiesplanet.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
             }else if(action == 'actualizar'){
                 if(respuesta.tipo == 'success'){
                     tablaData(respuesta.view, modal);
                 }
                 $(".preloader").fadeOut();
-                //taxmendez.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
+                skiesplanet.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
             }else if(action == 'eliminar'){
                 if(respuesta.tipo == 'success'){
                     var row = document.getElementById('row'+respuesta.row);
                     row.parentNode.removeChild(row);
                 }
                 $(".preloader").fadeOut();
-                //taxmendez.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
+                skiesplanet.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
             }else if(action == 'traducir'){
                 $('#'+modal+' .modal-body').html(respuesta);
                 $('#'+modal).modal('show');
                 $(".preloader").fadeOut();
-                //taxmendez.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
+                skiesplanet.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown, error){
@@ -193,6 +193,50 @@ $('#data-table').on('click', '.traducir-registro', function(event){
     ajaxRequest($(this).attr('href'), data, 'traducir', modalName);
 });
 
+//Traducir Registro
+$('#data-table').on('click', '.editar-registro', function(event){
+    event.preventDefault();
+    $(".preloader").fadeIn();
+    var data = {};
+    var modalName = $('#modalName').data('modal');
+    data = {
+        _method: 'PUT',
+        _token: $('input[name=_token]').val()
+    };
+    
+    ajaxRequest($(this).attr('href'), data, 'editar', modalName);
+});
+
+$('#data-table').on('submit', '.eliminar-registro', function(event){
+    event.preventDefault();
+    const form = $(this);
+    swalWarning(
+        form,
+        document.getElementById('SwalTitleWarning').value,
+        document.getElementById('SwalDescWarning').value,
+        document.getElementById('SwalTypeWarning').value,
+        document.getElementById('SwalAcceptWarning').value,
+        document.getElementById('SwalCancelWarning').value
+    );
+});
+
+function swalWarning(form, title, text, type, confirm, cancel){
+    swal({   
+        title: title,   
+        text: text,   
+        type: type,   
+        showCancelButton: true,   
+        confirmButtonColor: "#DD6B55",   
+        confirmButtonText: confirm,
+        cancelButtonText: cancel
+    }).then(function(result){
+        if(result.value){
+            $(".preloader").fadeIn();
+            ajaxRequest(form.attr('action'), form.serialize(), 'eliminar', null, form);
+        }
+    });
+}
+
 $('#'+$('#modalName').data('modal')).on('submit', '#form-general', function(event){
     event.preventDefault();
     $(".preloader").fadeIn();
@@ -204,7 +248,11 @@ $('#'+$('#modalName').data('modal')).on('submit', '#form-general', function(even
 
 function tablaData(respuesta, modal){
     //$('#paginador').remove();
-    $('#'+modal+' .modal-body').html(respuesta);
+    if(modal == 'traduccion'){
+        $('#'+modal+' .modal-body').html(respuesta);
+    }else{
+        $('#data-table').html(respuesta);
+        $('#'+modal).modal('hide');
+    }
     //inicializarPaginador();
-    //$('#'+modal).modal('hide');
 }

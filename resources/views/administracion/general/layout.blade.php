@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/dashboard/theme-assets/css/core/colors/palette-gradient.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/dashboard/theme-assets/css/pages/dashboard-ecommerce.css')}}">
     <!-- END Page Level CSS-->
+    <!-- toast CSS -->
+    <link href="{{asset('assets/dashboard/theme-assets/plugins/toast-master/css/jquery.toast.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/dashboard/theme-assets/plugins/sweetalert/sweetalert.css')}}" rel="stylesheet">
     <!-- BEGIN Custom CSS-->
     <!-- END Custom CSS-->
 
@@ -34,6 +37,11 @@
 
     @include('administracion.general.menu')
     
+    <input type="hidden" id="SwalTitleWarning" value="{{Lang::get('messages.SwalTitleWarning')}}">
+    <input type="hidden" id="SwalDescWarning" value="{{Lang::get('messages.SwalDescWarning')}}">
+    <input type="hidden" id="SwalTypeWarning" value="{{Lang::get('messages.SwalTypeWarning')}}">
+    <input type="hidden" id="SwalAcceptWarning" value="{{Lang::get('messages.Accept')}}">
+    <input type="hidden" id="SwalCancelWarning" value="{{Lang::get('messages.Cancel')}}">
     <div class="app-content content">
       <div class="content-wrapper">
         @yield('contenido')
@@ -55,7 +63,11 @@
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="{{asset('assets/dashboard/theme-assets/js/scripts/pages/dashboard-lite.js')}}" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    <script src="{{asset('assets/scripts/funciones.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/scripts/ajax.js')}}" type="text/javascript"></script>
+
+    <script src="{{asset('assets/dashboard/theme-assets/plugins/toast-master/js/jquery.toast.js')}}"></script>
+    <script src="{{asset('assets/dashboard/theme-assets/plugins/sweetalert/sweetalert.min.js')}}"></script>
     @yield('scripts')
   </body>
 </html>
