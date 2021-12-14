@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" id="data-table">
     <thead>
         <tr>
             <th>#</th>
@@ -20,7 +20,7 @@
                     @foreach ($horas as $hora)
                         @if ($hora != '')
                             <?php $splitHora = explode('-', $hora); ?>
-                            <a href="#" class="editar-registro" data-info="{{'id='.$titular->id.'-hora='.$hora}}">
+                            <a href="{{route('cambiar_titular', ['id'=>$titular->id])}}" class="editar-registro" data-hora="{{$hora}}">
                                 {{Carbon\Carbon::createFromFormat('H:i', $splitHora[0].':00')->format('g:i A').' - '.Carbon\Carbon::createFromFormat('H:i', $splitHora[1].':00')->format('g:i A')}}<br>
                             </a>
                         @endif

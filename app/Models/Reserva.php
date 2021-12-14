@@ -59,4 +59,12 @@ class Reserva extends Model
 
         return $reserva->orderBy('created_at', 'desc')->first();
     }
+
+    public static function obtener($id = null){
+        if($id){
+            return Reserva::find($id);
+        }else{
+            return Reserva::all();
+        }
+    }
 }

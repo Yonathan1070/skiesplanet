@@ -24,7 +24,6 @@
                             <ul class="list-inline mb-0">
                                 <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                                 <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                                <li><a><i class="la la-plus"></i></a></li>
                             </ul>
                         </div>
                     </div>

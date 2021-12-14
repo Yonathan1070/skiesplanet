@@ -186,5 +186,11 @@ return [
     'TTR_Nombre_Tipo_Reserva' => 'Nombre',
     'TTR_Descripcion_Tipo_Reserva' => 'Descripción',
     'noHayRegistros' => 'No hay registros',
+
+    //Titulares
+    'listadoTitulares' => 'Listado de Titulares',
     'horas' => 'Horas',
+    'titularNoExiste' => 'El titular no existe',
+    'reservaNoExiste' => 'La reserva no existe',
+    'cambiarTitular' => 'Cambiar Titular',
 ];

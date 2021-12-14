@@ -190,4 +190,7 @@ return [
     //Titulares
     'listadoTitulares' => 'List of certificates',
     'horas' => 'Hours',
+    'titularNoExiste' => 'Certificate does not exist',
+    'reservaNoExiste' => 'Reservation does not exist',
+    'cambiarTitular' => 'Change certificate',
 ];

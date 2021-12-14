@@ -199,10 +199,18 @@ $('#data-table').on('click', '.editar-registro', function(event){
     $(".preloader").fadeIn();
     var data = {};
     var modalName = $('#modalName').data('modal');
-    data = {
-        _method: 'PUT',
-        _token: $('input[name=_token]').val()
-    };
+    if(modalName == 'accion-titular'){
+        data = {
+            _method: 'PUT',
+            _token: $('input[name=_token]').val(),
+            hora: $(this).data('hora')
+        };
+    }else{
+        data = {
+            _method: 'PUT',
+            _token: $('input[name=_token]').val()
+        };
+    }
     
     ajaxRequest($(this).attr('href'), data, 'editar', modalName);
 });
