@@ -656,7 +656,7 @@ class IndexController extends Controller
                                 $x_extra3,
                                 $x_amount,
                                 Lang::get('messages.confirmacionTitulo').'<br/>'.Lang::get('messages.appName'),
-                                Laang::get('messages.pendienteSubtitulo').$pago->id.Lang::get('messages.pendienteSubtitulo2'),
+                                Lang::get('messages.pendienteSubtitulo').$pago->id.Lang::get('messages.pendienteSubtitulo2'),
                                 Lang::get('messages.confirmacionDescripcion'),
                                 Lang::get('messages.transaccionPendiente')
                             );
