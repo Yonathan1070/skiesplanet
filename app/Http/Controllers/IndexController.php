@@ -102,8 +102,6 @@ class IndexController extends Controller
     {
         $tipoReserva = TipoReserva::obtener($request->tipoId);
         $fecha = $request->fecha;
-        $pais = null;
-        $ciudad = null;
 
         $horas0_12_old = [['0-1', '0'],['1-2', '0'],['2-3', '0'],['3-4', '0'],['4-5', '0'],['5-6', '0'],['6-7', '0'],['7-8', '0'],['8-9', '0'],['9-10', '0'],['10-11', '0'],['11-12', '0']];
         $horas12_24_old = [['12-13', '0'],['13-14', '0'],['14-15', '0'],['15-16', '0'],['16-17', '0'],['17-18', '0'],['18-19', '0'],['19-20', '0'],['20-21', '0'],['21-22', '0'],['22-23', '0'],['23-24', '0']];
@@ -111,13 +109,31 @@ class IndexController extends Controller
         $horas12_24 = [];
         $cantidadOcupadas = 0;
 
+        $pais = null; $ciudad = null;
+        if($tipoReserva && $tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $request->has('paisId') && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $request->has('ciudadId')){
+            $pais = Pais::obtener($request->paisId);
+            $ciudad = Ciudad::obtener($request->ciudadId);
+        }
+        if($tipoReserva && $tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $request->has('paisId') && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 0){
+            $pais = Pais::obtener($request->paisId);
+        }
+
         //Verificar disponibilidad de horas
         $disponibilidad = Reserva::from('TBL_Reserva as r')
             ->join('TBL_Pago as p', 'r.id', 'p.TPG_Reserva_Id')
             ->where('p.TPG_Estado_Pago', 'Aprobada')
             ->where('r.TRE_Fecha_Reserva', Carbon::createFromFormat('Y-m-d', $fecha)->format('m-d'))
-            ->where('r.TRE_Tipo_Reserva_Id', $tipoReserva->id)
-            ->select('r.TRE_Hora_Reserva')
+            ->where('r.TRE_Tipo_Reserva_Id', $tipoReserva->id);
+
+        if($pais != null){
+            $disponibilidad = $disponibilidad->where('r.TRE_Pais_Id', $pais->id);
+        }
+
+        if($ciudad != null){
+            $disponibilidad = $disponibilidad->where('r.TRE_Ciudad_Id', $ciudad->id);
+        }
+
+        $disponibilidad = $disponibilidad->select('r.TRE_Hora_Reserva')
             ->get();
 
         foreach ($horas0_12_old as $hora) {
@@ -150,8 +166,17 @@ class IndexController extends Controller
             ->join('TBL_Pago as p', 'r.id', 'p.TPG_Reserva_Id')
             ->where('p.TPG_Estado_Pago', 'Pendiente')
             ->where('r.TRE_Fecha_Reserva', Carbon::createFromFormat('Y-m-d', $fecha)->format('m-d'))
-            ->where('r.TRE_Tipo_Reserva_Id', $tipoReserva->id)
-            ->select('r.TRE_Hora_Reserva')
+            ->where('r.TRE_Tipo_Reserva_Id', $tipoReserva->id);
+
+        if($pais != null){
+            $disponibilidad = $disponibilidad->where('r.TRE_Pais_Id', $pais->id);
+        }
+
+        if($ciudad != null){
+            $disponibilidad = $disponibilidad->where('r.TRE_Ciudad_Id', $ciudad->id);
+        }
+
+        $disponibilidad = $disponibilidad->select('r.TRE_Hora_Reserva')
             ->get();
 
         foreach ($horas0_12_old as $hora) {
@@ -223,6 +248,8 @@ class IndexController extends Controller
      */
     public function actualizarHoras(Request $request)
     {
+        $tipoReserva = TipoReserva::obtener($request->tipoReserva);
+
         $horas0_12_old = [['0-1', '0'],['1-2', '0'],['2-3', '0'],['3-4', '0'],['4-5', '0'],['5-6', '0'],['6-7', '0'],['7-8', '0'],['8-9', '0'],['9-10', '0'],['10-11', '0'],['11-12', '0']];
         $horas12_24_old = [['12-13', '0'],['13-14', '0'],['14-15', '0'],['15-16', '0'],['16-17', '0'],['17-18', '0'],['18-19', '0'],['19-20', '0'],['20-21', '0'],['21-22', '0'],['22-23', '0'],['23-24', '0']];
         $horas0_12 = [];
@@ -230,14 +257,32 @@ class IndexController extends Controller
         $horas0_12_new = [];
         $horas12_24_new = [];
 
+        $pais = null; $ciudad = null;
+        if($tipoReserva && $tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $request->has('paisId') && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 1 && $request->has('ciudadId')){
+            $pais = Pais::obtener($request->paisId);
+            $ciudad = Ciudad::obtener($request->ciudadId);
+        }
+        if($tipoReserva && $tipoReserva->TTR_Select_Pais_Tipo_Reserva == 1 && $request->has('paisId') && $tipoReserva->TTR_Select_Ciudad_Tipo_Reserva == 0){
+            $pais = Pais::obtener($request->paisId);
+        }
+        
         //Verificar disponibilidad de horas
         $fecha = $request['fecha'];
         $disponibilidad = Reserva::from('TBL_Reserva as r')
             ->join('TBL_Pago as p', 'r.id', 'p.TPG_Reserva_Id')
             ->where('p.TPG_Estado_Pago', 'Aprobada')
             ->where('r.TRE_Fecha_Reserva', $fecha)
-            ->where('r.TRE_Tipo_Reserva_Id', $request['tipoReserva'])
-            ->select('r.TRE_Hora_Reserva')
+            ->where('r.TRE_Tipo_Reserva_Id', $tipoReserva->id);
+
+        if($pais != null){
+            $disponibilidad = $disponibilidad->where('r.TRE_Pais_Id', $pais->id);
+        }
+
+        if($ciudad != null){
+            $disponibilidad = $disponibilidad->where('r.TRE_Ciudad_Id', $ciudad->id);
+        }
+
+        $disponibilidad = $disponibilidad->select('r.TRE_Hora_Reserva')
             ->get();
 
         foreach ($horas0_12_old as $hora) {
@@ -268,8 +313,17 @@ class IndexController extends Controller
             ->join('TBL_Pago as p', 'r.id', 'p.TPG_Reserva_Id')
             ->where('p.TPG_Estado_Pago', 'Pendiente')
             ->where('r.TRE_Fecha_Reserva', $fecha)
-            ->where('r.TRE_Tipo_Reserva_Id', $request['tipoReserva'])
-            ->select('r.TRE_Hora_Reserva')
+            ->where('r.TRE_Tipo_Reserva_Id', $tipoReserva->id);
+
+        if($pais != null){
+            $disponibilidad = $disponibilidad->where('r.TRE_Pais_Id', $pais->id);
+        }
+
+        if($ciudad != null){
+            $disponibilidad = $disponibilidad->where('r.TRE_Ciudad_Id', $ciudad->id);
+        }
+
+        $disponibilidad = $disponibilidad->select('r.TRE_Hora_Reserva')
             ->get();
 
         foreach ($horas0_12_old as $hora) {
@@ -589,7 +643,7 @@ class IndexController extends Controller
                                 $x_extra2,
                                 $x_extra3,
                                 $x_amount,
-                                Lang::get('messages.rechazadoTitulo').'<br/>'.Lang::get('messages.appName'),
+                                Lang::get('messages.rechazadoTitulo'),
                                 Lang::get('messages.rechazadoSubtitulo').$pago->id,
                                 Lang::get('messages.confirmacionDescripcion'),
                                 Lang::get('messages.transaccionRechazada'),
@@ -655,7 +709,7 @@ class IndexController extends Controller
                                 $x_extra2,
                                 $x_extra3,
                                 $x_amount,
-                                Lang::get('messages.confirmacionTitulo').'<br/>'.Lang::get('messages.appName'),
+                                Lang::get('messages.confirmacionTitulo'),
                                 Lang::get('messages.pendienteSubtitulo').$pago->id.Lang::get('messages.pendienteSubtitulo2'),
                                 Lang::get('messages.confirmacionDescripcion'),
                                 Lang::get('messages.transaccionPendiente')

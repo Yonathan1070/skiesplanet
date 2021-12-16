@@ -130,36 +130,6 @@
 					}
 				}
 			});
-
-			$('#tipoId').on('change', function() {
-				var selectPais = $( "#tipoId option:selected" ).data( "selectpais" );
-				var selectCiudad = $( "#tipoId option:selected" ).data( "selectciudad" );
-
-				var data = {};
-				data = {
-					_token: $('input[name=_token]').val(),
-					tipoReserva: $( "#tipoId option:selected" ).val()
-				};
-				ajaxRequest($( "#tipoId option:selected" ).data('url'), data, 'tipoReserva', 'paises');
-			});
-
-			$( "#fecha" ).blur(function() {
-				var dtToday = new Date();
-        
-				var month = dtToday.getMonth() + 1;
-				var day = dtToday.getDate();
-				var year = dtToday.getFullYear();
-			
-				if(month < 10)
-					month = '0' + month.toString();
-				if(day < 10)
-					day = '0' + day.toString();
-			
-				/*var minDate = year + '-' + month + '-' + day;
-				if(Date.parse(minDate) > Date.parse(this.value)) {
-					document.getElementById('fecha').value = minDate;
-				}*/
-			});
 		});
 	</script>
 	<link rel="stylesheet" href="{{asset('assets/css/owl.theme.css')}}" type="text/css" media="all">
@@ -209,26 +179,6 @@
 	<!-- Necessary-JavaScript-File-For-Bootstrap -->
 
 	<!-- //Js files -->
-
-    <script>
-        $(function(){
-            var dtToday = new Date();
-        
-            var month = dtToday.getMonth() + 1;
-            var day = dtToday.getDate();
-            var year = dtToday.getFullYear();
-        
-            if(month < 10)
-                month = '0' + month.toString();
-            if(day < 10)
-                day = '0' + day.toString();
-        
-            var minDate = year + "-01-01";
-			var maxDate = year + "-12-31";
-            $('#fecha').attr('min', minDate);
-			$('#fecha').attr('max', maxDate);
-        });
-    </script>
 
     @yield('scripts')
 </body>

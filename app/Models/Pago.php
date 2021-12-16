@@ -14,6 +14,8 @@ class Pago extends Model
     protected $fillable = [
         'TPG_Reserva_Id',
         'TPG_Total_Pago',
+        'TPG_Cupon_Descuento_Pago',
+        'TPG_Total_Descuento_Pago',
         'TPG_Fecha_Pago',
         'TPG_Estado_Pago',
         'TPG_Idioma_Pago',

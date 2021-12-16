@@ -31,6 +31,7 @@
 					<h4 class="text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
 						{{Lang::get('messages.iniciarSesion')}}
 					</h4>
+					@include('general.form-error')
 					<form action="{{route('login')}}" method="post">
 						@csrf
 						<div class="form-group was-validated">

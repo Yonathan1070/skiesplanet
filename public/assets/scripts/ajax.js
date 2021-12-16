@@ -14,6 +14,7 @@ function ajaxRequest(url, data, action, modal, form){
             }else if (action == 'paises'){
                 if(respuesta.tipo != 'error'){
                     $('#'+modal).html(respuesta);
+                    ciudades();
                 }else{
                     alert("Error");
                 }
@@ -44,6 +45,11 @@ function ajaxRequest(url, data, action, modal, form){
             }else if(action == 'crear' || action == 'editar'){
                 if(respuesta.tipo != 'error'){
                     $('#'+modal+' .modal-body').html(respuesta);
+                    if(modal="accion-titular"){
+                        tipoReservaChange();
+                        fechaReserva();
+                        validarReserva();
+                    }
                     $('#'+modal).modal('show');
                 }else{
                     $(".preloader").fadeOut();
@@ -73,6 +79,14 @@ function ajaxRequest(url, data, action, modal, form){
                 $('#'+modal).modal('show');
                 $(".preloader").fadeOut();
                 skiesplanet.notificaciones(respuesta.mensaje, respuesta.titulo, respuesta.tipo, 5000);
+            }else if(action == 'horasDisponibles'){
+                console.log("Tipo: "+respuesta.tipo);
+                if(respuesta.tipo != 'error'){
+                    $('#'+modal).html(respuesta);
+                    horasChange();
+                }else{
+                    $("#siguienteReserva").show();
+                }
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown, error){
@@ -98,6 +112,12 @@ function ajaxRequest(url, data, action, modal, form){
 
 function paises(){
     $('#paisId').on('change', function() {
+        $('#ciudad').hide();
+        $('#horas').hide();
+        $('#formTitular').hide();
+        $('#siguienteReserva').show();
+        $('#guardarTitular').attr('disabled', true);
+
         var data = {};
         data = {
             _token: $('input[name=_token]').val(),
@@ -106,6 +126,17 @@ function paises(){
         ajaxRequest($( "#paisId option:selected" ).data('url'), data, 'paises', 'ciudades');
     });
 }
+
+function ciudades(){
+    $('#ciudadId').on('change', function() {
+        $('#horas').hide();
+        $('#formTitular').hide();
+        $('#siguienteReserva').show();
+        $('#guardarTitular').attr('disabled', true);
+    });
+}
+
+ciudades();
 
 function hora_0_12(){
     $('#hora-0-12').on('click', '.hora', function(event){
@@ -121,6 +152,8 @@ function hora_0_12(){
         data = {
             _token: $('input[name=_token]').val(),
             tipoReserva: $('#tipo-reserva').val(),
+            paisId: $('#paisId').val(),
+            ciudadId: $('#ciudadId').val(),
             fecha: $('#fecha').val(),
             hora: $(this).data('hora'),
             horas_array: $('#horas-array').val(),
@@ -146,6 +179,8 @@ function hora_12_24(){
         data = {
             _token: $('input[name=_token]').val(),
             tipoReserva: $('#tipo-reserva').val(),
+            paisId: $('#paisId').val(),
+            ciudadId: $('#ciudadId').val(),
             fecha: $('#fecha').val(),
             hora: $(this).data('hora'),
             horas_array: $('#horas-array').val(),
@@ -260,6 +295,24 @@ function swalWarning(form, title, text, type, confirm, cancel){
 function submitForm(){
     $('#'+$('#modalName').data('modal')).on('submit', '#form-general', function(event){
         event.preventDefault();
+        if($('#modalName').data('modal') == 'accion-titular'){
+            var nombre = $('#nombreTitular');
+            if(nombre != undefined && nombre.val() == ''){
+                nombre.addClass('is-invalid');
+                nombre.focus();
+                return false;
+            }else{
+                nombre.removeClass('is-invalid');
+            }
+            var correo = $('#correoTitular');
+            if(correo != undefined && correo.val() == ''){
+                correo.addClass('is-invalid');
+                correo.focus();
+                return false;
+            }else{
+                correo.removeClass('is-invalid');
+            }
+        }
         $(".preloader").fadeIn();
         const form = $(this);
         var modalName = $('#modalName').data('modal');
@@ -307,6 +360,126 @@ function pagination(page, url){
             submitDelete();
             inicializarPaginador();
             $(".preloader").fadeOut();
+        }
+    });
+}
+
+function tipoReservaChange(){
+    $('#tipoId').on('change', function() {
+        $('#pais').hide();
+        $('#ciudad').hide();
+        $('#horas').hide();
+        $('#formTitular').hide();
+        $('#siguienteReserva').show();
+        $('#guardarTitular').attr('disabled', true);
+        
+        var data = {};
+        data = {
+            _token: $('input[name=_token]').val(),
+            tipoReserva: $( "#tipoId option:selected" ).val()
+        };
+        ajaxRequest($( "#tipoId option:selected" ).data('url'), data, 'tipoReserva', 'paises');
+    });
+}
+
+tipoReservaChange();
+
+function fechaReserva(){
+    $(function(){
+        var dtToday = new Date();
+    
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+    
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+    
+        var minDate = year + "-01-01";
+        var maxDate = year + "-12-31";
+        $('#fecha').attr('min', minDate);
+        $('#fecha').attr('max', maxDate);
+    });
+
+    $( "#fecha" ).blur(function() {
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+    
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+    
+        /*var minDate = year + '-' + month + '-' + day;
+        if(Date.parse(minDate) > Date.parse(this.value)) {
+            document.getElementById('fecha').value = minDate;
+        }*/
+    });
+}
+
+fechaReserva();
+
+function validarReserva(){
+    $('#siguienteReserva').on('click', function(event){
+        event.preventDefault();
+        var tipoReserva = $('#tipoId');
+        var pais = $('#paisId');
+        var ciudad = $('#ciudadId');
+        var fecha = $('#fecha');
+        if(tipoReserva.val() == ''){
+            tipoReserva.addClass('is-invalid');
+            tipoReserva.focus();
+        }else{
+            tipoReserva.removeClass('is-invalid');
+        }
+        if(tipoReserva.val() != '' && pais.val() == ''){
+            pais.addClass('is-invalid');
+            pais.focus();
+        }else{
+            pais.removeClass('is-invalid');
+        }
+        if(pais.val() != '' && ciudad.val() == ''){
+            ciudad.addClass('is-invalid');
+            ciudad.focus();
+        }else{
+            ciudad.removeClass('is-invalid');
+        }
+        if(fecha.val() == ''){
+            fecha.addClass('is-invalid');
+            fecha.focus();
+        }else{
+            fecha.removeClass('is-invalid');
+        }
+        if(tipoReserva.val() != '' && pais.val() != '' && ciudad.val() != '' && fecha.val() != ''){
+            $(this).hide();
+
+            var data = {};
+            data = {
+                _token: $('input[name=_token]').val(),
+                tipoReserva: $( "#tipoId option:selected" ).val(),
+                pais: $( "#paisId option:selected" ).val(),
+                ciudad: $( "#ciudadId option:selected" ).val(),
+                fecha: $( "#fecha" ).val()
+            };
+            ajaxRequest($(this).data('url'), data, 'horasDisponibles', 'selectHoras');
+        }
+
+    });
+}
+
+function horasChange(){
+    $('#hora').on('change', function() {
+        if($(this).val() != ''){
+            $('#formTitular').show();
+            $('#guardarTitular').attr('disabled', false);
+        }else{
+            $('#formTitular').hide();
+            $('#guardarTitular').attr('disabled', true);
         }
     });
 }

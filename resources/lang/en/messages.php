@@ -197,6 +197,9 @@ return [
     'certificadoNoExiste' => 'Certificate does not exist',
     'Next' => 'Next',
     'Previous' => 'Previous',
+    //Agregar titular
+    'agregarReserva' => 'Add reservation',
+    'msgRegalo' => 'Fragment of the sky given as a gift',
 
     //Login
     'iniciarSesion' => 'Log in',

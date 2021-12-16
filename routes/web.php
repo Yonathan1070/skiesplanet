@@ -67,5 +67,9 @@ Route::group(['prefix' => '/administrador', 'middleware' => ['auth']], function 
         Route::get('page', [TitularesController::class, 'page'])->name('page_titulares');
         Route::put('/{id}/cambiar', [TitularesController::class, 'cambiar'])->name('cambiar_titular');
         Route::put('/{id}', [TitularesController::class, 'actualizar'])->name('actualizar_titular');
+        Route::post('/crear', [TitularesController::class, 'crear'])->name('crear_reserva');
+        Route::put('/{id}/editar', [TitularesController::class, 'editar'])->name('editar_reserva');
+        Route::post('', [TitularesController::class, 'guardar'])->name('guardar_reserva');
+        Route::post('/horas-disponibles', [TitularesController::class, 'disponibles'])->name('horas_disponibles');
     });
 });
