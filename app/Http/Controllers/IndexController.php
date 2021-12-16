@@ -460,6 +460,25 @@ class IndexController extends Controller
         $x_description  = $request['x_description'];
         $x_transaction_date = $request['x_transaction_date'];
         //Datos del pedido
+        if(
+            !$request->has('x_extra1') ||
+            !$request->has('x_extra2') ||
+            !$request->has('x_extra3') ||
+            !$request->has('x_extra4') ||
+            !$request->has('x_extra5') ||
+            !$request->has('x_extra6') ||
+            !$request->has('x_extra7') ||
+            !$request->has('x_extra8') ||
+            !$request->has('x_extra9') ||
+            !$request->has('x_extra10') ||
+            !$request->has('x_extra11') ||
+            !$request->has('x_extra12') ||
+            !$request->has('x_extra13') ||
+            !$request->has('x_extra14')
+        ){
+            return response()->json(['error' => 'Información incompleta', 'code' => '400']);
+        }
+            
         $x_extra1       = $request['x_extra1']; //tipo
         $x_extra2       = $request['x_extra2']; //fecha
         $x_extra3       = $request['x_extra3']; //horas
