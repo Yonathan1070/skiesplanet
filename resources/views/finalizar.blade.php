@@ -94,6 +94,8 @@
                                             <li class="d-flex justify-content-between">
                                                 <input type="hidden" name="tipo-reserva" id="tipo-reserva" value="{{$tipoReserva->id}}">
                                                 <input type="hidden" id="nombre-tipo-reserva" value="{{$tipoReserva->TTR_Nombre_Tipo_Reserva}}">
+                                                <input type="hidden" id="selectPaisTipoReserva" value="{{$tipoReserva->TTR_Select_Pais_Tipo_Reserva}}">
+                                                <input type="hidden" id="selectCiudadTipoReserva" value="{{$tipoReserva->TTR_Select_Ciudad_Tipo_Reserva}}">
                                                 <b>{{Lang::get('messages.tipoReserva')}}:</b>
                                                 <span>
                                                     {{Lang::get('messages.'.$tipoReserva->TTR_Nombre_Tipo_Reserva)}}

@@ -35,6 +35,8 @@ function epayco(){
     var ciudad = $('#ciudadId').val();
     var paisn = $('#nombrePais').val();
     var ciudadn = $('#nombreCiudad').val();
+    var selectPais = $('#selectPaisTipoReserva').val();
+    var selectCiudad = $('#selectCiudadTipoReserva').val();
     var data={
         //Parametros compra (obligatorio)
         name: tipoReserva,
@@ -61,6 +63,8 @@ function epayco(){
         extra12: "es",
         extra13: paisn,
         extra14: ciudadn,
+        extra15: selectPais,
+        extra16: selectCiudad,
         //Páginas
         confirmation:urlConfirmacion,
         response: urlRespuesta,

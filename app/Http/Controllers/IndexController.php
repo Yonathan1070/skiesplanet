@@ -470,11 +470,9 @@ class IndexController extends Controller
             !$request->has('x_extra7') ||
             !$request->has('x_extra8') ||
             !$request->has('x_extra9') ||
-            !$request->has('x_extra10') ||
-            !$request->has('x_extra11') ||
             !$request->has('x_extra12') ||
-            !$request->has('x_extra13') ||
-            !$request->has('x_extra14')
+            ($request->has('x_extra16') &&  $request['x_extra16'] == 1 && (!$request->has('x_extra11') || !$request->has('x_extra14'))) ||
+            ($request->has('x_extra15') &&  $request['x_extra15'] == 1 && (!$request->has('x_extra10') || !$request->has('x_extra13')))
         ){
             return response()->json(['error' => 'Información incompleta', 'code' => '400']);
         }
