@@ -28,7 +28,7 @@ Route::post('/total', [IndexController::class, 'total'])->name('total_reserva');
 Route::post('/reservar', [IndexController::class, 'reservar'])->name('reservar');
 Route::post('/finalizar', [IndexController::class, 'finalizar'])->name('finalizar');
 Route::post('/confirmacion', [IndexController::class, 'confirmacion'])->name('confirmacion');
-Route::get('/respuesta', [IndexController::class, 'respuesta'])->name('respuesta');
+Route::post('/respuesta', [IndexController::class, 'respuesta'])->name('respuesta');
 Route::get('/idioma/{idioma}', [IdiomaController::class, 'cambiar'])->name('cambiar_idioma');
 
 Route::group(['prefix' => '/login'], function () {
