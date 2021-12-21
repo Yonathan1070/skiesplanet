@@ -134,9 +134,7 @@
                         <span id="total"></span>
                     </li>
                 </ul>
-				<h5 class="text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4">
-                    Apreciado cliente, tu certificado ha sido enviado por favor verifica tu bandeja de entrada o spam
-                </h5>
+				<h5 class="text-center text-uppercase text-dark font-weight-bold mb-sm-5 mb-4" id="correo"></h5>
                 <div class="input-group1">
                     <a class="form-control btn" type="button" href="https://buy.skiesplanet.com">Regresar a skies planet</a>
                 </div>
@@ -308,6 +306,7 @@
             $.get(urlapp, function(response) {
                 if (response.success) {
                     if (response.data.x_cod_response == 1) {
+						$("#correo").html("Apreciado cliente, tu certificado ha sido enviado por favor verifica tu bandeja de entrada o spam");
                         //Codigo personalizado
                         console.log('transacción aceptada');
                     } //
