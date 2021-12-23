@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class IdiomaMiddleware
 {
@@ -23,6 +24,11 @@ class IdiomaMiddleware
          * If esta a true el valor de la variable status que tenemos en locale.php
          */
         if (config('locale.status')) {
+            $clienteIp = str_replace(".", "", request()->getClientIp());
+            if(!Cache::has('selectIdioma'.$clienteIp)) {
+                Cache::put('selectIdioma'.$clienteIp, 0, Carbon::now()->addHours(5));
+            }
+
             if(!session()->has('locale')){
                 Session::put(['locale' => 'es']);
             }

@@ -20,7 +20,7 @@
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								@if (config('locale.status') && count(config('locale.languages')) > 1)
 									@foreach (config('locale.languages') as $idioma)
-										<a class="dropdown-item" href="{{route('cambiar_idioma', $idioma[0])}}">{{Lang::get('messages.'.$idioma[1])}}</a>
+										<a class="dropdown-item" href="{{route('cambiar_idioma', $idioma[0])}}"><i class="flag-icon flag-icon-{{$idioma[3]}}"></i> {{Lang::get('messages.'.$idioma[1])}}</a>
 									@endforeach
 								@endif
 							</div>

@@ -148,4 +148,26 @@
 		</div>
 	</div>
 	<!-- //middle section -->
+
+	@if (Cache::get('selectIdioma'.str_replace(".", "", request()->getClientIp())) == 0)
+		<!-- Modal -->
+		<div class="modal fade" id="modal-seleccionar-idioma" data-idioma-set="{{empty(Cache::get('selectIdioma'.str_replace(".", "", request()->getClientIp()))) ? '0' : '1'}}" tabindex="-1" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">
+							{{Lang::get('messages.seleccionarIdioma')}}
+						</h5>
+					</div>
+					<div class="modal-body">
+						@if (config('locale.status') && count(config('locale.languages')) > 1)
+							@foreach (config('locale.languages') as $idioma)
+								<a class="dropdown-item" href="{{route('cambiar_idioma', $idioma[0])}}"><i class="flag-icon flag-icon-{{$idioma[3]}}"></i> {{Lang::get('messages.'.$idioma[1])}}</a>
+							@endforeach
+						@endif
+					</div>
+				</div>
+			</div>
+		</div>
+	@endif
 @endsection

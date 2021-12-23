@@ -62,6 +62,7 @@ return [
     'inicioCard2Sec4' => 'Por supuesto que puedes comprar más de una hora, solo debes tener en cuenta que su precio incrementara de acuerdo al valor de cada hora escogida (ciudad, país o Mundo).',
     'inicioCard3Sec4' => 'El cielo que compraste te pertenece de manera VITALICIA, es decir que cada año podrás ver, disfrutar y fotografiar tu propio cielo.',
     'inicioCard4Sec4' => 'El certificado es diseñado por un artista digital y es único, ya que tu mismo cielo nadie más lo podrá tener.',
+    'seleccionarIdioma' => 'Seleccionar idioma',
 
     //Reservar
     'reserve' => 'Reservar',

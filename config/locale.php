@@ -13,7 +13,7 @@ return [
      * Lenguajes disponibles
     */
     'languages' => [
-        'en'    => ['en', 'en_US', false],
-        'es'    => ['es', 'es_CO', false],
+        'en'    => ['en', 'en_US', false, 'us'],
+        'es'    => ['es', 'es_CO', false, 'es'],
     ],
 ];

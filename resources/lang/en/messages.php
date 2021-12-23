@@ -62,6 +62,7 @@ return [
     'inicioCard2Sec4' => 'Of course you can buy more than one hour, you just have to take into account that its price will increase according to the value of each chosen hour (city, country or World).',
     'inicioCard3Sec4' => 'The sky you bought belongs to you in a VITALITY way, that is to say that every year you will be able to see, enjoy and photograph your own sky.',
     'inicioCard4Sec4' => 'The certificate is designed by a digital artist and is unique, since no one else can have it in your own sky.',
+    'seleccionarIdioma' => 'Select your language',
 
     //Reservar
     'reserve' => 'Reserve',

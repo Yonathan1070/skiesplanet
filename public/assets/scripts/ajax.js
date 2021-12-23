@@ -1,3 +1,9 @@
+//Modal de idiomas
+const modal = $('#modal-seleccionar-idioma');
+if (modal.length && modal.data('idiomaSet') == '0') {
+    modal.modal('show');
+}
+
 function ajaxRequest(url, data, action, modal, form){
     $.ajax({
         url: url,
